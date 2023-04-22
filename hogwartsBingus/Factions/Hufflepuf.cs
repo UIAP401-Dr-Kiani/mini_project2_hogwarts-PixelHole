@@ -4,9 +4,9 @@ using hogwartsBingus.Base_Classes;
 
 namespace hogwartsBingus.Factions
 {
-    public static class Gryffindor
+    public static class Hufflepuf
     {
-        private static FactionType type = FactionType.Slytherin;
+        private static FactionType type = FactionType.Hufflepuff;
 
         public static Int64 Points;
 

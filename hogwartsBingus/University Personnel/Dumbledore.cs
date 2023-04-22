@@ -1,6 +1,6 @@
 namespace hogwartsBingus.Base_Classes
 {
-    public class Dumbledore
+    public class Dumbledore : AuthorizedPerson
     {
         
     }
