@@ -46,34 +46,51 @@
         <Reference Include="PresentationFramework" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Base Classes\AuthorizedPerson.cs" />
-        <Compile Include="Base Classes\Dormitory.cs" />
-        <Compile Include="Base Classes\Human.cs" />
-        <Compile Include="Base Classes\LoginData.cs" />
-        <Compile Include="Base Classes\Message.cs" />
-        <Compile Include="Base Classes\SessionTime.cs" />
-        <Compile Include="Base Classes\StudySubject.cs" />
-        <Compile Include="Enums\AuthorizationType.cs" />
-        <Compile Include="Enums\Day.cs" />
-        <Compile Include="Enums\FactionType.cs" />
-        <Compile Include="Enums\petType.cs" />
-        <Compile Include="Enums\Race.cs" />
-        <Compile Include="Enums\sexuality.cs" />
-        <Compile Include="Factions\Gryffindor.cs" />
-        <Compile Include="Factions\Hufflepuf.cs" />
-        <Compile Include="Factions\Ravenclaw.cs" />
-        <Compile Include="Factions\Slytherin.cs" />
+        <Compile Include="Execptions\LoginNotFoundExecption.cs" />
+        <Compile Include="Session\SessionManager.cs" />
+        <Compile Include="Session\WindowManager.cs" />
         <Compile Include="UI Classes\App.xaml.cs">
           <DependentUpon>App.xaml</DependentUpon>
           <SubType>Code</SubType>
         </Compile>
-        <Compile Include="UI Classes\MainWindow.xaml.cs">
+        <Compile Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml.cs">
+          <DependentUpon>DumbledoreLandingPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="UI Classes\LandingPages\ProfessorLandingPage.xaml.cs">
+          <DependentUpon>ProfessorLandingPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="UI Classes\LandingPages\StudentLandingPage.xaml.cs">
+          <DependentUpon>StudentLandingPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="UI Classes\LoginWindow.xaml.cs">
+          <DependentUpon>LoginWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="UI Classes\MainWindow.cs">
           <DependentUpon>MainWindow.xaml</DependentUpon>
           <SubType>Code</SubType>
         </Compile>
-        <Compile Include="University Personnel\Dumbledore.cs" />
-        <Compile Include="University Personnel\Professor.cs" />
-        <Compile Include="University Personnel\Student.cs" />
+        <Compile Include="University\Base Classes\AuthorizedPerson.cs" />
+        <Compile Include="University\Base Classes\Dormitory.cs" />
+        <Compile Include="University\Base Classes\Human.cs" />
+        <Compile Include="University\Base Classes\LoginData.cs" />
+        <Compile Include="University\Base Classes\Message.cs" />
+        <Compile Include="University\DataStorage\UserManager.cs" />
+        <Compile Include="University\Enums\AuthorizationType.cs" />
+        <Compile Include="University\Enums\Day.cs" />
+        <Compile Include="University\Enums\FactionType.cs" />
+        <Compile Include="University\Enums\gender.cs" />
+        <Compile Include="University\Enums\petType.cs" />
+        <Compile Include="University\Enums\Race.cs" />
+        <Compile Include="University\Factions\Gryffindor.cs" />
+        <Compile Include="University\Factions\Hufflepuf.cs" />
+        <Compile Include="University\Factions\Ravenclaw.cs" />
+        <Compile Include="University\Factions\Slytherin.cs" />
+        <Compile Include="University\StudySessionRelactedClasses\StudySessionTime.cs" />
+        <Compile Include="University\StudySessionRelactedClasses\StudySubject.cs" />
+        <Compile Include="University\StudySessionRelactedClasses\WeeklySchedule.cs" />
+        <Compile Include="University\University Personnel\Dumbledore.cs" />
+        <Compile Include="University\University Personnel\Professor.cs" />
+        <Compile Include="University\University Personnel\Student.cs" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -99,10 +116,17 @@
       </ApplicationDefinition>
     </ItemGroup>
     <ItemGroup>
+      <Page Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml" />
+      <Page Include="UI Classes\LandingPages\ProfessorLandingPage.xaml" />
+      <Page Include="UI Classes\LandingPages\StudentLandingPage.xaml" />
+      <Page Include="UI Classes\LoginWindow.xaml" />
       <Page Include="UI Classes\MainWindow.xaml">
         <Generator>MSBuild:Compile</Generator>
         <SubType>Designer</SubType>
       </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="University" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

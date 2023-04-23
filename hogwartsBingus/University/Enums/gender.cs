@@ -1,6 +1,6 @@
 namespace hogwartsBingus.Base_Classes
 {
-    public enum sexuality
+    public enum gender
     {
         Male = 0,
         Female = 1

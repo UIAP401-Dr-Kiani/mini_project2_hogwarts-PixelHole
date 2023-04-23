@@ -1,6 +1,6 @@
 namespace hogwartsBingus.Base_Classes
 {
-    public class Human
+    public abstract class Human
     {
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
@@ -17,7 +17,7 @@ namespace hogwartsBingus.Base_Classes
 
         public int BirthYear { get; protected set; }
         
-        public sexuality Sexuality { get; protected set; }
+        public gender Gender { get; protected set; }
         
         public Human Father { get; protected set; }
 
