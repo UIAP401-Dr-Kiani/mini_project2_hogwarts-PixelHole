@@ -47,6 +47,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Execptions\LoginNotFoundExecption.cs" />
+        <Compile Include="Execptions\PassengerDoesntHaveTicketException.cs" />
+        <Compile Include="GlobalClock.cs" />
         <Compile Include="Session\SessionManager.cs" />
         <Compile Include="Session\WindowManager.cs" />
         <Compile Include="UI Classes\App.xaml.cs">
@@ -75,11 +77,14 @@
         <Compile Include="University\Base Classes\Human.cs" />
         <Compile Include="University\Base Classes\LoginData.cs" />
         <Compile Include="University\Base Classes\Message.cs" />
+        <Compile Include="University\Base Classes\TrainTicket.cs" />
+        <Compile Include="University\DataStorage\MessagingHandler.cs" />
         <Compile Include="University\DataStorage\UserManager.cs" />
         <Compile Include="University\Enums\AuthorizationType.cs" />
         <Compile Include="University\Enums\Day.cs" />
         <Compile Include="University\Enums\FactionType.cs" />
         <Compile Include="University\Enums\gender.cs" />
+        <Compile Include="University\Enums\MessageType.cs" />
         <Compile Include="University\Enums\petType.cs" />
         <Compile Include="University\Enums\Race.cs" />
         <Compile Include="University\Factions\Gryffindor.cs" />

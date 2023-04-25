@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Windows.Documents;
 using hogwartsBingus.Factions;
 
 namespace hogwartsBingus.Base_Classes
@@ -17,9 +18,12 @@ namespace hogwartsBingus.Base_Classes
         
         public bool HasBaggage { get; protected set; }
         
+        public string CurrentLocation { get; protected set; }
+        
         public AuthorizationType AuthType { get; protected set; }
 
         public readonly List<Message> Messages = new List<Message>();
+        public readonly List<TrainTicket> Tickets = new List<TrainTicket>();
 
         protected AuthorizedPerson(int id, WeeklySchedule schedule, petType pet, FactionType faction,
             bool hasBaggage, AuthorizationType authType)
@@ -31,5 +35,37 @@ namespace hogwartsBingus.Base_Classes
             HasBaggage = hasBaggage;
             AuthType = authType;
         }
+
+        public void AddMessage(Message message)
+        {
+            Messages.Add(message);
+        }
+        public void RemoveMessage(Message message)
+        {
+            Messages.Remove(message);
+        }
+        public void AddTicket(TrainTicket ticket)
+        {
+            Tickets.Add(ticket);
+        }
+        public void RemoveTicket(TrainTicket ticket)
+        {
+            Tickets.Remove(ticket);
+        }
+
+        public bool HasTicketForTrain(int trainNumber, DateTime moveTime)
+        {
+            foreach (var ticket in Tickets)
+            {
+                if (ticket.TrainNumber == trainNumber && ticket.MoveTime.Compare(moveTime))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void MoveToLocation(string newLocation) => CurrentLocation = newLocation;
     }
 }

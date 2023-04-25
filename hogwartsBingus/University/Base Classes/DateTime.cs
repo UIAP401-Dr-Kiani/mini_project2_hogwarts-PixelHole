@@ -12,5 +12,7 @@ namespace hogwartsBingus.Base_Classes
             Hour = hour;
             this.minute = minute;
         }
+
+        public bool Compare(DateTime check) => Day == check.Day && Hour == check.Hour && minute == check.minute;
     }
 }

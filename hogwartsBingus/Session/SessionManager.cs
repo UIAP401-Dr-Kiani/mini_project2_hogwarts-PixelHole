@@ -2,13 +2,14 @@ using System;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Execptions;
+using DateTime = hogwartsBingus.Base_Classes.DateTime;
 
 namespace hogwartsBingus.Session
 {
     public static class SessionManager
     {
         private static int CurrentUser;
-
+        
         public static void Login(string username, string password)
         {
             CurrentUser = UserManager.FindWithLogin(new LoginData(username, password));
