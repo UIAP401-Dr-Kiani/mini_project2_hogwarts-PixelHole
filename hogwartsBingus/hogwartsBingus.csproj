@@ -70,6 +70,7 @@
           <SubType>Code</SubType>
         </Compile>
         <Compile Include="University\Base Classes\AuthorizedPerson.cs" />
+        <Compile Include="University\Base Classes\DateTime.cs" />
         <Compile Include="University\Base Classes\Dormitory.cs" />
         <Compile Include="University\Base Classes\Human.cs" />
         <Compile Include="University\Base Classes\LoginData.cs" />
@@ -88,6 +89,8 @@
         <Compile Include="University\StudySessionRelactedClasses\StudySessionTime.cs" />
         <Compile Include="University\StudySessionRelactedClasses\StudySubject.cs" />
         <Compile Include="University\StudySessionRelactedClasses\WeeklySchedule.cs" />
+        <Compile Include="University\Train Related Stuff\Train.cs" />
+        <Compile Include="University\Train Related Stuff\TrainManager.cs" />
         <Compile Include="University\University Personnel\Dumbledore.cs" />
         <Compile Include="University\University Personnel\Professor.cs" />
         <Compile Include="University\University Personnel\Student.cs" />
@@ -124,9 +127,6 @@
         <Generator>MSBuild:Compile</Generator>
         <SubType>Designer</SubType>
       </Page>
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="University" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

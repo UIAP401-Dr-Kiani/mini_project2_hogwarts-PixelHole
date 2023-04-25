@@ -1,16 +1,9 @@
 namespace hogwartsBingus.Base_Classes
 {
-    public class StudySessionTime
+    public class StudySessionTime : DateTime
     {
-        public Day Day { get; protected set; }
-        public int Hour { get; protected set; }
-        public int minute { get; protected set; }
-
-        public StudySessionTime(Day day, int hour, int minute)
+        public StudySessionTime(Day day, int hour, int minute) : base(day, hour, minute)
         {
-            this.Day = day;
-            this.Hour = hour;
-            this.minute = minute;
         }
     }
 }

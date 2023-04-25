@@ -6,18 +6,6 @@ namespace hogwartsBingus.Base_Classes
     {
         public readonly List<StudySubject> Subjects = new List<StudySubject>();
 
-        /*public bool Finilized
-        {
-            get => Finilized;
-            set
-            {
-                if (!Finilized && value)
-                {
-                    Finilized = value;
-                }
-            }
-        }*/
-
         public WeeklySchedule(List<StudySubject> subjects)
         {
             subjects.ForEach(Subjects.Add);

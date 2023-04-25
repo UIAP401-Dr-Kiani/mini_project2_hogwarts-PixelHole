@@ -15,13 +15,13 @@ namespace hogwartsBingus.Session
         }
         public static void LaunchLoginPage()
         {
-            HideCurrentWindow();
+            CloseCurrentWindow();
             CurrentWindow = new LoginWindow();
             ShowCurrentWindow();
         }
         public static void LaunchLandingPageOfType(AuthorizationType type)
         {
-            HideCurrentWindow();
+            CloseCurrentWindow();
             switch (type)
             {
                 case AuthorizationType.Student:
@@ -39,14 +39,14 @@ namespace hogwartsBingus.Session
             ShowCurrentWindow();
         }
 
-        private static void HideCurrentWindow()
+        private static void CloseCurrentWindow()
         {
             if (CurrentWindow == null)
             {
                 return;
             }
             
-            CurrentWindow.Hide();
+            CurrentWindow.Close();
         }
 
         private static void ShowCurrentWindow()

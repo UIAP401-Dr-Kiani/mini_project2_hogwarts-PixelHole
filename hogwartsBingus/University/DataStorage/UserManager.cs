@@ -7,6 +7,9 @@ namespace hogwartsBingus.DataStorage
     {
         public static readonly List<AuthorizedPerson> Users = new List<AuthorizedPerson>();
 
+        
+        // manipulate Users ...
+        
         public static void addUser(Student newUser)
         {
             // do some security check or somethin idk
@@ -14,46 +17,56 @@ namespace hogwartsBingus.DataStorage
             
             Users.Add(newUser);
         }
-
         public static void removeUser(Student User)
         {
             //security check again
             Users.Remove(User);
         }
         
+        
         //Find ...
 
-        public static AuthorizedPerson FindWithLogin(LoginData loginData)
+        public static int FindWithLogin(LoginData loginData)
         {
-            AuthorizedPerson result = null;
-            
-            foreach (var user in Users)
+            int result = -1;
+
+            for (int i = 0; i < Users.Count; i++)
             {
-                if (user.Login == loginData)
+                if (Users[i].Login.Compare(loginData))
                 {
-                    result = user;
+                    result = i;
                     break;
                 }
             }
 
             return result;
         }
-        public static AuthorizedPerson FindWithStudentNumber(int number)
+        public static int FindWithStudentNumber(int number)
         {
-            AuthorizedPerson result = null;
-            
-            foreach (var user in Users)
+            int result = -1;
+
+            for (int i = 0; i < Users.Count; i++)
             {
-                if (user.ID == number)
+                if (Users[i].ID == number)
                 {
-                    result = user;
+                    result = i;
                     break;
                 }
             }
 
             return result;
         }
-
+        
+        
+        // Get ...
+        
+        public static AuthorizedPerson GetUserAtIndex(int index)
+        {
+            if (index > Users.Count || index < 0) return null;
+            return Users[index];
+        }
+        
+        
         public static void RequestSave(){}
         public static void RequestLoad(){}
     }
