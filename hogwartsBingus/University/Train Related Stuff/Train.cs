@@ -10,7 +10,6 @@ namespace hogwartsBingus.University
     public class Train
     {
         private List<int> passengers = new List<int>();
-
         public DateTime MoveTime { get; protected set; }
         public DateTime StopTime { get; protected set; }
         
@@ -45,7 +44,9 @@ namespace hogwartsBingus.University
         {
             foreach (var passenger in passengers)
             {
-                UserManager.GetUserAtIndex(passenger).MoveToLocation(Destination);
+                AuthorizedPerson person = UserManager.GetUserAtIndex(passenger);
+                person.MoveToLocation(Destination);
+                person.RemoveTicketForTrain(TrainNumber, MoveTime);
             }
 
             Location = Destination;

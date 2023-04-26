@@ -25,12 +25,12 @@ namespace hogwartsBingus.Base_Classes
         {
             DateTime invitationTime = new DateTime(Day.Sunday, 12, 0);
             Message invitaion = new Message("invition",invitationTime);
-            TrainTicket ticket = TrainManager.FindTicket("", "Hogwarts");
+            TrainTicket ticket = TrainManager.FindTicket("London", "Hogwarts");
 
             if (ticket == null)
             {
-                TrainManager.AddTrain(new Train(invitationTime, "", "Hogwarts"));
-                ticket = TrainManager.FindTicket("", "Hogwarts");
+                TrainManager.AddTrain(invitationTime, "London", "Hogwarts");
+                ticket = TrainManager.FindTicket("London", "Hogwarts");
             }
             
             UserManager.GetUserAtIndex(UserIndex).AddMessage(invitaion);

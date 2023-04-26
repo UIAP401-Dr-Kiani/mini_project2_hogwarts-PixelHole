@@ -53,17 +53,26 @@ namespace hogwartsBingus.Base_Classes
             Tickets.Remove(ticket);
         }
 
-        public bool HasTicketForTrain(int trainNumber, DateTime moveTime)
+        public void RemoveTicketForTrain(int trainNumber, DateTime moveTime)
         {
-            foreach (var ticket in Tickets)
+            Tickets.RemoveAt(FindTicketForTrain(trainNumber, moveTime));
+        }
+
+        public int FindTicketForTrain(int trainNumber, DateTime moveTime)
+        {
+            for (int i = 0; i < Tickets.Count ; i++)
             {
-                if (ticket.TrainNumber == trainNumber && ticket.MoveTime.Compare(moveTime))
+                if (Tickets[i].TrainNumber == trainNumber && Tickets[i].MoveTime.Compare(moveTime))
                 {
-                    return true;
+                    return i;
                 }
             }
 
-            return false;
+            return -1;
+        }
+        public bool HasTicketForTrain(int trainNumber, DateTime moveTime)
+        {
+            return FindTicketForTrain(trainNumber, moveTime) != -1;
         }
 
         public void MoveToLocation(string newLocation) => CurrentLocation = newLocation;

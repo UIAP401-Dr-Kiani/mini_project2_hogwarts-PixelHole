@@ -5,6 +5,7 @@ using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Execptions;
 using hogwartsBingus.Session;
+using DateTime = hogwartsBingus.Base_Classes.DateTime;
 
 namespace hogwartsBingus.University
 {
@@ -21,6 +22,11 @@ namespace hogwartsBingus.University
         {
             // check
             Trains.Add(train);
+        }
+
+        public static void AddTrain(DateTime moveTime, string location, string destination)
+        {
+            Trains.Add(new Train(moveTime, location, destination));
         }
 
         public static void RemoveTrain(Train train)
@@ -57,6 +63,7 @@ namespace hogwartsBingus.University
                 if (train.MoveTime == GlobalClock.CurrentTime)
                 {
                     train.Move();
+                    Trains.Remove(train);
                 }
             }
         }
@@ -72,6 +79,11 @@ namespace hogwartsBingus.University
             }
 
             return null;
+        }
+
+        public static void RemoveUsedTrains()
+        {
+            
         }
     }
 }
