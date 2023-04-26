@@ -8,6 +8,7 @@ namespace hogwartsBingus.Base_Classes
         Tuesday = 3,
         Wednesday = 4,
         Thursday = 5,
-        Friday = 6
+        Friday = 6,
+        None = -1
     }
 }

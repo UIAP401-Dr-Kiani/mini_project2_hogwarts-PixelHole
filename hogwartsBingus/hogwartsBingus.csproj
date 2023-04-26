@@ -94,8 +94,7 @@
         <Compile Include="University\StudySessionRelactedClasses\StudySessionTime.cs" />
         <Compile Include="University\StudySessionRelactedClasses\StudySubject.cs" />
         <Compile Include="University\StudySessionRelactedClasses\WeeklySchedule.cs" />
-        <Compile Include="University\Train Related Stuff\Train.cs" />
-        <Compile Include="University\Train Related Stuff\TrainManager.cs" />
+        <Compile Include="University\Train Related Stuff\TransportManager.cs" />
         <Compile Include="University\University Personnel\Dumbledore.cs" />
         <Compile Include="University\University Personnel\Professor.cs" />
         <Compile Include="University\University Personnel\Student.cs" />

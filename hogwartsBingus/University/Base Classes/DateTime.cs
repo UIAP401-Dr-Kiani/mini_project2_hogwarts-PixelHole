@@ -13,52 +13,50 @@ namespace hogwartsBingus.Base_Classes
             this.minute = minute;
         }
 
-        public bool Compare(DateTime check) => Day == check.Day && Hour == check.Hour && minute == check.minute;
-
         public static int GetDayIndex(Day day)
         {
             switch (day)
             {
                 case Day.Saturday:
-                    return 0;
-                case Day.Sunday:
                     return 1;
-                case Day.Monday:
+                case Day.Sunday:
                     return 2;
-                case Day.Tuesday:
+                case Day.Monday:
                     return 3;
-                case Day.Wednesday:
+                case Day.Tuesday:
                     return 4;
-                case Day.Thursday:
+                case Day.Wednesday:
                     return 5;
-                case Day.Friday:
+                case Day.Thursday:
                     return 6;
+                case Day.Friday:
+                    return 7;
             }
 
-            return -1;
+            return 0;
         }
 
         public static Day GetDayFromIndex(int index)
         {
             switch (index)
             {
-                case 0 :
-                    return Day.Saturday;
                 case 1 :
-                    return Day.Sunday;
+                    return Day.Saturday;
                 case 2 :
-                    return Day.Monday;
+                    return Day.Sunday;
                 case 3 :
-                    return Day.Tuesday;
+                    return Day.Monday;
                 case 4 :
-                    return Day.Wednesday;
+                    return Day.Tuesday;
                 case 5 :
-                    return Day.Thursday;
+                    return Day.Wednesday;
                 case 6 :
+                    return Day.Thursday;
+                case 7 :
                     return Day.Friday;
             }
 
-            return Day.Friday;
+            return Day.None;
         }
         public static DateTime operator +(DateTime a, DateTime b)
         {
@@ -73,6 +71,84 @@ namespace hogwartsBingus.Base_Classes
             DateTime c = new DateTime(GetDayFromIndex(nDay), nHour, nMinute);
 
             return c;
+        }
+        public static DateTime operator -(DateTime a, DateTime b)
+        {
+            int nHour = a.Hour - b.Hour,
+                nMinute = a.minute - b.minute,
+                nDay = GetDayIndex(a.Day) - GetDayIndex(b.Day);
+
+            if (nHour < 0) nHour += 24;
+            if (nMinute < 0) nMinute += 60;
+            if (nDay < 0) nMinute += 6;
+
+            DateTime c = new DateTime(GetDayFromIndex(nDay), nHour, nMinute);
+
+            return c;
+        }
+        public static bool operator <(DateTime a, DateTime b)
+        {
+            if (GetDayIndex(a.Day) < GetDayIndex(b.Day))
+            {
+                return true;
+            }
+            if (GetDayIndex(a.Day) > GetDayIndex(b.Day)) return false;
+            if (a.Hour < b.Hour || a.Hour == b.Hour && a.minute < b.minute)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public static bool operator >(DateTime a, DateTime b)
+        {
+            if (GetDayIndex(a.Day) > GetDayIndex(b.Day))
+            {
+                return true;
+            }
+            if (GetDayIndex(a.Day) < GetDayIndex(b.Day)) return false;
+            if (a.Hour > b.Hour || a.Hour == b.Hour && a.minute > b.minute)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public static bool operator <=(DateTime a, DateTime b)
+        {
+            if (GetDayIndex(a.Day) <= GetDayIndex(b.Day))
+            {
+                return true;
+            }
+            if (GetDayIndex(a.Day) > GetDayIndex(b.Day)) return false;
+            if (a.Hour <= b.Hour || a.Hour == b.Hour && a.minute <= b.minute)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public static bool operator >=(DateTime a, DateTime b)
+        {
+            if (GetDayIndex(a.Day) >= GetDayIndex(b.Day))
+            {
+                return true;
+            }
+            if (GetDayIndex(a.Day) < GetDayIndex(b.Day)) return false;
+            if (a.Hour >= b.Hour || a.Hour == b.Hour && a.minute >= b.minute)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public static bool operator ==(DateTime a, DateTime b)
+        {
+            return GetDayIndex(a.Day) == GetDayIndex(b.Day) && a.Hour == b.Hour && a.minute == b.minute;
+        }
+        public static bool operator !=(DateTime a, DateTime b)
+        {
+            return GetDayIndex(a.Day) != GetDayIndex(b.Day) && a.Hour != b.Hour && a.minute != b.minute;
         }
     }
 }

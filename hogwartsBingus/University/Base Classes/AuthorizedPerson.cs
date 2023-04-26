@@ -62,7 +62,7 @@ namespace hogwartsBingus.Base_Classes
         {
             for (int i = 0; i < Tickets.Count ; i++)
             {
-                if (Tickets[i].TrainNumber == trainNumber && Tickets[i].MoveTime.Compare(moveTime))
+                if (Tickets[i].TrainNumber == trainNumber && Tickets[i].MoveTime == moveTime)
                 {
                     return i;
                 }
