@@ -10,17 +10,22 @@ namespace hogwartsBingus.DataStorage
         
         // manipulate Users ...
         
-        public static void addUser(Student newUser)
+        public static void addUser(AuthorizedPerson newUser)
         {
             // do some security check or somethin idk
             //check if newStudent exists
             
             Users.Add(newUser);
         }
-        public static void removeUser(Student User)
+        public static void removeUser(AuthorizedPerson User)
         {
             //security check again
             Users.Remove(User);
+        }
+
+        public static void ReplaceUserAt(int index)
+        {
+            
         }
         
         
@@ -65,8 +70,7 @@ namespace hogwartsBingus.DataStorage
             if (index > Users.Count || index < 0) return null;
             return Users[index];
         }
-        
-        
+
         public static void RequestSave(){}
         public static void RequestLoad(){}
     }

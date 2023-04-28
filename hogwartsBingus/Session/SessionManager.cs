@@ -8,18 +8,18 @@ namespace hogwartsBingus.Session
 {
     public static class SessionManager
     {
-        private static int CurrentUser;
+        private static AuthorizedPerson CurrentUser;
         
         public static void Login(string username, string password)
         {
-            CurrentUser = UserManager.FindWithLogin(new LoginData(username, password));
+            CurrentUser = UserManager.GetUserAtIndex(UserManager.FindWithLogin(new LoginData(username, password)));
 
-            if (CurrentUser == -1)
+            if (CurrentUser == null)
             {
                 throw new LoginNotFoundException();
             }
             
-            WindowManager.LaunchLandingPageOfType(UserManager.GetUserAtIndex(CurrentUser).AuthType);
+            WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
         }
     }
 }

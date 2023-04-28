@@ -4,9 +4,9 @@ namespace hogwartsBingus.Base_Classes
     {
         public bool CanTeachAtMultipleClasses { get; protected set; }
 
-        public Professor(int id, WeeklySchedule schedule, petType pet, FactionType faction, bool hasBaggage, 
+        public Professor(int id, WeeklySchedule schedule, petType pet, bool hasBaggage, 
             AuthorizationType authType, bool canTeachAtMultipleClasses)
-            : base(id, schedule, pet, faction, hasBaggage, authType)
+            : base(id, schedule, pet, hasBaggage, authType)
         {
             CanTeachAtMultipleClasses = canTeachAtMultipleClasses;
         }

@@ -5,6 +5,7 @@ namespace hogwartsBingus.Base_Classes
         Slytherin = 0,
         Raveclaw = 1,
         Hufflepuff = 2,
-        Gryffindor = 3
+        Gryffindor = 3,
+        None = -1
     }
 }

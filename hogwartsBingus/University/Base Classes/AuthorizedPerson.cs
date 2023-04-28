@@ -13,9 +13,7 @@ namespace hogwartsBingus.Base_Classes
         public WeeklySchedule Schedule { get; protected set; } 
 
         public petType Pet { get; protected set; }
-        
-        public FactionType Faction { get; protected set; }
-        
+
         public bool HasBaggage { get; protected set; }
         
         public string CurrentLocation { get; protected set; }
@@ -25,13 +23,12 @@ namespace hogwartsBingus.Base_Classes
         public readonly List<Message> Messages = new List<Message>();
         public readonly List<TrainTicket> Tickets = new List<TrainTicket>();
 
-        protected AuthorizedPerson(int id, WeeklySchedule schedule, petType pet, FactionType faction,
+        protected AuthorizedPerson(int id, WeeklySchedule schedule, petType pet,
             bool hasBaggage, AuthorizationType authType)
         {
             ID = id;
             Schedule = schedule;
             Pet = pet;
-            Faction = faction;
             HasBaggage = hasBaggage;
             AuthType = authType;
         }

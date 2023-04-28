@@ -78,6 +78,7 @@
         <Compile Include="University\Base Classes\LoginData.cs" />
         <Compile Include="University\Base Classes\Message.cs" />
         <Compile Include="University\Base Classes\TrainTicket.cs" />
+        <Compile Include="University\Ceremony\InitiationCeremony.cs" />
         <Compile Include="University\DataStorage\MessagingHandler.cs" />
         <Compile Include="University\DataStorage\UserManager.cs" />
         <Compile Include="University\Enums\AuthorizationType.cs" />
