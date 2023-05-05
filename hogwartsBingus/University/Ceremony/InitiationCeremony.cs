@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Factions;
+using hogwartsBingus.University.DormitoryData;
 
 namespace hogwartsBingus.University.Ceremony
 {
@@ -44,6 +45,7 @@ namespace hogwartsBingus.University.Ceremony
         public static void BeginCeremony()
         {
             AssignFactionForFirstYears();
+            AssignDorms();
         }
 
         private static void AssignFactionForFirstYears()
@@ -59,7 +61,21 @@ namespace hogwartsBingus.University.Ceremony
 
         private static void AssignDorms()
         {
-            
+            for (int i = 1; i <= 8; i++)
+            {
+                AssignDormsForStudentsOfSemester(i);
+            }
+        }
+
+        private static void AssignDormsForStudentsOfSemester(int semester)
+        {
+            foreach (var attendee in Attendees)
+            {
+                if (attendee.Semester == semester)
+                {
+                    DormitoryManager.GetBedNumberOfType(attendee.Faction);
+                }
+            }
         }
     }
 }

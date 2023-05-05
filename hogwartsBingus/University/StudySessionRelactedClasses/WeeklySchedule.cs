@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
+using hogwartsBingus.Execptions;
 
 namespace hogwartsBingus.Base_Classes
 {
@@ -13,10 +15,8 @@ namespace hogwartsBingus.Base_Classes
 
         public void addSubject(StudySubject newSubject)
         {
-            // sec check
-            //dupe check
-            //intersection check
-            
+            if (StudySessionIntersects(newSubject)) throw new StudySessionIntersectionException();
+
             Subjects.Add(newSubject);
         }
 
@@ -25,6 +25,37 @@ namespace hogwartsBingus.Base_Classes
             //sec check
 
             Subjects.Remove(subject);
+        }
+
+        private bool StudySessionIntersects(StudySubject newSubject)
+        {
+            foreach (var session in newSubject.sessions)
+            {
+                foreach (var sessionsInDay in GetSessionTimeInDay(session.StartTime.Day))
+                {
+                    if (session.IntersectsWith(sessionsInDay)) return true;
+                }
+            }
+
+            return false;
+        }
+
+        private List<StudySessionTime> GetSessionTimeInDay(Day day)
+        {
+            List<StudySessionTime> times = new List<StudySessionTime>();
+            
+            foreach (var subject in Subjects)
+            {
+                foreach (var session in subject.sessions)
+                {
+                    if (session.StartTime.Day == day)
+                    {
+                        times.Add(session);
+                    }
+                }
+            }
+
+            return times;
         }
     }
 }

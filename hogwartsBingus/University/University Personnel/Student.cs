@@ -4,7 +4,7 @@ namespace hogwartsBingus.Base_Classes
 {
     public class Student : AuthorizedPerson
     {
-        public int PassedCourses { get; protected set; }
+        //public int PassedCourses { get; protected set; }
         public int Semester { get; protected set; }
         public int DormitoryNumber { get; protected set; }
         public int StudentNumber
@@ -12,10 +12,12 @@ namespace hogwartsBingus.Base_Classes
             get => base.ID;
             set => base.ID = value;
         }
-        
         public FactionType Faction { get; protected set; }
 
-        
+        public Student()
+        {
+            Semester = 1;
+        }
 
         public void SetFaction(FactionType faction)
         {

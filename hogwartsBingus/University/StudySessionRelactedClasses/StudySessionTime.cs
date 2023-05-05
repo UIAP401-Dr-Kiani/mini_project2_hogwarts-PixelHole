@@ -1,9 +1,24 @@
 namespace hogwartsBingus.Base_Classes
 {
-    public class StudySessionTime : DateTime
+    public class StudySessionTime
     {
-        public StudySessionTime(Day day, int hour, int minute) : base(day, hour, minute)
+        public DateTime StartTime { get; private set; }
+        public DateTime EndTime { get; private set; }
+
+        public StudySessionTime(DateTime startTime, DateTime endTime)
         {
+            this.StartTime = startTime;
+            this.EndTime = endTime;
+        }
+
+        public bool IntersectsWith(StudySessionTime studySession)
+        {
+            if (studySession.StartTime.Day != StartTime.Day) return false;
+
+            if (studySession.StartTime > StartTime && studySession.StartTime < EndTime) return true;
+            if (studySession.EndTime > StartTime && studySession.EndTime < EndTime) return true;
+
+            return false;
         }
     }
 }
