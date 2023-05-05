@@ -28,6 +28,13 @@ namespace hogwartsBingus.Base_Classes
             }
         }
 
+        public Dormitory(int floorCount)
+        {
+            this.FloorCount = floorCount;
+            ResidentsCount = 0;
+            
+        }
+
         public int AssignNewBew()
         {
             ResidentsCount++;

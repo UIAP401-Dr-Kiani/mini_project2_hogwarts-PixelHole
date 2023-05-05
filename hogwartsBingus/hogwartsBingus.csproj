@@ -73,7 +73,6 @@
         </Compile>
         <Compile Include="University\Base Classes\AuthorizedPerson.cs" />
         <Compile Include="University\Base Classes\DateTime.cs" />
-        <Compile Include="University\Base Classes\Dormitory.cs" />
         <Compile Include="University\Base Classes\Human.cs" />
         <Compile Include="University\Base Classes\LoginData.cs" />
         <Compile Include="University\Base Classes\Message.cs" />
@@ -81,6 +80,8 @@
         <Compile Include="University\Ceremony\InitiationCeremony.cs" />
         <Compile Include="University\DataStorage\MessagingHandler.cs" />
         <Compile Include="University\DataStorage\UserManager.cs" />
+        <Compile Include="University\DormitoryData\Dormitory.cs" />
+        <Compile Include="University\DormitoryData\DormitoryManager.cs" />
         <Compile Include="University\Enums\AuthorizationType.cs" />
         <Compile Include="University\Enums\Day.cs" />
         <Compile Include="University\Enums\FactionType.cs" />
@@ -88,10 +89,8 @@
         <Compile Include="University\Enums\MessageType.cs" />
         <Compile Include="University\Enums\petType.cs" />
         <Compile Include="University\Enums\Race.cs" />
-        <Compile Include="University\Factions\Gryffindor.cs" />
-        <Compile Include="University\Factions\Hufflepuf.cs" />
-        <Compile Include="University\Factions\Ravenclaw.cs" />
-        <Compile Include="University\Factions\Slytherin.cs" />
+        <Compile Include="University\Factions\Faction.cs" />
+        <Compile Include="University\Factions\FactionManager.cs" />
         <Compile Include="University\StudySessionRelactedClasses\StudySessionTime.cs" />
         <Compile Include="University\StudySessionRelactedClasses\StudySubject.cs" />
         <Compile Include="University\StudySessionRelactedClasses\WeeklySchedule.cs" />

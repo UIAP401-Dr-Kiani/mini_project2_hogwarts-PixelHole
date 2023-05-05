@@ -23,16 +23,6 @@ namespace hogwartsBingus.Base_Classes
         public readonly List<Message> Messages = new List<Message>();
         public readonly List<TrainTicket> Tickets = new List<TrainTicket>();
 
-        protected AuthorizedPerson(int id, WeeklySchedule schedule, petType pet,
-            bool hasBaggage, AuthorizationType authType)
-        {
-            ID = id;
-            Schedule = schedule;
-            Pet = pet;
-            HasBaggage = hasBaggage;
-            AuthType = authType;
-        }
-
         public void AddMessage(Message message)
         {
             Messages.Add(message);

@@ -15,14 +15,11 @@ namespace hogwartsBingus.Base_Classes
         
         public FactionType Faction { get; protected set; }
 
-        public Student(int id, WeeklySchedule schedule, petType pet, bool hasBaggage,
-            AuthorizationType authType, int passedCourses, int semester, int dormitoryNumber) 
-            : base(id, schedule, pet, hasBaggage, authType)
+        
+
+        public void SetFaction(FactionType faction)
         {
-            PassedCourses = passedCourses;
-            Semester = semester;
-            DormitoryNumber = dormitoryNumber;
-            Faction = FactionType.None;
+            this.Faction = faction;
         }
     }
 }

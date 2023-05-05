@@ -1,33 +1,34 @@
 using System.Collections.Generic;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
+using hogwartsBingus.Factions;
 
 namespace hogwartsBingus.University.Ceremony
 {
     public static class InitiationCeremony
     {
-        private static readonly List<AuthorizedPerson> Attendees = new List<AuthorizedPerson>();
+        private static readonly List<Student> Attendees = new List<Student>();
 
 
 
-        public static void AddAttendee(AuthorizedPerson userIndex)
+        public static void AddAttendee(Student user)
         {
-            if (Attendees.IndexOf(userIndex) != -1)
+            if (Attendees.IndexOf(user) != -1)
             {
                 return;
             }
             
-            Attendees.Add(userIndex);
+            Attendees.Add(user);
         }
         
-        public static void RemoveAttendee(AuthorizedPerson userIndex)
+        public static void RemoveAttendee(Student user)
         {
-            if (Attendees.IndexOf(userIndex) == -1)
+            if (Attendees.IndexOf(user) == -1)
             {
                 return;
             }
             
-            Attendees.Remove(userIndex);
+            Attendees.Remove(user);
         }
         
         public static void RemoveAttendeeAt(int index)
@@ -42,25 +43,23 @@ namespace hogwartsBingus.University.Ceremony
 
         public static void BeginCeremony()
         {
-            
+            AssignFactionForFirstYears();
         }
 
-        private static void TransformAllToStudent()
+        private static void AssignFactionForFirstYears()
         {
             foreach (var attendee in Attendees)
             {
-                Student newStudent = (Student)attendee;
-                //UserManager.;
-                
+                if (attendee.Semester == 1)
+                {
+                    attendee.SetFaction(FactionManager.GetRandomFaction());
+                }
             }
         }
-        
-        private static void AssignFactionForAll()
+
+        private static void AssignDorms()
         {
-            foreach (var attendee in Attendees)
-            {
-                
-            }
+            
         }
     }
 }

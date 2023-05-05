@@ -7,7 +7,7 @@ namespace hogwartsBingus
         public delegate void OnTimeChanged();
         public static event OnTimeChanged TimeChanged;
         
-        public static DateTime CurrentTime { get; protected set; }
+        public static DateTime CurrentTime { get; private set; }
 
         //public static void InvokeTimeChanged() => TimeChanged.Invoke();
         
