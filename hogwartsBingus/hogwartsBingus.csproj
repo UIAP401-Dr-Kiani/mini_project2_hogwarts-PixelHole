@@ -80,6 +80,12 @@
     <Compile Include="UI Classes\MessageBoxUI\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI Classes\Profile UI\EditLoginWindow.xaml.cs">
+      <DependentUpon>EditLoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Profile UI\ProfileInfoWindow.xaml.cs">
+      <DependentUpon>ProfileInfoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI Classes\TicketBox UI\RequestTicketWindow.xaml.cs">
       <DependentUpon>RequestTicketWindow.xaml</DependentUpon>
     </Compile>
@@ -162,6 +168,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI Classes\MessageBoxUI\MessageBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Profile UI\EditLoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Profile UI\ProfileInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

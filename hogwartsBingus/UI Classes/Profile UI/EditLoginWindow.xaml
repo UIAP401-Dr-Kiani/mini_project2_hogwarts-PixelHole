@@ -1,0 +1,24 @@
+﻿<Window x:Class="hogwartsBingus.UI_Classes.Profile_UI.EditLoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hogwartsBingus.UI_Classes.Profile_UI"
+        mc:Ignorable="d"
+        Title="EditLoginWindow" Height="155" Width="400" Background="#FF282A36">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="New Username :" Margin="25,8,79,0" Foreground="#FFF8F8F2" Height="26" VerticalAlignment="Top"/>
+        <Label Content="New Password :" Margin="29,39,78,0" Foreground="#FFF8F8F2" Height="26" VerticalAlignment="Top"/>
+        <Label Content="re-enter Password :" Margin="10,70,78,0" Foreground="#FFF8F8F2" Height="26" VerticalAlignment="Top"/>
+        <TextBox Margin="121,10,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
+        <TextBox Margin="121,40,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
+        <TextBox Margin="121,70,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
+        <Button Content="Button" Margin="10,101,10,0" VerticalAlignment="Top" Height="28" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Foreground="#FFF8F8F2"/>
+        <Button Content="Button" Margin="10,101,10,0" VerticalAlignment="Top" Height="28" Grid.Column="1" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2"/>
+
+    </Grid>
+</Window>
