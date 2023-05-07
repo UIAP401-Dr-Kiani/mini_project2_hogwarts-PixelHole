@@ -1,4 +1,5 @@
 using System.Windows;
+using hogwartsBingus.DataStorage;
 using hogwartsBingus.University.DormitoryData;
 
 namespace hogwartsBingus.UI_Classes
@@ -8,12 +9,7 @@ namespace hogwartsBingus.UI_Classes
         public LoginWindow()
         {
             InitializeComponent();
-        }
-
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            
+            PlantManager.PopulateWorld();
         }
     }
 }

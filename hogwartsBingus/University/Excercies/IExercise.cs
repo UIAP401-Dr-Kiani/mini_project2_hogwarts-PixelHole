@@ -1,7 +1,11 @@
+using hogwartsBingus.Factions;
+
 namespace hogwartsBingus.University.Excercies
 {
-    public interface IExcercise
+    public interface IExercise
     {
-        
+        void PrepareExercise();
+        void PerformExercise();
+        void AwardPoints(Faction faction, int amount);
     }
 }

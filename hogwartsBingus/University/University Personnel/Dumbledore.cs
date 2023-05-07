@@ -1,11 +1,12 @@
 using hogwartsBingus.DataStorage;
+using hogwartsBingus.Execptions;
 using hogwartsBingus.University;
 
 namespace hogwartsBingus.Base_Classes
 {
-    public class Dumbledore : AuthorizedPerson
+    public sealed class Dumbledore : AuthorizedPerson
     {
-
+        public static readonly Dumbledore Instance = new Dumbledore();
         public void AddUser()
         {
             
@@ -18,12 +19,25 @@ namespace hogwartsBingus.Base_Classes
         
         public void InvitePerson(int UserIndex)
         {
+            // this time is for test purposes, remove in later commits
             DateTime invitationTime = new DateTime(Day.Sunday, 12, 0);
+            
             Message invitation = new Message("invition",invitationTime);
-            TrainTicket ticket = TransportManager.GenerateTicket(invitationTime, "London", "Hogwarts");
+            
+            TrainTicket ticket = TransportManager.GenerateTicket(invitationTime,
+                Location.London, Location.HogwartsStation);
 
-            UserManager.GetUserAtIndex(UserIndex).AddMessage(invitation);
-            UserManager.GetUserAtIndex(UserIndex).AddTicket(ticket);
+            Student newStudent = UserManager.GetUserAtIndex(UserIndex) as Student;
+
+            if (newStudent != null)
+            {
+                newStudent.AddMessage(invitation);
+                newStudent.AddTicket(ticket);
+            }
+            else
+            {
+                throw new AuthorizedPersonNotStudentException();
+            }
         }
     }
 }

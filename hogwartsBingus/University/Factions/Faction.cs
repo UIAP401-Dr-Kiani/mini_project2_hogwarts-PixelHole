@@ -16,5 +16,10 @@ namespace hogwartsBingus.Factions
         {
             type = factionType;
         }
+
+        public void AwardPoints(int amount)
+        {
+            Points += amount;
+        }
     }
 }

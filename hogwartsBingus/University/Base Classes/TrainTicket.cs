@@ -5,10 +5,10 @@ namespace hogwartsBingus.Base_Classes
         public int TrainNumber { get; protected set; }
         public DateTime MoveTime { get; protected set; }
         
-        public string Destination { get; protected set; }
-        public string Location { get; protected set; }
+        public Location Destination { get; protected set; }
+        public Location Location { get; protected set; }
 
-        public TrainTicket(int trainNumber, DateTime moveTime, string destination, string location)
+        public TrainTicket(int trainNumber, DateTime moveTime, Location destination, Location location)
         {
             TrainNumber = trainNumber;
             MoveTime = moveTime;

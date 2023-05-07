@@ -47,6 +47,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Execptions\AllDormitoriesAreFullException.cs" />
+        <Compile Include="Execptions\AuthorizedPersonNotStudentException.cs" />
         <Compile Include="Execptions\LoginNotFoundExecption.cs" />
         <Compile Include="Execptions\PassengerDoesntHaveTicketException.cs" />
         <Compile Include="Execptions\StudySessionIntersectionException.cs" />
@@ -78,9 +79,12 @@
         <Compile Include="University\Base Classes\Human.cs" />
         <Compile Include="University\Base Classes\LoginData.cs" />
         <Compile Include="University\Base Classes\Message.cs" />
+        <Compile Include="University\Base Classes\Plant.cs" />
         <Compile Include="University\Base Classes\TrainTicket.cs" />
         <Compile Include="University\Ceremony\InitiationCeremony.cs" />
         <Compile Include="University\DataStorage\MessagingHandler.cs" />
+        <Compile Include="University\DataStorage\PlantManager.cs" />
+        <Compile Include="University\DataStorage\SubjectManager.cs" />
         <Compile Include="University\DataStorage\UserManager.cs" />
         <Compile Include="University\DormitoryData\Dormitory.cs" />
         <Compile Include="University\DormitoryData\DormitoryManager.cs" />
@@ -88,11 +92,19 @@
         <Compile Include="University\Enums\Day.cs" />
         <Compile Include="University\Enums\FactionType.cs" />
         <Compile Include="University\Enums\gender.cs" />
+        <Compile Include="University\Enums\Location.cs" />
         <Compile Include="University\Enums\MessageType.cs" />
         <Compile Include="University\Enums\petType.cs" />
+        <Compile Include="University\Enums\PlantName.cs" />
         <Compile Include="University\Enums\Race.cs" />
+        <Compile Include="University\Excercies\IExercise.cs" />
+        <Compile Include="University\Excercies\PlantBiologyExercise.cs" />
         <Compile Include="University\Factions\Faction.cs" />
         <Compile Include="University\Factions\FactionManager.cs" />
+        <Compile Include="University\StudySessionRelactedClasses\Study Subjects\Chemistry.cs" />
+        <Compile Include="University\StudySessionRelactedClasses\Study Subjects\PlantBiology.cs" />
+        <Compile Include="University\StudySessionRelactedClasses\Study Subjects\SpellCraft.cs" />
+        <Compile Include="University\StudySessionRelactedClasses\Study Subjects\Sports.cs" />
         <Compile Include="University\StudySessionRelactedClasses\StudySessionTime.cs" />
         <Compile Include="University\StudySessionRelactedClasses\StudySubject.cs" />
         <Compile Include="University\StudySessionRelactedClasses\WeeklySchedule.cs" />
@@ -133,6 +145,9 @@
         <Generator>MSBuild:Compile</Generator>
         <SubType>Designer</SubType>
       </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="University\SemesterSubjectPicking\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,7 +29,7 @@ namespace hogwartsBingus.University
             }
         }
 
-        public static TrainTicket GenerateTicket(DateTime moveTime, string location, string Destination)
+        public static TrainTicket GenerateTicket(DateTime moveTime, Location location, Location Destination)
         {
             int trainNumber = (int)random.Next(10000, 99999);
             TrainTicket ticket = new TrainTicket(trainNumber, moveTime, Destination, location);

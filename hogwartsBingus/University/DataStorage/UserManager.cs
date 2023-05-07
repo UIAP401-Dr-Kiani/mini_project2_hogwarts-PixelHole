@@ -23,12 +23,7 @@ namespace hogwartsBingus.DataStorage
             Users.Remove(User);
         }
 
-        public static void ReplaceUserAt(int index)
-        {
-            
-        }
-        
-        
+
         //Find ...
 
         public static int FindWithLogin(LoginData loginData)

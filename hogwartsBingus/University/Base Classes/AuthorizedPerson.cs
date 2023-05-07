@@ -16,7 +16,7 @@ namespace hogwartsBingus.Base_Classes
 
         public bool HasBaggage { get; protected set; }
         
-        public string CurrentLocation { get; protected set; }
+        public Location CurrentLocation { get; protected set; }
         
         public AuthorizationType AuthType { get; protected set; }
 
@@ -62,6 +62,6 @@ namespace hogwartsBingus.Base_Classes
             return FindTicketForTrain(trainNumber, moveTime) != -1;
         }
 
-        public void MoveToLocation(string newLocation) => CurrentLocation = newLocation;
+        public void MoveToLocation(Location newLocation) => CurrentLocation = newLocation;
     }
 }

@@ -8,11 +8,6 @@ namespace hogwartsBingus.Base_Classes
     {
         public readonly List<StudySubject> Subjects = new List<StudySubject>();
 
-        public WeeklySchedule(List<StudySubject> subjects)
-        {
-            subjects.ForEach(Subjects.Add);
-        }
-
         public void addSubject(StudySubject newSubject)
         {
             if (StudySessionIntersects(newSubject)) throw new StudySessionIntersectionException();
@@ -31,7 +26,7 @@ namespace hogwartsBingus.Base_Classes
         {
             foreach (var session in newSubject.sessions)
             {
-                foreach (var sessionsInDay in GetSessionTimeInDay(session.StartTime.Day))
+                foreach (var sessionsInDay in GetSessionTimesInDay(session.StartTime.Day))
                 {
                     if (session.IntersectsWith(sessionsInDay)) return true;
                 }
@@ -40,7 +35,7 @@ namespace hogwartsBingus.Base_Classes
             return false;
         }
 
-        private List<StudySessionTime> GetSessionTimeInDay(Day day)
+        private List<StudySessionTime> GetSessionTimesInDay(Day day)
         {
             List<StudySessionTime> times = new List<StudySessionTime>();
             

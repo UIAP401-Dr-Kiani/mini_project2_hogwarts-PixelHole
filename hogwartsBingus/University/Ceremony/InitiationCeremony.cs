@@ -10,7 +10,7 @@ namespace hogwartsBingus.University.Ceremony
     {
         private static readonly List<Student> Attendees = new List<Student>();
 
-
+        public static DateTime Date { get; private set; }
 
         public static void AddAttendee(Student user)
         {
@@ -42,6 +42,15 @@ namespace hogwartsBingus.University.Ceremony
             Attendees.RemoveAt(index);
         }
 
+        public static void CheckForStart()
+        {
+            
+        }
+
+        public static void SetDate(DateTime date)
+        {
+            Date = date;
+        }
         public static void BeginCeremony()
         {
             AssignFactionForFirstYears();

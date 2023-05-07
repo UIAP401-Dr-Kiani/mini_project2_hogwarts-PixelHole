@@ -1,6 +1,6 @@
 namespace hogwartsBingus.Base_Classes
 {
-    public enum PlantNames
+    public enum PlantName
     {
         FoolsParsley = 0,
         Mandrake = 1,

@@ -30,5 +30,24 @@ namespace hogwartsBingus.Factions
 
             return FactionType.None;
         }
+
+        public static void AwardPointsToFaction(FactionType factionType, int points)
+        {
+            switch (factionType)
+            {
+                case FactionType.Slytherin :
+                    Slytherin.AwardPoints(points);
+                    return;
+                case FactionType.Gryffindor :
+                    Griffindor.AwardPoints(points);
+                    return;
+                case FactionType.Hufflepuff :
+                    Hufflepuf.AwardPoints(points);
+                    return;
+                case FactionType.Raveclaw :
+                    Ravenclaw.AwardPoints(points);
+                    return;
+            }
+        }
     }
 }
