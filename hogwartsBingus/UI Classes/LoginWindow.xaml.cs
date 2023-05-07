@@ -11,5 +11,15 @@ namespace hogwartsBingus.UI_Classes
             InitializeComponent();
             PlantManager.PopulateWorld();
         }
+
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
