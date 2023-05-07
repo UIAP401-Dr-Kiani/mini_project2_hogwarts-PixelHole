@@ -14,19 +14,5 @@ namespace hogwartsBingus
         {
             InitializeComponent();
         }
-
-        private void Login()
-        {
-            string username = "", password = "";
-
-            try
-            {
-                SessionManager.Login(username, password);
-            }
-            catch (LoginNotFoundException e)
-            {
-                
-            }
-        }
     }
 }

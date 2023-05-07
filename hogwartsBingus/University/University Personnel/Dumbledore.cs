@@ -6,7 +6,13 @@ namespace hogwartsBingus.Base_Classes
 {
     public sealed class Dumbledore : AuthorizedPerson
     {
-        public static readonly Dumbledore Instance = new Dumbledore();
+        public static readonly Dumbledore Instance = new Dumbledore(new LoginData("admin", "admin"));
+
+        public Dumbledore(LoginData loginData) : base(loginData) 
+        {
+            AuthType = AuthorizationType.Dumbledore;
+        }
+
         public void AddUser()
         {
             

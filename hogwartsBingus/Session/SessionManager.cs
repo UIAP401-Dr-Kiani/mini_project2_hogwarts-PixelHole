@@ -18,7 +18,8 @@ namespace hogwartsBingus.Session
             {
                 throw new LoginNotFoundException();
             }
-            
+
+            if (CurrentUser == null) return;
             WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
         }
     }

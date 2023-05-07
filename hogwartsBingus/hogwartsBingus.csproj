@@ -1,153 +1,181 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{D8655254-6C2F-4D2D-A20B-27EDC3647B15}</ProjectGuid>
-        <OutputType>WinExe</OutputType>
-        <RootNamespace>hogwartsBingus</RootNamespace>
-        <AssemblyName>hogwartsBingus</AssemblyName>
-        <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-        <WarningLevel>4</WarningLevel>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.Xml" />
-        <Reference Include="System.Xaml">
-            <RequiredTargetFramework>4.0</RequiredTargetFramework>
-        </Reference>
-        <Reference Include="WindowsBase" />
-        <Reference Include="PresentationCore" />
-        <Reference Include="PresentationFramework" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Execptions\AllDormitoriesAreFullException.cs" />
-        <Compile Include="Execptions\AuthorizedPersonNotStudentException.cs" />
-        <Compile Include="Execptions\LoginNotFoundExecption.cs" />
-        <Compile Include="Execptions\PassengerDoesntHaveTicketException.cs" />
-        <Compile Include="Execptions\StudySessionIntersectionException.cs" />
-        <Compile Include="GlobalClock.cs" />
-        <Compile Include="Session\SessionManager.cs" />
-        <Compile Include="Session\WindowManager.cs" />
-        <Compile Include="UI Classes\App.xaml.cs">
-          <DependentUpon>App.xaml</DependentUpon>
-          <SubType>Code</SubType>
-        </Compile>
-        <Compile Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml.cs">
-          <DependentUpon>DumbledoreLandingPage.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="UI Classes\LandingPages\ProfessorLandingPage.xaml.cs">
-          <DependentUpon>ProfessorLandingPage.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="UI Classes\LandingPages\StudentLandingPage.xaml.cs">
-          <DependentUpon>StudentLandingPage.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="UI Classes\LoginWindow.xaml.cs">
-          <DependentUpon>LoginWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="UI Classes\MainWindow.cs">
-          <DependentUpon>MainWindow.xaml</DependentUpon>
-          <SubType>Code</SubType>
-        </Compile>
-        <Compile Include="University\Base Classes\AuthorizedPerson.cs" />
-        <Compile Include="University\Base Classes\DateTime.cs" />
-        <Compile Include="University\Base Classes\Human.cs" />
-        <Compile Include="University\Base Classes\LoginData.cs" />
-        <Compile Include="University\Base Classes\Message.cs" />
-        <Compile Include="University\Base Classes\Plant.cs" />
-        <Compile Include="University\Base Classes\TrainTicket.cs" />
-        <Compile Include="University\Ceremony\InitiationCeremony.cs" />
-        <Compile Include="University\DataStorage\MessagingHandler.cs" />
-        <Compile Include="University\DataStorage\PlantManager.cs" />
-        <Compile Include="University\DataStorage\SubjectManager.cs" />
-        <Compile Include="University\DataStorage\UserManager.cs" />
-        <Compile Include="University\DormitoryData\Dormitory.cs" />
-        <Compile Include="University\DormitoryData\DormitoryManager.cs" />
-        <Compile Include="University\Enums\AuthorizationType.cs" />
-        <Compile Include="University\Enums\Day.cs" />
-        <Compile Include="University\Enums\FactionType.cs" />
-        <Compile Include="University\Enums\gender.cs" />
-        <Compile Include="University\Enums\Location.cs" />
-        <Compile Include="University\Enums\MessageType.cs" />
-        <Compile Include="University\Enums\petType.cs" />
-        <Compile Include="University\Enums\PlantName.cs" />
-        <Compile Include="University\Enums\Race.cs" />
-        <Compile Include="University\Excercies\IExercise.cs" />
-        <Compile Include="University\Excercies\PlantBiologyExercise.cs" />
-        <Compile Include="University\Factions\Faction.cs" />
-        <Compile Include="University\Factions\FactionManager.cs" />
-        <Compile Include="University\StudySessionRelactedClasses\Study Subjects\Chemistry.cs" />
-        <Compile Include="University\StudySessionRelactedClasses\Study Subjects\PlantBiology.cs" />
-        <Compile Include="University\StudySessionRelactedClasses\Study Subjects\SpellCraft.cs" />
-        <Compile Include="University\StudySessionRelactedClasses\Study Subjects\Sports.cs" />
-        <Compile Include="University\StudySessionRelactedClasses\StudySessionTime.cs" />
-        <Compile Include="University\StudySessionRelactedClasses\StudySubject.cs" />
-        <Compile Include="University\StudySessionRelactedClasses\WeeklySchedule.cs" />
-        <Compile Include="University\Train Related Stuff\TransportManager.cs" />
-        <Compile Include="University\University Personnel\Dumbledore.cs" />
-        <Compile Include="University\University Personnel\Professor.cs" />
-        <Compile Include="University\University Personnel\Student.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Properties\AssemblyInfo.cs">
-            <SubType>Code</SubType>
-        </Compile>
-        <Compile Include="Properties\Resources.Designer.cs">
-            <AutoGen>True</AutoGen>
-            <DesignTime>True</DesignTime>
-            <DependentUpon>Resources.resx</DependentUpon>
-        </Compile>
-        <EmbeddedResource Include="Properties\Resources.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="App.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <ApplicationDefinition Include="UI Classes\App.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <SubType>Designer</SubType>
-      </ApplicationDefinition>
-    </ItemGroup>
-    <ItemGroup>
-      <Page Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml" />
-      <Page Include="UI Classes\LandingPages\ProfessorLandingPage.xaml" />
-      <Page Include="UI Classes\LandingPages\StudentLandingPage.xaml" />
-      <Page Include="UI Classes\LoginWindow.xaml" />
-      <Page Include="UI Classes\MainWindow.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <SubType>Designer</SubType>
-      </Page>
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="University\SemesterSubjectPicking\" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8655254-6C2F-4D2D-A20B-27EDC3647B15}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>hogwartsBingus</RootNamespace>
+    <AssemblyName>hogwartsBingus</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Execptions\AllDormitoriesAreFullException.cs" />
+    <Compile Include="Execptions\AuthorizedPersonNotStudentException.cs" />
+    <Compile Include="Execptions\LoginNotFoundExecption.cs" />
+    <Compile Include="Execptions\PassengerDoesntHaveTicketException.cs" />
+    <Compile Include="Execptions\StudySessionIntersectionException.cs" />
+    <Compile Include="GlobalClock.cs" />
+    <Compile Include="Session\SessionManager.cs" />
+    <Compile Include="Session\WindowManager.cs" />
+    <Compile Include="UI Classes\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI Classes\MessageBoxUI\ComposeMessageWindow.xaml.cs">
+      <DependentUpon>ComposeMessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml.cs">
+      <DependentUpon>DumbledoreLandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\LandingPages\ProfessorLandingPage.xaml.cs">
+      <DependentUpon>ProfessorLandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\LandingPages\StudentLandingPage.xaml.cs">
+      <DependentUpon>StudentLandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\MainWindow.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI Classes\MessageBoxUI\MessageBoxWindow.xaml.cs">
+      <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\TicketBox UI\RequestTicketWindow.xaml.cs">
+      <DependentUpon>RequestTicketWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\TicketBox UI\TicketBoxWindow.xaml.cs">
+      <DependentUpon>TicketBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="University\Base Classes\AuthorizedPerson.cs" />
+    <Compile Include="University\Base Classes\DateTime.cs" />
+    <Compile Include="University\Base Classes\Human.cs" />
+    <Compile Include="University\Base Classes\LoginData.cs" />
+    <Compile Include="University\Base Classes\Message.cs" />
+    <Compile Include="University\Base Classes\Plant.cs" />
+    <Compile Include="University\Base Classes\TrainTicket.cs" />
+    <Compile Include="University\Ceremony\InitiationCeremony.cs" />
+    <Compile Include="University\DataStorage\MessagingHandler.cs" />
+    <Compile Include="University\DataStorage\PlantManager.cs" />
+    <Compile Include="University\DataStorage\SubjectManager.cs" />
+    <Compile Include="University\DataStorage\UserManager.cs" />
+    <Compile Include="University\DormitoryData\Dormitory.cs" />
+    <Compile Include="University\DormitoryData\DormitoryManager.cs" />
+    <Compile Include="University\Enums\AuthorizationType.cs" />
+    <Compile Include="University\Enums\Day.cs" />
+    <Compile Include="University\Enums\FactionType.cs" />
+    <Compile Include="University\Enums\gender.cs" />
+    <Compile Include="University\Enums\Location.cs" />
+    <Compile Include="University\Enums\MessageType.cs" />
+    <Compile Include="University\Enums\petType.cs" />
+    <Compile Include="University\Enums\PlantName.cs" />
+    <Compile Include="University\Enums\Race.cs" />
+    <Compile Include="University\Excercies\IExercise.cs" />
+    <Compile Include="University\Excercies\PlantBiologyExercise.cs" />
+    <Compile Include="University\Factions\Faction.cs" />
+    <Compile Include="University\Factions\FactionManager.cs" />
+    <Compile Include="University\StudySessionRelactedClasses\Study Subjects\Chemistry.cs" />
+    <Compile Include="University\StudySessionRelactedClasses\Study Subjects\PlantBiology.cs" />
+    <Compile Include="University\StudySessionRelactedClasses\Study Subjects\SpellCraft.cs" />
+    <Compile Include="University\StudySessionRelactedClasses\Study Subjects\Sports.cs" />
+    <Compile Include="University\StudySessionRelactedClasses\StudySessionTime.cs" />
+    <Compile Include="University\StudySessionRelactedClasses\StudySubject.cs" />
+    <Compile Include="University\StudySessionRelactedClasses\WeeklySchedule.cs" />
+    <Compile Include="University\Train Related Stuff\TransportManager.cs" />
+    <Compile Include="University\University Personnel\Dumbledore.cs" />
+    <Compile Include="University\University Personnel\Professor.cs" />
+    <Compile Include="University\University Personnel\Student.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="UI Classes\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="UI Classes\MessageBoxUI\ComposeMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml" />
+    <Page Include="UI Classes\LandingPages\ProfessorLandingPage.xaml" />
+    <Page Include="UI Classes\LandingPages\StudentLandingPage.xaml" />
+    <Page Include="UI Classes\LoginWindow.xaml" />
+    <Page Include="UI Classes\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI Classes\MessageBoxUI\MessageBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\TicketBox UI\RequestTicketWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\TicketBox UI\TicketBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="University\SemesterSubjectPicking\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

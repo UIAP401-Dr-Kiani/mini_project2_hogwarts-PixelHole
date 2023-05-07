@@ -1,5 +1,7 @@
 using System.Windows;
 using hogwartsBingus.DataStorage;
+using hogwartsBingus.Execptions;
+using hogwartsBingus.Session;
 using hogwartsBingus.University.DormitoryData;
 
 namespace hogwartsBingus.UI_Classes
@@ -9,17 +11,18 @@ namespace hogwartsBingus.UI_Classes
         public LoginWindow()
         {
             InitializeComponent();
-            PlantManager.PopulateWorld();
         }
 
-        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            try
+            {
+                SessionManager.Login(UsernameField.Text, PasswordField.Password);
+            }
+            catch(LoginNotFoundException loginException)
+            {
+                ErrorLabel.Content = "Login Credentials Not Found";
+            }
         }
     }
 }

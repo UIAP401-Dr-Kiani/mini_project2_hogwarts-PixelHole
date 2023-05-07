@@ -14,9 +14,10 @@ namespace hogwartsBingus.Base_Classes
         }
         public FactionType Faction { get; protected set; }
 
-        public Student()
+        public Student(LoginData loginData) : base(loginData)
         {
-            Semester = 1;
+            this.Semester = 1;
+            this.AuthType = AuthorizationType.Student;
         }
 
         public void SetFaction(FactionType faction)

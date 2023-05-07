@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes"
         mc:Ignorable="d"
         Title="LoginWindow" Height="300" Width="550">
-    <Grid>
+    <Grid Background="#FF282A36">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="69*"/>
             <ColumnDefinition Width="98*"/>
@@ -24,13 +24,13 @@
             <RowDefinition Height="60*"/>
             <RowDefinition Height="107*"/>
         </Grid.RowDefinitions>
-        <PasswordBox Grid.Column="3" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="297" Height="38" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Background="#FFE7F7FF"/>
-        <TextBox x:Name="UsernameBox" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" TextChanged="TextBox_TextChanged" Cursor="Help" FontSize="18" TextAlignment="Left" VerticalContentAlignment ="Center" Grid.ColumnSpan="2" Width="297" Height="38" Background="#FFE7F7FF"/>
-        <Label Grid.Column="1" Content="Username :" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="17" Height="33" Width="93" FontFamily="Microsoft JhengHei Light"/>
-        <Label Content="Password :" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="17" Height="33" Width="89" FontFamily="Microsoft JhengHei Light"/>
-        <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Grid.Column="1" Height="39" Width="98" FontSize="18" Foreground="White" Background="#FFAFDFF8" FontFamily="Microsoft YaHei Light"/>
-        <Button x:Name="LoginBtn" Content="Login" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Grid.Column="3" FontSize="18" Click="Button_Click" Foreground="White" Background="#FFAFDFF8" Width="98" Height="39" FontFamily="Microsoft YaHei Light"/>
-        <Label Grid.Column="4" Content="Label" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="39" Width="179" Foreground="#FFEBA2DF"/>
-
+        <PasswordBox x:Name="PasswordField" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="297" Height="38" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Background="#FF44475A"/>
+        <TextBox x:Name="UsernameField" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="18" TextAlignment="Left" VerticalContentAlignment ="Center" Grid.ColumnSpan="2" Width="297" Height="38" Background="#FF44475A">
+        </TextBox>
+        <Label Grid.Column="1" Content="Username :" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="17" Height="33" Width="93" FontFamily="Microsoft JhengHei Light" Foreground="#FFF8F8F2"/>
+        <Label Content="Password :" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="17" Height="33" Width="89" FontFamily="Microsoft JhengHei Light" Foreground="#FFF8F8F2"/>
+        <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Grid.Column="1" Height="39" Width="98" FontSize="18" Foreground="#FFF8F8F2" Background="#FF6272A4" FontFamily="Microsoft YaHei Light"/>
+        <Button x:Name="LoginBtn" Content="Login" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Grid.Column="3" FontSize="18" Foreground="#FFF8F8F2" Background="#FF6272A4" Width="98" Height="39" FontFamily="Microsoft YaHei Light" Click="LoginBtn_Click"/>
+        <Label x:Name="ErrorLabel" Grid.Column="4" Content="" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Height="39" Width="179" Foreground="#FFFF79C6" Background="#FF44475A"/>
     </Grid>
 </Window>
