@@ -1,3 +1,4 @@
+using System;
 using System.Security.RightsManagement;
 using System.Windows;
 using hogwartsBingus.Base_Classes;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using hogwartsBingus.Execptions;
 using hogwartsBingus.UI_Classes.Profile_UI;
+using hogwartsBingus.UI_Classes.TicketBox_UI;
 
 namespace hogwartsBingus.Session
 {
@@ -13,7 +15,9 @@ namespace hogwartsBingus.Session
     {
         private static readonly List<Window> TrackedWindows = new List<Window>();
         
-        private static readonly string ProfileInfoName = "ProfileInfo", EditLoginName = "EditLogin";
+        private static readonly string ProfileInfoName = "ProfileInfo", EditLoginName = "EditLogin", 
+            MessageBoxName = "MessageBox", TicketBoxName = "TicketBox", ComposeMessageName = "ComposeMessage",
+            RequestTicketName = "RequestTicket";
         public static void AppStartup()
         {
             LaunchLoginPage();
@@ -51,22 +55,100 @@ namespace hogwartsBingus.Session
 
         public static void OpenProfileInfoWindow()
         {
-            if (FindWindowWithName(ProfileInfoName) != null) return;
-
             ProfileInfoWindow profileInfoWindow = new ProfileInfoWindow();
-            profileInfoWindow.Name = ProfileInfoName;
-            
-            OpenAndTrackWindow(profileInfoWindow, false);
+            try
+            {
+                OpenSingleInstanceWindow(profileInfoWindow, ProfileInfoName);
+            }
+            catch (WindowAlreadyOpenException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public static void OpenEditLoginWindow()
         {
-            if (FindWindowWithName(EditLoginName) != null) return;
-
             EditLoginWindow editLoginWindow = new EditLoginWindow();
-            editLoginWindow.Name = EditLoginName;
+
+            try
+            {
+                OpenSingleInstanceWindow(editLoginWindow, EditLoginName);
+            }
+            catch (WindowAlreadyOpenException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public static void OpenMessageBoxWindow()
+        {
+            MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
             
-            OpenAndTrackWindow(editLoginWindow, false);
+            try
+            {
+                OpenSingleInstanceWindow(messageBoxWindow, MessageBoxName);
+            }
+            catch (WindowAlreadyOpenException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public static void OpenTicketBoxWindow()
+        {
+            TicketBoxWindow ticketBoxWindow = new TicketBoxWindow();
+            
+            try
+            {
+                OpenSingleInstanceWindow(ticketBoxWindow, TicketBoxName);
+            }
+            catch (WindowAlreadyOpenException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        public static void OpenComposeMessageWindow()
+        {
+            ComposeMessageWindow composeMessageWindow = new ComposeMessageWindow();
+            
+            try
+            {
+                OpenSingleInstanceWindow(composeMessageWindow, ComposeMessageName);
+            }
+            catch (WindowAlreadyOpenException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public static void OpenRequestTicketWindow()
+        {
+            RequestTicketWindow requestTicketWindow = new RequestTicketWindow();
+
+            try
+            {
+                OpenSingleInstanceWindow(requestTicketWindow, RequestTicketName);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        private static void OpenSingleInstanceWindow(Window window, string name)
+        {
+            if (FindWindowWithName(name) != null) throw new WindowAlreadyOpenException();
+
+            window.Name = name;
+            
+            OpenAndTrackWindow(window, false);
         }
 
         private static void OpenAndTrackWindow(Window window, bool CloseOthers)
@@ -106,9 +188,12 @@ namespace hogwartsBingus.Session
 
         public static void CloseAllWindows()
         {
-            foreach (var trackedWindow in TrackedWindows)
+            for (int i = 0; i < TrackedWindows.Count; i++)
             {
-                trackedWindow.Close();
+                Window window = TrackedWindows[i];
+                TrackedWindows[i] = null;
+                window.Close();
+                
             }
             UntrackAllWindows();
         }
@@ -124,6 +209,12 @@ namespace hogwartsBingus.Session
             }
 
             return null;
+        }
+
+        public static void ThrowError(string message)
+        {
+            MainWindow mianWindow = new MainWindow();
+            mianWindow.Show();
         }
     }
 }

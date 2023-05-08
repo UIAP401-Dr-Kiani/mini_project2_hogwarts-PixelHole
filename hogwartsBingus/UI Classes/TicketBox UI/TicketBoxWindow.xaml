@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes"
         mc:Ignorable="d"
-        Title="TicketBoxWindow" Height="450" Width="400" Background="#FF282A36">
+        Title="TicketBoxWindow" Height="450" Width="400" Background="#FF282A36"
+        Closed="TicketBoxWindow_OnClosed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -18,7 +19,7 @@
         <Rectangle Grid.ColumnSpan="2" Fill="#FF44475A"/>
         <ListBox x:Name="TicketsList" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10, 10, 0, 10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2"/>
         <TextBlock x:Name="TicketDescBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="363" Background="#FF44475A" Foreground="#FFF8F8F2" TextAlignment="Center" FontSize="16" Margin="10,10,10,0"/>
-        <Button x:Name="CloseBtn" Content="Close" Margin="10,10,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" HorizontalAlignment="Left" Width="57"/>
-        <Button x:Name="RequestTicketBtn" Content="Reqest" Margin="0,10,10,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Grid.Column="1" HorizontalAlignment="Right" Width="57"/>
+        <Button x:Name="CloseBtn" Content="Close" Margin="10,10,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" HorizontalAlignment="Left" Width="57" Click="CloseBtn_OnClick"/>
+        <Button x:Name="RequestTicketBtn" Content="Reqest" Margin="0,10,10,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Grid.Column="1" HorizontalAlignment="Right" Width="57" Click="RequestTicketBtn_OnClick"/>
     </Grid>
 </Window>

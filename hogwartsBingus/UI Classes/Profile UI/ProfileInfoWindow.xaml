@@ -15,7 +15,7 @@
             <RowDefinition Height="87*"/>
         </Grid.RowDefinitions>
         <Button x:Name="CloseBtn" Content="Close" Margin="10,10,386,10" Grid.Row="1" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Click="CloseBtn_OnClick"/>
-        <Button x:Name="EditLoginBtn" Content="Edit Login" Margin="386,10,10,10" Grid.Row="1" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Foreground="#FFF8F8F2"/>
+        <Button x:Name="EditLoginBtn" Content="Edit Login" Margin="386,10,10,10" Grid.Row="1" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Foreground="#FFF8F8F2" Click="EditLoginBtn_OnClick"/>
         <TextBlock x:Name="InfoBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Height="469" Width="480" Background="#FF44475A" Foreground="#FFF8F8F2" FontSize="14" TextAlignment="Center"/>
 
     </Grid>

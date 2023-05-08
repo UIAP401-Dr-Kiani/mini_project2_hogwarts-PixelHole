@@ -5,7 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes"
         mc:Ignorable="d"
-        Title="StudentLandingPage" Height="300" Width="500">
+        Title="StudentLandingPage" Height="300" Width="500"
+        Closed="StudentLandingPage_OnClosed">
     <Grid Background="#FF282A36">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="19*"/>

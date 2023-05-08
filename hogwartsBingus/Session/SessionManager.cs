@@ -20,7 +20,15 @@ namespace hogwartsBingus.Session
             }
 
             if (CurrentUser == null) return;
-            WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
+
+            try
+            {
+                WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
+            }
+            catch (Exception e)
+            {
+                throw new AuthorizedPersonTypeNotFoundException();
+            }
         }
 
         public static string[] GetGeneralUserInfo()

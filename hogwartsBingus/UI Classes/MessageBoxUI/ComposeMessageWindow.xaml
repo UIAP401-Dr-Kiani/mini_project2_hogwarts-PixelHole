@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes"
         mc:Ignorable="d"
-        Title="ComposeMessageWindow" Height="500" Width="600" Background="#FF282A36">
+        Title="ComposeMessageWindow" Height="500" Width="600" Background="#FF282A36"
+        Closed="ComposeMessageWindow_OnClosed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="53*"/>

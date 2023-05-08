@@ -51,6 +51,7 @@
     <Compile Include="Execptions\LoginNotFoundExecption.cs" />
     <Compile Include="Execptions\PassengerDoesntHaveTicketException.cs" />
     <Compile Include="Execptions\StudySessionIntersectionException.cs" />
+    <Compile Include="Execptions\WindowAlreadyOpenException.cs" />
     <Compile Include="GlobalClock.cs" />
     <Compile Include="Session\SessionManager.cs" />
     <Compile Include="Session\WindowManager.cs" />

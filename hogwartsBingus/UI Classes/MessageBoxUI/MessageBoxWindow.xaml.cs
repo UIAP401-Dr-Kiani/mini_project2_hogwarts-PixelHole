@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using hogwartsBingus.Session;
 
 namespace hogwartsBingus.UI_Classes
 {
@@ -21,6 +22,21 @@ namespace hogwartsBingus.UI_Classes
         public MessageBoxWindow()
         {
             InitializeComponent();
+        }
+
+        private void MessageBoxWindow_OnClosed(object sender, EventArgs e)
+        {
+            WindowManager.UnTrackWindow(this);
+        }
+
+        private void BackBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.CloseTrackedWindow(this);
+        }
+
+        private void ComposeMessageBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.OpenComposeMessageWindow();
         }
     }
 }

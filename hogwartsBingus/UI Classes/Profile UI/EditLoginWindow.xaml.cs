@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using hogwartsBingus.Session;
 
 namespace hogwartsBingus.UI_Classes.Profile_UI
 {
@@ -26,6 +27,16 @@ namespace hogwartsBingus.UI_Classes.Profile_UI
         private void EditLoginWindow_OnLostFocus(object sender, RoutedEventArgs e)
         {
             Focus();
+        }
+
+        private void CancelBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.UnTrackWindow(this);
+        }
+
+        private void ConfirmBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

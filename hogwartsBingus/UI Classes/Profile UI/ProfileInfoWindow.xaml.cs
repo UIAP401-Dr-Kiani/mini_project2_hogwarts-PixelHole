@@ -32,11 +32,17 @@ namespace hogwartsBingus.UI_Classes.Profile_UI
         private void SetInfoBoxContent()
         {
             string[] generalInfo = SessionManager.GetGeneralUserInfo();
+            InfoBlock.Text = generalInfo[0];
         }
 
         private void CloseBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            WindowManager.CloseTrackedWindow(this);
+            WindowManager.UnTrackWindow(this);
+        }
+
+        private void EditLoginBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.OpenEditLoginWindow();
         }
     }
 }
