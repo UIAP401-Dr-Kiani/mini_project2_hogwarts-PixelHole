@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Execptions\AllDormitoriesAreFullException.cs" />
-    <Compile Include="Execptions\AuthorizedPersonNotStudentException.cs" />
+    <Compile Include="Execptions\AuthorizedPersonTypeNotFoundException.cs" />
     <Compile Include="Execptions\LoginNotFoundExecption.cs" />
     <Compile Include="Execptions\PassengerDoesntHaveTicketException.cs" />
     <Compile Include="Execptions\StudySessionIntersectionException.cs" />

@@ -23,6 +23,6 @@ namespace hogwartsBingus.Base_Classes
 
         public LoginData Login { get; protected set; }
 
-        public Race race { get; protected set; }
+        public Race Race { get; protected set; }
     }
 }

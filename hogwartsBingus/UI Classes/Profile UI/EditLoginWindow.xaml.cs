@@ -22,5 +22,10 @@ namespace hogwartsBingus.UI_Classes.Profile_UI
         {
             InitializeComponent();
         }
+
+        private void EditLoginWindow_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            Focus();
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace hogwartsBingus.Base_Classes
             }
             else
             {
-                throw new AuthorizedPersonNotStudentException();
+                throw new AuthorizedPersonTypeNotFoundException();
             }
         }
     }

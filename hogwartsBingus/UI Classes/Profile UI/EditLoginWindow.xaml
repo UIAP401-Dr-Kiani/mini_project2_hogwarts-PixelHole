@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes.Profile_UI"
         mc:Ignorable="d"
-        Title="EditLoginWindow" Height="155" Width="400" Background="#FF282A36">
+        Title="EditLoginWindow" Height="155" Width="400" Background="#FF282A36"
+        LostFocus="EditLoginWindow_OnLostFocus">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -14,11 +15,11 @@
         <Label Content="New Username :" Margin="25,8,79,0" Foreground="#FFF8F8F2" Height="26" VerticalAlignment="Top"/>
         <Label Content="New Password :" Margin="29,39,78,0" Foreground="#FFF8F8F2" Height="26" VerticalAlignment="Top"/>
         <Label Content="re-enter Password :" Margin="10,70,78,0" Foreground="#FFF8F8F2" Height="26" VerticalAlignment="Top"/>
-        <TextBox Margin="121,10,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
-        <TextBox Margin="121,40,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
-        <TextBox Margin="121,70,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
-        <Button Content="Button" Margin="10,101,10,0" VerticalAlignment="Top" Height="28" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Foreground="#FFF8F8F2"/>
-        <Button Content="Button" Margin="10,101,10,0" VerticalAlignment="Top" Height="28" Grid.Column="1" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2"/>
+        <TextBox x:Name="UsernameField" Margin="121,10,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
+        <TextBox x:Name="PasswordField" Margin="121,40,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
+        <TextBox x:Name="RePasswordField" Margin="121,70,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
+        <Button x:Name="CancelBtn" Content="Cancel" Margin="10,101,10,0" VerticalAlignment="Top" Height="28" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Foreground="#FFF8F8F2"/>
+        <Button x:Name="ConfirmBtn" Content="Confirm" Margin="10,101,10,0" VerticalAlignment="Top" Height="28" Grid.Column="1" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2"/>
 
     </Grid>
 </Window>

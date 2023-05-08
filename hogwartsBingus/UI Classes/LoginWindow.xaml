@@ -5,7 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="300" Width="550">
+        Title="LoginWindow" Height="300" Width="550"
+        Closed="LoginWindow_OnClosed">
     <Grid Background="#FF282A36">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="69*"/>

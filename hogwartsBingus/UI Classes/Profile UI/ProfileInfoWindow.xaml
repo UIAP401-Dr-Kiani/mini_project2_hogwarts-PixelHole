@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes.Profile_UI"
         mc:Ignorable="d"
-        Title="ProfileInfoWindow" Height="590" Width="500
-        " Background="#FF282A36">
+        Title="ProfileInfoWindow" Height="590" Width="500" 
+        Background="#FF282A36"
+        Name="ProfileInfo"
+        Closed="ProfileInfoWindow_OnClosed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="497*"/>
             <RowDefinition Height="87*"/>
         </Grid.RowDefinitions>
-        <Button Content="Close" Margin="10,10,386,10" Grid.Row="1" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2"/>
-        <Button Content="Edit Login" Margin="386,10,10,10" Grid.Row="1" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Foreground="#FFF8F8F2"/>
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Height="469" Width="480" Background="#FF44475A" Foreground="#FFF8F8F2" FontSize="14" TextAlignment="Center"/>
+        <Button x:Name="CloseBtn" Content="Close" Margin="10,10,386,10" Grid.Row="1" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Click="CloseBtn_OnClick"/>
+        <Button x:Name="EditLoginBtn" Content="Edit Login" Margin="386,10,10,10" Grid.Row="1" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Foreground="#FFF8F8F2"/>
+        <TextBlock x:Name="InfoBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Height="469" Width="480" Background="#FF44475A" Foreground="#FFF8F8F2" FontSize="14" TextAlignment="Center"/>
 
     </Grid>
 </Window>

@@ -22,5 +22,41 @@ namespace hogwartsBingus.Session
             if (CurrentUser == null) return;
             WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
         }
+
+        public static string[] GetGeneralUserInfo()
+        {
+            if (CurrentUser is Student)
+            {
+                return new[]
+                {
+                    CurrentUser.FullName, CurrentUser.BirthYear.ToString(),
+                    Enum.GetName(typeof(gender), CurrentUser.Gender),
+                    Enum.GetName(typeof(Race), CurrentUser.Race),
+                    CurrentUser.Father?.FullName,
+                    CurrentUser.ID.ToString(), Enum.GetName(typeof(petType), CurrentUser.Pet),
+                    Enum.GetName(typeof(FactionType), (CurrentUser as Student).Faction),
+                    (CurrentUser as Student).DormitoryNumber.ToString(),
+                };
+            }
+            
+            if (CurrentUser is Professor)
+            {
+                return new[]
+                {
+                    CurrentUser.FullName, CurrentUser.BirthYear.ToString(),
+                    Enum.GetName(typeof(gender), CurrentUser.Gender),
+                    Enum.GetName(typeof(Race), CurrentUser.Race),
+                    CurrentUser.Father?.FullName,
+                    CurrentUser.ID.ToString(), Enum.GetName(typeof(petType), CurrentUser.Pet),
+                };
+            }
+
+            if (CurrentUser is Dumbledore)
+            {
+                return null;
+            }
+
+            throw new AuthorizedPersonTypeNotFoundException("Authorization type not correct");
+        }
     }
 }

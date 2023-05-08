@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Execptions;
@@ -19,10 +20,19 @@ namespace hogwartsBingus.UI_Classes
             {
                 SessionManager.Login(UsernameField.Text, PasswordField.Password);
             }
-            catch(LoginNotFoundException loginException)
+            catch (LoginNotFoundException loginException)
             {
                 ErrorLabel.Content = "Login Credentials Not Found";
             }
+            catch (AuthorizedPersonTypeNotFoundException authorizationException)
+            {
+                ErrorLabel.Content = "Login found, but no Auth-type assigned to your account";
+            }
+        }
+
+        private void LoginWindow_OnClosed(object sender, EventArgs e)
+        {
+            WindowManager.UnTrackWindow(this);
         }
     }
 }

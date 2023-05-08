@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using hogwartsBingus.Session;
 
 namespace hogwartsBingus.UI_Classes.Profile_UI
 {
@@ -21,6 +22,21 @@ namespace hogwartsBingus.UI_Classes.Profile_UI
         public ProfileInfoWindow()
         {
             InitializeComponent();
+        }
+
+        private void ProfileInfoWindow_OnClosed(object sender, EventArgs e)
+        {
+            WindowManager.UnTrackWindow(this);
+        }
+
+        private void SetInfoBoxContent()
+        {
+            string[] generalInfo = SessionManager.GetGeneralUserInfo();
+        }
+
+        private void CloseBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.CloseTrackedWindow(this);
         }
     }
 }
