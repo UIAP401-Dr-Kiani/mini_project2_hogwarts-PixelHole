@@ -10,6 +10,7 @@ namespace hogwartsBingus.DataStorage
         public static void SendMessageTo(Message message, int userIndex)
         {
             UserManager.GetUserAtIndex(userIndex).AddMessage(message);
+            MessageSent?.Invoke();
         }
     }
 }

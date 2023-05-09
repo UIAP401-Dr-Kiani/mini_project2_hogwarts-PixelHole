@@ -1,3 +1,5 @@
+using System;
+
 namespace hogwartsBingus.Base_Classes
 {
     public class StudySessionTime
@@ -13,7 +15,7 @@ namespace hogwartsBingus.Base_Classes
 
         public bool IntersectsWith(StudySessionTime studySession)
         {
-            if (studySession.StartTime.DayName != StartTime.DayName) return false;
+            if (studySession.StartTime.DayOfWeek != StartTime.DayOfWeek) return false;
 
             if (studySession.StartTime > StartTime && studySession.StartTime < EndTime) return true;
             if (studySession.EndTime > StartTime && studySession.EndTime < EndTime) return true;

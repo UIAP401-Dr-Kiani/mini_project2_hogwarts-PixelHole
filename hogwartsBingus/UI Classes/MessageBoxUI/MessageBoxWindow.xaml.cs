@@ -20,6 +20,9 @@ namespace hogwartsBingus.UI_Classes
             
             UpdateMessages();
             UpdateMessageList();
+
+            MessagingHandler.MessageSent += UpdateMessages;
+            MessagingHandler.MessageSent += UpdateMessageList;
         }
         private void UpdateMessages()
         {
@@ -40,6 +43,8 @@ namespace hogwartsBingus.UI_Classes
         private void MessageBoxWindow_OnClosed(object sender, EventArgs e)
         {
             WindowManager.UnTrackWindow(this);
+            MessagingHandler.MessageSent -= UpdateMessages;
+            MessagingHandler.MessageSent -= UpdateMessageList;
         }
 
         private void BackBtn_OnClick(object sender, RoutedEventArgs e)

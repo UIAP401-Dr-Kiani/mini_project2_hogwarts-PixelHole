@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows.Documents;
 using hogwartsBingus.Factions;
@@ -50,18 +51,22 @@ namespace hogwartsBingus.Base_Classes
 
         public void AddMessage(Message message)
         {
+            if (Messages.Contains(message)) return;
             Messages.Add(message);
         }
         public void RemoveMessage(Message message)
         {
+            if (!Messages.Contains(message)) return;
             Messages.Remove(message);
         }
         public void AddTicket(TrainTicket ticket)
         {
+            if (Tickets.Contains(ticket)) return;
             Tickets.Add(ticket);
         }
         public void RemoveTicket(TrainTicket ticket)
         {
+            if (!Tickets.Contains(ticket)) return;
             Tickets.Remove(ticket);
         }
 

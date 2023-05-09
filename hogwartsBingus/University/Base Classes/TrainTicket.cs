@@ -1,3 +1,5 @@
+using System;
+
 namespace hogwartsBingus.Base_Classes
 {
     public class TrainTicket

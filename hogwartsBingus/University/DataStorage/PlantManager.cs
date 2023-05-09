@@ -13,8 +13,7 @@ namespace hogwartsBingus.DataStorage
 
         private static Location[] ViablePlantLocations = new[]
         {
-            Location.HogwartsGreenHouse, Location.DarkForest, Location.HogwartsGrounds,
-            Location.RiverSide, Location.HogwartsUniversity, Location.HogsMead
+            Location.DarkForest, Location.RiverSide, Location.HogwartsUniversity, Location.HogsMead
         };
 
         // plant list manipulation

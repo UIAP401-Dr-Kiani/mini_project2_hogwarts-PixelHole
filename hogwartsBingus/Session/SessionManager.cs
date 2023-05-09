@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Execptions;
-using DateTime = hogwartsBingus.Base_Classes.DateTime;
+using hogwartsBingus.University;
 
 namespace hogwartsBingus.Session
 {
@@ -72,5 +72,10 @@ namespace hogwartsBingus.Session
         public static List<TrainTicket> GetTickets() => CurrentUser.Tickets;
         public static AuthorizationType UserType => CurrentUser.AuthType;
         public static Location UserLocation => CurrentUser.CurrentLocation;
+
+        public static void RequestTransport(TrainTicket ticket)
+        {
+            TransportManager.RequestTransport(ticket, CurrentUser);
+        }
     }
 }

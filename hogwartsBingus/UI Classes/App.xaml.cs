@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Session;
@@ -47,8 +48,12 @@ namespace hogwartsBingus.UI_Classes
             UserManager.Users[0].AddMessage(new Message("Who", "cares", "lol1","lolololololollol"));
             
             UserManager.Users[0].AddTicket(TransportManager.GenerateTicket(
-                GlobalClock.CurrentTime + new DateTime(0, 0, 2, Day.None, 3, 30), 
-                Location.London, Location.HogwartsStation));
+                GlobalClock.CurrentTime.AddMinutes(30), 
+                Location.London, Location.HogwartsUniversity));
+            
+            UserManager.Users[0].AddTicket(TransportManager.GenerateTicket(
+                GlobalClock.CurrentTime.AddMinutes(30), 
+                Location.HogwartsUniversity, Location.London));
             
             UserManager.RequestSave();
         }

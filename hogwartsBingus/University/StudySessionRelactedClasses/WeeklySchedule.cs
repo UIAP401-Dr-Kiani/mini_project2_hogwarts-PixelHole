@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using hogwartsBingus.Execptions;
@@ -26,7 +27,7 @@ namespace hogwartsBingus.Base_Classes
         {
             foreach (var session in newSubject.sessions)
             {
-                foreach (var sessionsInDay in GetSessionTimesInDay(session.StartTime.DayName))
+                foreach (var sessionsInDay in GetSessionTimesInDay(session.StartTime.DayOfWeek))
                 {
                     if (session.IntersectsWith(sessionsInDay)) return true;
                 }
@@ -35,7 +36,7 @@ namespace hogwartsBingus.Base_Classes
             return false;
         }
 
-        private List<StudySessionTime> GetSessionTimesInDay(Day day)
+        private List<StudySessionTime> GetSessionTimesInDay(DayOfWeek dayOfWeek)
         {
             List<StudySessionTime> times = new List<StudySessionTime>();
             
@@ -43,7 +44,7 @@ namespace hogwartsBingus.Base_Classes
             {
                 foreach (var session in subject.sessions)
                 {
-                    if (session.StartTime.DayName == day)
+                    if (session.StartTime.DayOfWeek == dayOfWeek)
                     {
                         times.Add(session);
                     }

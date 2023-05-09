@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using Newtonsoft.Json;
 
 namespace hogwartsBingus.Base_Classes
@@ -155,7 +155,7 @@ namespace hogwartsBingus.Base_Classes
             if (a.Hour <= b.Hour || a.Hour == b.Hour && a.Minute <= b.Minute) return true;
 
             return false;*/
-        }
+        /*}
         public static bool operator >=(DateTime a, DateTime b)
         {
             return a > b || a == b;
@@ -166,7 +166,7 @@ namespace hogwartsBingus.Base_Classes
             if (a.Hour >= b.Hour || a.Hour == b.Hour && a.Minute >= b.Minute) return true;
 
             return false;*/
-        }
+        /*}
         public static bool operator ==(DateTime a, DateTime b)
         {
             return GetDayIndex(a.DayName) == GetDayIndex(b.DayName) && a.Hour == b.Hour && a.Minute == b.Minute 
@@ -178,4 +178,4 @@ namespace hogwartsBingus.Base_Classes
                 && a.Year != b.Year && a.Month != b.Month && a.Date != b.Date;
         }
     }
-}
+}*/

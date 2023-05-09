@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Execptions;
@@ -52,25 +53,7 @@ namespace hogwartsBingus.Base_Classes
         
         public void InvitePerson(int UserIndex)
         {
-            // this time is for test purposes, remove in later commits
-            DateTime invitationTime = new DateTime(Day.Sunday, 12, 0);
             
-            Student newStudent = UserManager.GetUserAtIndex(UserIndex) as Student;
-            
-            Message invitation = new Message(this.FullName, newStudent.FullName, "Invitation", "You're invited!");
-            
-            TrainTicket ticket = TransportManager.GenerateTicket(invitationTime,
-                Location.London, Location.HogwartsStation);
-
-            if (newStudent != null)
-            {
-                newStudent.AddMessage(invitation);
-                newStudent.AddTicket(ticket);
-            }
-            else
-            {
-                throw new AuthorizedPersonTypeNotFoundException();
-            }
         }
     }
 }

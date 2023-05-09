@@ -1,3 +1,5 @@
+using System;
+using System.Globalization;
 using System.Timers;
 using hogwartsBingus.Base_Classes;
 using Timer = System.Timers.Timer;
@@ -14,7 +16,7 @@ namespace hogwartsBingus
 
         public static void SetInitialTime()
         {
-            CurrentTime = new DateTime(1984, 1, 1, Day.Saturday, 0, 0);
+            CurrentTime = new DateTime(1984, 1, 1, 12, 0, 0);
         }
         
         public static void SetTime(DateTime newTime)
@@ -29,8 +31,7 @@ namespace hogwartsBingus
 
         public static string GetCurrentTimeString()
         {
-            return $"{CurrentTime.Year}/{CurrentTime.Month}/{CurrentTime.Date} {CurrentTime.DayName} " +
-                   $"{CurrentTime.Hour:D2}:{CurrentTime.Minute:D2}";
+            return CurrentTime.ToString();
         }
     }
 }
