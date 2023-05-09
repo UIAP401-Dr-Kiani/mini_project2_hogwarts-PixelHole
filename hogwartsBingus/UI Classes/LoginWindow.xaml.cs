@@ -20,11 +20,11 @@ namespace hogwartsBingus.UI_Classes
             {
                 SessionManager.Login(UsernameField.Text, PasswordField.Password);
             }
-            catch (LoginNotFoundException loginException)
+            catch (LoginNotFoundException)
             {
                 ErrorLabel.Content = "Login Credentials Not Found";
             }
-            catch (AuthorizedPersonTypeNotFoundException authorizationException)
+            catch (AuthorizedPersonTypeNotFoundException)
             {
                 ErrorLabel.Content = "Login found, but no Auth-type assigned to your account";
             }

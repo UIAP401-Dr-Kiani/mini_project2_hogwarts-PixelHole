@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.Session;
 
-namespace hogwartsBingus.UI_Classes
+namespace hogwartsBingus.UI_Classes.TicketBox_UI
 {
     /// <summary>
     /// Interaction logic for TicketBoxWindow.xaml
     /// </summary>
-    public partial class TicketBoxWindow : Window
+    public partial class TicketBoxWindow
     {
+        // ReSharper disable once InconsistentNaming
         private List<TrainTicket> tickets = new List<TrainTicket>();
         public TicketBoxWindow()
         {
@@ -49,7 +42,16 @@ namespace hogwartsBingus.UI_Classes
         private void SetTicketDescriptionText()
         {
             TrainTicket ticket = tickets[TicketsList.SelectedIndex];
-            TicketDescBox.Text = "\n" + ticket.Location + "\n↓\n" + ticket.Destination;
+            TicketDescBox.Text = GenerateTicketDisplayText(ticket);
+        }
+
+        private string GenerateTicketDisplayText(TrainTicket ticket)
+        {
+            return
+                $"\n{ticket.Location}\n↓\n{ticket.Destination}\n\n" +
+                $"{ticket.MoveTime.Year}/{ticket.MoveTime.Month}/{ticket.MoveTime.Day}\n" +
+                $"{ticket.MoveTime.DayOfWeek}\n" +
+                $"{ticket.MoveTime.TimeOfDay}";
         }
 
         private void TicketBoxWindow_OnClosed(object sender, EventArgs e)

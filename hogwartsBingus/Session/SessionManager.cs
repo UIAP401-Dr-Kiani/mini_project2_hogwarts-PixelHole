@@ -26,9 +26,9 @@ namespace hogwartsBingus.Session
             {
                 WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
             }
-            catch (Exception e)
+            catch (AuthorizedPersonTypeNotFoundException e)
             {
-                throw new AuthorizedPersonTypeNotFoundException();
+                throw e;
             }
         }
 

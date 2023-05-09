@@ -46,7 +46,7 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
             {
                 Location = (Location)Enum.Parse(typeof(Location), LocationField.Text);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Location = Location.None;
             }
@@ -58,7 +58,7 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
             {
                 Destination = (Location)Enum.Parse(typeof(Location), DestinationField.Text);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Destination = Location.None;
             }
@@ -107,7 +107,7 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
             {
                 TicketRequestHandler.RequestTicket(new TicketRequest(SenderNameField.Text, Location, Destination));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 //display on Error Label
             }
