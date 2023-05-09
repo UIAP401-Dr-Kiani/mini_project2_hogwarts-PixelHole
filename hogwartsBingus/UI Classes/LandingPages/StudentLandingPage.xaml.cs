@@ -34,7 +34,7 @@ namespace hogwartsBingus.UI_Classes
 
         private void GoToTrainStationBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowManager.OpenTrainStationWindow();
         }
 
         private void GoToHogwartsBtn_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -61,6 +61,11 @@ namespace hogwartsBingus.UI_Classes
         private void StudentLandingPage_OnClosed(object sender, EventArgs e)
         {
             WindowManager.UnTrackWindow(this);
+        }
+
+        private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowManager.LaunchLoginPage();
         }
     }
 }

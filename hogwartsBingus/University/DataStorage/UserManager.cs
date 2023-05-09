@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using hogwartsBingus.Base_Classes;
+using Newtonsoft.Json;
 
 namespace hogwartsBingus.DataStorage
 {
@@ -10,16 +13,22 @@ namespace hogwartsBingus.DataStorage
         
         // manipulate Users ...
         
-        public static void addUser(AuthorizedPerson newUser)
+        public static void AddUser(AuthorizedPerson newUser)
         {
-            // do some security check or somethin idk
-            //check if newStudent exists
-            
+            if (Users.Contains(newUser)) return;
             Users.Add(newUser);
         }
-        public static void removeUser(AuthorizedPerson User)
+
+        public static void AddUsers(params AuthorizedPerson[] users)
         {
-            //security check again
+            foreach (var user in users)
+            {
+                AddUser(user);
+            }
+        }
+        public static void RemoveUser(AuthorizedPerson User)
+        {
+            if (!Users.Contains(User)) return;
             Users.Remove(User);
         }
 
@@ -41,6 +50,23 @@ namespace hogwartsBingus.DataStorage
 
             return result;
         }
+
+        public static int FindDumbledore()
+        {
+            return Users.IndexOf(Dumbledore.Instance);
+        }
+        public static int FindWithName(string name)
+        {
+            for (int i = 0; i < Users.Count; i++)
+            {
+                if (Users[i].FullName.ToLower() == name.ToLower())
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
         public static int FindWithStudentNumber(int number)
         {
             int result = -1;
@@ -56,8 +82,7 @@ namespace hogwartsBingus.DataStorage
 
             return result;
         }
-        
-        
+
         // Get ...
         
         public static AuthorizedPerson GetUserAtIndex(int index)
@@ -66,7 +91,18 @@ namespace hogwartsBingus.DataStorage
             return Users[index];
         }
 
-        public static void RequestSave(){}
-        public static void RequestLoad(){}
+        public static void RequestSave()
+        {
+            SaveFileManager.SaveUsers(Users);
+        }
+
+        public static void RequestLoad()
+        {
+            List<AuthorizedPerson> loadedUsers = SaveFileManager.LoadUsers();
+            foreach (var loadedUser in loadedUsers)
+            {
+                AddUser(loadedUser);
+            }
+        }
     }
 }

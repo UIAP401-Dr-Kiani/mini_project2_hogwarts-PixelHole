@@ -14,5 +14,6 @@ namespace hogwartsBingus.Base_Classes
         DarkForest = 7,
         RiverSide = 8,
         HogsMead = 9,
+        None = 12
     }
 }

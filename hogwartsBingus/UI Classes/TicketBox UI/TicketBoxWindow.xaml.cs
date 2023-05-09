@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using hogwartsBingus.Base_Classes;
 using hogwartsBingus.Session;
 
 namespace hogwartsBingus.UI_Classes
@@ -19,9 +20,36 @@ namespace hogwartsBingus.UI_Classes
     /// </summary>
     public partial class TicketBoxWindow : Window
     {
+        private List<TrainTicket> tickets = new List<TrainTicket>();
         public TicketBoxWindow()
         {
             InitializeComponent();
+            UpdateTickets();
+            UpdateTicketsView();
+        }
+
+        private void UpdateTickets()
+        {
+            tickets = SessionManager.GetTickets();
+        }
+
+        private void UpdateTicketsView()
+        {
+            List<string> titles = new List<string>();
+
+            foreach (var ticket in tickets)
+            {
+                titles.Add(ticket.Location + "→" + ticket.Destination + " : " + ticket.MoveTime.Year + " / " 
+                           + ticket.MoveTime.Month + " / " + ticket.MoveTime.Date);
+            }
+
+            TicketsList.ItemsSource = titles;
+        }
+
+        private void SetTicketDescriptionText()
+        {
+            TrainTicket ticket = tickets[TicketsList.SelectedIndex];
+            TicketDescBox.Text = "\n" + ticket.Location + "\n↓\n" + ticket.Destination;
         }
 
         private void TicketBoxWindow_OnClosed(object sender, EventArgs e)
@@ -37,6 +65,11 @@ namespace hogwartsBingus.UI_Classes
         private void CloseBtn_OnClick(object sender, RoutedEventArgs e)
         {
             WindowManager.CloseTrackedWindow(this);
+        }
+
+        private void TicketsList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SetTicketDescriptionText();
         }
     }
 }

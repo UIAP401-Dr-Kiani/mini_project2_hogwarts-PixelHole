@@ -26,7 +26,7 @@ namespace hogwartsBingus.Base_Classes
         {
             foreach (var session in newSubject.sessions)
             {
-                foreach (var sessionsInDay in GetSessionTimesInDay(session.StartTime.Day))
+                foreach (var sessionsInDay in GetSessionTimesInDay(session.StartTime.DayName))
                 {
                     if (session.IntersectsWith(sessionsInDay)) return true;
                 }
@@ -43,7 +43,7 @@ namespace hogwartsBingus.Base_Classes
             {
                 foreach (var session in subject.sessions)
                 {
-                    if (session.StartTime.Day == day)
+                    if (session.StartTime.DayName == day)
                     {
                         times.Add(session);
                     }

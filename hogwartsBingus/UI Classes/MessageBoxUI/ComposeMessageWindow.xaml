@@ -5,22 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes"
         mc:Ignorable="d"
-        Title="ComposeMessageWindow" Height="500" Width="600" Background="#FF282A36"
+        Title="Compose Message" Height="500" Width="600" Background="#FF282A36"
         Closed="ComposeMessageWindow_OnClosed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="53*"/>
-            <RowDefinition Height="377*"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="322*"/>
             <RowDefinition Height="54*"/>
         </Grid.RowDefinitions>
         <Rectangle Fill="#FF44475A"/>
-        <Label Content="From :" HorizontalAlignment="Left" Margin="10,10,0,10" Width="73" FontSize="14" Foreground="#FFF8F8F2"/>
-        <TextBox x:Name="SenderNameField" HorizontalAlignment="Left" Margin="68,10,0,10" TextWrapping="Wrap" Text="" Width="180" VerticalContentAlignment="Center" Background="#FF6272A4" BorderBrush="#FF6272A4" Foreground="#FFF8F8F2"/>
-        <Label x:Name="ReciverNameField" Content="To :" HorizontalAlignment="Left" Margin="262,10,0,10" Width="73" FontSize="14" Foreground="#FFF8F8F2"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,10,0,10" TextWrapping="Wrap" Text="" Width="180" VerticalContentAlignment="Center" Background="#FF6272A4" BorderBrush="#FF6272A4" Foreground="#FFF8F8F2"/>
-        <TextBox x:Name="MessageContentField" Grid.Row="1" TextWrapping="Wrap" Margin="10,10,10,0" Background="#FF6272A4" BorderBrush="#FF6272A4" Foreground="#FFF8F8F2" AcceptsReturn="True"/>
-        <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="2" Width="73" Background="#FFBD93F9" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9"/>
-        <Button x:Name="SendBtn" Content="Send" Margin="0,10,10,10" Grid.Row="2" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" HorizontalAlignment="Right" Width="73"/>
+        <Label Content="From :" Margin="10,10,0,10" FontSize="14" Foreground="#FFF8F8F2" HorizontalAlignment="Left" Width="73"/>
+        <TextBox x:Name="SenderNameField" Margin="68,10,0,10" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" Background="#FF6272A4" BorderBrush="#FF6272A4" Foreground="#FFF8F8F2" HorizontalAlignment="Left" Width="180"/>
+        <Label  Content="To :" Margin="262,10,0,10" FontSize="14" Foreground="#FFF8F8F2" HorizontalAlignment="Left" Width="73"/>
+        <TextBox x:Name="ReceiverNameField" Margin="300,10,0,10" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" Background="#FF6272A4" BorderBrush="#FF6272A4" Foreground="#FFF8F8F2" TextChanged="ReceiverNameField_OnTextChanged" HorizontalAlignment="Left" Width="180"/>
+        <TextBox x:Name="MessageContentField" Grid.Row="2" TextWrapping="Wrap" Margin="10,10,10,0" Background="#FF6272A4" BorderBrush="#FF6272A4" Foreground="#FFF8F8F2" AcceptsReturn="True"/>
+        <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="3" Width="73" Background="#FFBD93F9" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Click="CancelBtn_Click"/>
+        <Button x:Name="SendBtn" Content="Send" Margin="0,10,10,10" Grid.Row="3" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Click="SendBtn_OnClick" HorizontalAlignment="Right" Width="73"/>
+        <TextBox x:Name="TitleField" Margin="10,10,10,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" Background="#FF6272A4" BorderBrush="#FF6272A4" Foreground="#FFF8F8F2" Grid.Row="1"/>
+        <Label x:Name="LogLabel" Content="" Margin="0,10,88,10" Grid.Row="3" HorizontalAlignment="Right" Width="100" Foreground="#FFF8F8F2"/>
 
     </Grid>
 </Window>

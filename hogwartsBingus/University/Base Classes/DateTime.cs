@@ -1,17 +1,43 @@
+using System;
+using Newtonsoft.Json;
+
 namespace hogwartsBingus.Base_Classes
 {
     public class DateTime
     {
         
-        public Day Day { get; protected set; }
+        public int Year { get; protected set; }
+        public int Month { get; protected set; }
+        public int Date { get; protected set; }
+        public Day DayName { get; protected set; }
         public int Hour { get; protected set; }
-        public int minute { get; protected set; }
+        public int Minute { get; protected set; }
 
-        public DateTime(Day day, int hour, int minute)
+        public DateTime(Day dayName, int hour, int minute)
         {
-            Day = day;
+            DayName = dayName;
             Hour = hour;
-            this.minute = minute;
+            this.Minute = minute;
+        }
+        public DateTime(int year, int month, int date, Day dayName, int hour, int minute)
+        {
+            Year = year;
+            Month = month;
+            Date = date;
+            DayName = dayName;
+            Hour = hour;
+            this.Minute = minute;
+        }
+        
+        [JsonConstructor]
+        public DateTime(int year, int month, int date, int dayName, int hour, int minute)
+        {
+            Year = year;
+            Month = month;
+            Date = date;
+            DayName = (Day)dayName;
+            Hour = hour;
+            this.Minute = minute;
         }
 
         public static int GetDayIndex(Day day)
@@ -36,7 +62,6 @@ namespace hogwartsBingus.Base_Classes
 
             return 0;
         }
-
         public static Day GetDayFromIndex(int index)
         {
             switch (index)
@@ -59,97 +84,98 @@ namespace hogwartsBingus.Base_Classes
 
             return Day.None;
         }
+        
         public static DateTime operator +(DateTime a, DateTime b)
         {
             int nHour = a.Hour + b.Hour,
-                nMinute = a.minute + b.minute,
-                nDay = GetDayIndex(a.Day) + GetDayIndex(b.Day);
+                nMinute = a.Minute + b.Minute,
+                nDay = GetDayIndex(a.DayName) + GetDayIndex(b.DayName),
+                nYear = a.Year + b.Year,
+                nMonth = a.Month + b.Month,
+                nDate = a.Date + b.Date;
 
             if (nHour >= 24) nHour -= 24;
             if (nMinute >= 60) nMinute -= 60;
             if (nDay > 6) nMinute -= 6;
+            if (nMonth > 13) nMinute -= 12;
+            if (nDate > 30) nMinute -= 30;
 
-            DateTime c = new DateTime(GetDayFromIndex(nDay), nHour, nMinute);
+            DateTime c = new DateTime(nYear, nMonth, nDate, GetDayFromIndex(nDay), nHour, nMinute);
 
             return c;
         }
         public static DateTime operator -(DateTime a, DateTime b)
         {
             int nHour = a.Hour - b.Hour,
-                nMinute = a.minute - b.minute,
-                nDay = GetDayIndex(a.Day) - GetDayIndex(b.Day);
+                nMinute = a.Minute - b.Minute,
+                nDay = GetDayIndex(a.DayName) - GetDayIndex(b.DayName),
+                nYear = a.Year - b.Year,
+                nMonth = a.Month - b.Month,
+                nDate = a.Date - b.Date; 
 
             if (nHour < 0) nHour += 24;
             if (nMinute < 0) nMinute += 60;
             if (nDay < 0) nMinute += 6;
+            if (nMonth < 0) nMinute += 12;
+            if (nDate < 0) nDate += 30;
 
-            DateTime c = new DateTime(GetDayFromIndex(nDay), nHour, nMinute);
+            DateTime c = new DateTime(nYear, nMonth, nDate, GetDayFromIndex(nDay), nHour, nMinute);
 
             return c;
         }
         public static bool operator <(DateTime a, DateTime b)
         {
-            if (GetDayIndex(a.Day) < GetDayIndex(b.Day))
-            {
-                return true;
-            }
-            if (GetDayIndex(a.Day) > GetDayIndex(b.Day)) return false;
-            if (a.Hour < b.Hour || a.Hour == b.Hour && a.minute < b.minute)
-            {
-                return true;
-            }
+            if (a.Year < b.Year) return true;
+            if (a.Year == b.Year && a.Month < b.Month) return true;
+            if (a.Month == b.Month && a.Date < b.Date) return true;
+            if (GetDayIndex(a.DayName) < GetDayIndex(b.DayName)) return true;
+            if (GetDayIndex(a.DayName) > GetDayIndex(b.DayName)) return false;
+            if (a.Hour < b.Hour || a.Hour == b.Hour && a.Minute < b.Minute) return true;
 
             return false;
         }
         public static bool operator >(DateTime a, DateTime b)
         {
-            if (GetDayIndex(a.Day) > GetDayIndex(b.Day))
-            {
-                return true;
-            }
-            if (GetDayIndex(a.Day) < GetDayIndex(b.Day)) return false;
-            if (a.Hour > b.Hour || a.Hour == b.Hour && a.minute > b.minute)
-            {
-                return true;
-            }
+            if (a.Year > b.Year) return true;
+            if (a.Year == b.Year && a.Month > b.Month) return true;
+            if (a.Month == b.Month && a.Date > b.Date) return true;
+            if (GetDayIndex(a.DayName) > GetDayIndex(b.DayName)) return true;
+            if (GetDayIndex(a.DayName) < GetDayIndex(b.DayName)) return false;
+            if (a.Hour > b.Hour || a.Hour == b.Hour && a.Minute > b.Minute) return true;
 
             return false;
         }
         public static bool operator <=(DateTime a, DateTime b)
         {
-            if (GetDayIndex(a.Day) <= GetDayIndex(b.Day))
-            {
-                return true;
-            }
-            if (GetDayIndex(a.Day) > GetDayIndex(b.Day)) return false;
-            if (a.Hour <= b.Hour || a.Hour == b.Hour && a.minute <= b.minute)
-            {
-                return true;
-            }
+            return a < b || a == b;
+            /*if (a.Year <= b.Year) return true;
+            if (a.Year == b.Year && a.Month <= b.Month) return true;
+            if (GetDayIndex(a.DayName) <= GetDayIndex(b.DayName)) return true;
+            if (GetDayIndex(a.DayName) > GetDayIndex(b.DayName)) return false;
+            if (a.Hour <= b.Hour || a.Hour == b.Hour && a.Minute <= b.Minute) return true;
 
-            return false;
+            return false;*/
         }
         public static bool operator >=(DateTime a, DateTime b)
         {
-            if (GetDayIndex(a.Day) >= GetDayIndex(b.Day))
-            {
-                return true;
-            }
-            if (GetDayIndex(a.Day) < GetDayIndex(b.Day)) return false;
-            if (a.Hour >= b.Hour || a.Hour == b.Hour && a.minute >= b.minute)
-            {
-                return true;
-            }
+            return a > b || a == b;
+            /*if (a.Year >= b.Year) return true;
+            if (a.Year == b.Year && a.Month >= b.Month) return true;
+            if (GetDayIndex(a.DayName) >= GetDayIndex(b.DayName)) return true;
+            if (GetDayIndex(a.DayName) < GetDayIndex(b.DayName)) return false;
+            if (a.Hour >= b.Hour || a.Hour == b.Hour && a.Minute >= b.Minute) return true;
 
-            return false;
+            return false;*/
         }
         public static bool operator ==(DateTime a, DateTime b)
         {
-            return GetDayIndex(a.Day) == GetDayIndex(b.Day) && a.Hour == b.Hour && a.minute == b.minute;
+            return GetDayIndex(a.DayName) == GetDayIndex(b.DayName) && a.Hour == b.Hour && a.Minute == b.Minute 
+                   && a.Year == b.Year && a.Month == b.Month && a.Date == b.Date;
         }
         public static bool operator !=(DateTime a, DateTime b)
         {
-            return GetDayIndex(a.Day) != GetDayIndex(b.Day) && a.Hour != b.Hour && a.minute != b.minute;
+            return GetDayIndex(a.DayName) != GetDayIndex(b.DayName) && a.Hour != b.Hour && a.Minute != b.Minute
+                && a.Year != b.Year && a.Month != b.Month && a.Date != b.Date;
         }
     }
 }

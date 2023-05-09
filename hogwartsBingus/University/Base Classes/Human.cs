@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace hogwartsBingus.Base_Classes
 {
     public abstract class Human
@@ -21,8 +23,25 @@ namespace hogwartsBingus.Base_Classes
         
         public Human Father { get; protected set; }
 
-        public LoginData Login { get; protected set; }
-
         public Race Race { get; protected set; }
+
+        protected Human(string firstName, string lastName, int birthYear, gender gender, Race race)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            BirthYear = birthYear;
+            Gender = gender;
+            Race = race;
+        }
+        
+        [JsonConstructor]
+        protected Human(string firstName, string lastName, int birthYear, int gender, int race)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            BirthYear = birthYear;
+            Gender = (gender)gender;
+            Race = (Race)race;
+        }
     }
 }

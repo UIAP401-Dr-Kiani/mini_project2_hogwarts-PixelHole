@@ -13,7 +13,7 @@ namespace hogwartsBingus.Base_Classes
 
         public bool IntersectsWith(StudySessionTime studySession)
         {
-            if (studySession.StartTime.Day != StartTime.Day) return false;
+            if (studySession.StartTime.DayName != StartTime.DayName) return false;
 
             if (studySession.StartTime > StartTime && studySession.StartTime < EndTime) return true;
             if (studySession.EndTime > StartTime && studySession.EndTime < EndTime) return true;

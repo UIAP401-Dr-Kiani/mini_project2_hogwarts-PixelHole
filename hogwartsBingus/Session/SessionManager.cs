@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Execptions;
@@ -61,10 +62,15 @@ namespace hogwartsBingus.Session
 
             if (CurrentUser is Dumbledore)
             {
-                return null;
+                return new []{"Albus Dumbledore"};
             }
 
             throw new AuthorizedPersonTypeNotFoundException("Authorization type not correct");
         }
+
+        public static List<Message> GetMessageList() => CurrentUser.Messages;
+        public static List<TrainTicket> GetTickets() => CurrentUser.Tickets;
+        public static AuthorizationType UserType => CurrentUser.AuthType;
+        public static Location UserLocation => CurrentUser.CurrentLocation;
     }
 }

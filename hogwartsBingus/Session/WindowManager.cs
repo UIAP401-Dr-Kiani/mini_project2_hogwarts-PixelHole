@@ -8,6 +8,7 @@ using System.Linq;
 using hogwartsBingus.Execptions;
 using hogwartsBingus.UI_Classes.Profile_UI;
 using hogwartsBingus.UI_Classes.TicketBox_UI;
+using hogwartsBingus.UI_Classes.TrainStation;
 
 namespace hogwartsBingus.Session
 {
@@ -15,9 +16,9 @@ namespace hogwartsBingus.Session
     {
         private static readonly List<Window> TrackedWindows = new List<Window>();
         
-        private static readonly string ProfileInfoName = "ProfileInfo", EditLoginName = "EditLogin", 
+        private const string ProfileInfoName = "ProfileInfo", EditLoginName = "EditLogin", 
             MessageBoxName = "MessageBox", TicketBoxName = "TicketBox", ComposeMessageName = "ComposeMessage",
-            RequestTicketName = "RequestTicket";
+            RequestTicketName = "RequestTicket", TrainStationName = "TrainStation";
         public static void AppStartup()
         {
             LaunchLoginPage();
@@ -53,6 +54,19 @@ namespace hogwartsBingus.Session
             }
         }
 
+        public static void OpenTrainStationWindow()
+        {
+            TrainStationWindow trainStationWindow = new TrainStationWindow();
+            try
+            {
+                OpenSingleInstanceWindow(trainStationWindow, TrainStationName);
+            }
+            catch (WindowAlreadyOpenException e)
+            {
+                trainStationWindow.Focus();
+            }
+        }
+
         public static void OpenProfileInfoWindow()
         {
             ProfileInfoWindow profileInfoWindow = new ProfileInfoWindow();
@@ -62,8 +76,7 @@ namespace hogwartsBingus.Session
             }
             catch (WindowAlreadyOpenException e)
             {
-                Console.WriteLine(e);
-                throw;
+                profileInfoWindow.Focus();
             }
         }
 
@@ -77,8 +90,7 @@ namespace hogwartsBingus.Session
             }
             catch (WindowAlreadyOpenException e)
             {
-                Console.WriteLine(e);
-                throw;
+                editLoginWindow.Focus();
             }
         }
 
@@ -92,8 +104,7 @@ namespace hogwartsBingus.Session
             }
             catch (WindowAlreadyOpenException e)
             {
-                Console.WriteLine(e);
-                throw;
+                messageBoxWindow.Focus();
             }
         }
 
@@ -107,8 +118,7 @@ namespace hogwartsBingus.Session
             }
             catch (WindowAlreadyOpenException e)
             {
-                Console.WriteLine(e);
-                throw;
+                ticketBoxWindow.Focus();
             }
         }
         
@@ -122,8 +132,7 @@ namespace hogwartsBingus.Session
             }
             catch (WindowAlreadyOpenException e)
             {
-                Console.WriteLine(e);
-                throw;
+                composeMessageWindow.Focus();
             }
         }
 
@@ -135,10 +144,9 @@ namespace hogwartsBingus.Session
             {
                 OpenSingleInstanceWindow(requestTicketWindow, RequestTicketName);
             }
-            catch (Exception e)
+            catch (WindowAlreadyOpenException e)
             {
-                Console.WriteLine(e);
-                throw;
+                requestTicketWindow.Focus();
             }
         }
 

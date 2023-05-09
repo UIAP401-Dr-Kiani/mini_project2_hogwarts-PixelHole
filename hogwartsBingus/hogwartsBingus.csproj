@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -49,8 +52,10 @@
     <Compile Include="Execptions\AllDormitoriesAreFullException.cs" />
     <Compile Include="Execptions\AuthorizedPersonTypeNotFoundException.cs" />
     <Compile Include="Execptions\LoginNotFoundExecption.cs" />
-    <Compile Include="Execptions\PassengerDoesntHaveTicketException.cs" />
+    <Compile Include="Execptions\MultipleAdminsLoadedException.cs" />
+    <Compile Include="Execptions\NoAdminsLoadedException.cs" />
     <Compile Include="Execptions\StudySessionIntersectionException.cs" />
+    <Compile Include="Execptions\TicketAlreadyRequestedException.cs" />
     <Compile Include="Execptions\WindowAlreadyOpenException.cs" />
     <Compile Include="GlobalClock.cs" />
     <Compile Include="Session\SessionManager.cs" />
@@ -58,6 +63,9 @@
     <Compile Include="UI Classes\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI Classes\Ceremony\CeremonyWindow.xaml.cs">
+      <DependentUpon>CeremonyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI Classes\MessageBoxUI\ComposeMessageWindow.xaml.cs">
       <DependentUpon>ComposeMessageWindow.xaml</DependentUpon>
@@ -93,16 +101,21 @@
     <Compile Include="UI Classes\TicketBox UI\TicketBoxWindow.xaml.cs">
       <DependentUpon>TicketBoxWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI Classes\TrainStation\TrainStationWindow.xaml.cs">
+      <DependentUpon>TrainStationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="University\Base Classes\AuthorizedPerson.cs" />
     <Compile Include="University\Base Classes\DateTime.cs" />
     <Compile Include="University\Base Classes\Human.cs" />
     <Compile Include="University\Base Classes\LoginData.cs" />
     <Compile Include="University\Base Classes\Message.cs" />
     <Compile Include="University\Base Classes\Plant.cs" />
+    <Compile Include="University\Base Classes\TicketRequest.cs" />
     <Compile Include="University\Base Classes\TrainTicket.cs" />
     <Compile Include="University\Ceremony\InitiationCeremony.cs" />
-    <Compile Include="University\DataStorage\MessagingHandler.cs" />
+    <Compile Include="University\DataStorage\DraculaThemeColors.cs" />
     <Compile Include="University\DataStorage\PlantManager.cs" />
+    <Compile Include="University\DataStorage\SaveFileManager.cs" />
     <Compile Include="University\DataStorage\SubjectManager.cs" />
     <Compile Include="University\DataStorage\UserManager.cs" />
     <Compile Include="University\DormitoryData\Dormitory.cs" />
@@ -112,7 +125,6 @@
     <Compile Include="University\Enums\FactionType.cs" />
     <Compile Include="University\Enums\gender.cs" />
     <Compile Include="University\Enums\Location.cs" />
-    <Compile Include="University\Enums\MessageType.cs" />
     <Compile Include="University\Enums\petType.cs" />
     <Compile Include="University\Enums\PlantName.cs" />
     <Compile Include="University\Enums\Race.cs" />
@@ -120,6 +132,8 @@
     <Compile Include="University\Excercies\PlantBiologyExercise.cs" />
     <Compile Include="University\Factions\Faction.cs" />
     <Compile Include="University\Factions\FactionManager.cs" />
+    <Compile Include="University\Request &amp; Messaging\MessagingHandler.cs" />
+    <Compile Include="University\Request &amp; Messaging\TicketRequestHandler.cs" />
     <Compile Include="University\StudySessionRelactedClasses\Study Subjects\Chemistry.cs" />
     <Compile Include="University\StudySessionRelactedClasses\Study Subjects\PlantBiology.cs" />
     <Compile Include="University\StudySessionRelactedClasses\Study Subjects\SpellCraft.cs" />
@@ -148,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="UI Classes\App.xaml">
@@ -156,6 +171,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="UI Classes\Ceremony\CeremonyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI Classes\MessageBoxUI\ComposeMessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI Classes\TicketBox UI\TicketBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\TrainStation\TrainStationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

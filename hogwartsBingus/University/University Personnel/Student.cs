@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace hogwartsBingus.Base_Classes
 {
@@ -14,10 +16,26 @@ namespace hogwartsBingus.Base_Classes
         }
         public FactionType Faction { get; protected set; }
 
-        public Student(LoginData loginData) : base(loginData)
+        public Student(string firstName, string lastName, int birthYear, gender gender, Race race, LoginData login, int id) 
+            : base(firstName, lastName, birthYear, gender, race, login, id)
         {
             this.Semester = 1;
             this.AuthType = AuthorizationType.Student;
+            this.Faction = FactionType.None;
+        }
+
+        [JsonConstructor]
+        public Student(string firstName, string lastName, int birthYear, int gender, int race,
+            List<Message> messages, List<TrainTicket> tickets, int semester, int dormitoryNumber, int studentNumber, 
+            int faction, LoginData login, int id, WeeklySchedule schedule, int pet, bool hasBaggage, 
+            int currentLocation, int authType)
+        
+        : base(firstName, lastName, birthYear, gender, race, messages, tickets, login, id, schedule, pet, hasBaggage, 
+            currentLocation, authType)
+        {
+            Semester = semester;
+            DormitoryNumber = dormitoryNumber;
+            Faction = (FactionType)faction;
         }
 
         public void SetFaction(FactionType faction)
