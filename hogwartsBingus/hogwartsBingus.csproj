@@ -50,10 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Execptions\AllDormitoriesAreFullException.cs" />
-    <Compile Include="Execptions\AuthorizedPersonTypeNotFoundException.cs" />
+    <Compile Include="Execptions\FactionNotFoundException.cs" />
+    <Compile Include="Execptions\InvalidAuthorizationTypeException.cs" />
     <Compile Include="Execptions\LoginNotFoundExecption.cs" />
     <Compile Include="Execptions\MultipleAdminsLoadedException.cs" />
     <Compile Include="Execptions\NoAdminsLoadedException.cs" />
+    <Compile Include="Execptions\StudentAlreadyHasFactionException.cs" />
     <Compile Include="Execptions\StudySessionIntersectionException.cs" />
     <Compile Include="Execptions\TicketAlreadyRequestedException.cs" />
     <Compile Include="Execptions\WindowAlreadyOpenException.cs" />
@@ -64,8 +66,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UI Classes\Ceremony\CeremonyWindow.xaml.cs">
-      <DependentUpon>CeremonyWindow.xaml</DependentUpon>
+    <Compile Include="UI Classes\Ceremony\FactionAssignmentWindow.xaml.cs">
+      <DependentUpon>FactionAssignmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Ceremony\UpdateScheduleUpdaterWindow.xaml.cs">
+      <DependentUpon>UpdateScheduleUpdaterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Dialogs\LoadingDataDialog.xaml.cs">
+      <DependentUpon>LoadingDataDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Dialogs\SavingDataDialog.xaml.cs">
+      <DependentUpon>SavingDataDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Hogwarts\Student Specific\StudentHogwartsWindow.xaml.cs">
+      <DependentUpon>StudentHogwartsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Hogwarts\Student Specific\StudentWeeklyScheduleWindow.xaml.cs">
+      <DependentUpon>StudentWeeklyScheduleWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI Classes\MessageBoxUI\ComposeMessageWindow.xaml.cs">
       <DependentUpon>ComposeMessageWindow.xaml</DependentUpon>
@@ -128,7 +145,7 @@
     <Compile Include="University\Enums\petType.cs" />
     <Compile Include="University\Enums\PlantName.cs" />
     <Compile Include="University\Enums\Race.cs" />
-    <Compile Include="University\Excercies\IExercise.cs" />
+    <Compile Include="University\Excercies\Exercise.cs" />
     <Compile Include="University\Excercies\PlantBiologyExercise.cs" />
     <Compile Include="University\Factions\Faction.cs" />
     <Compile Include="University\Factions\FactionManager.cs" />
@@ -144,6 +161,9 @@
     <Compile Include="University\Train Related Stuff\TransportManager.cs" />
     <Compile Include="University\University Personnel\Dumbledore.cs" />
     <Compile Include="University\University Personnel\Professor.cs" />
+    <Compile Include="University\University Personnel\SaveReadyPersonnel\SaveReadyAuthorizedPerson.cs" />
+    <Compile Include="University\University Personnel\SaveReadyPersonnel\SaveReadyProfessor.cs" />
+    <Compile Include="University\University Personnel\SaveReadyPersonnel\SaveReadyStudent.cs" />
     <Compile Include="University\University Personnel\Student.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +191,27 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UI Classes\Ceremony\CeremonyWindow.xaml">
+    <Page Include="UI Classes\Ceremony\FactionAssignmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Ceremony\UpdateScheduleUpdaterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Dialogs\LoadingDataDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Dialogs\SavingDataDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Hogwarts\Student Specific\StudentHogwartsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Hogwarts\Student Specific\StudentWeeklyScheduleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,7 +253,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="University\SemesterSubjectPicking\" />
+    <Resource Include="UI Classes\Resources\img\HogAss.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

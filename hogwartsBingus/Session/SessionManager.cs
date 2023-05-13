@@ -9,6 +9,7 @@ namespace hogwartsBingus.Session
 {
     public static class SessionManager
     {
+        // ReSharper disable once InconsistentNaming
         private static AuthorizedPerson CurrentUser;
         
         public static void Login(string username, string password)
@@ -20,31 +21,22 @@ namespace hogwartsBingus.Session
                 throw new LoginNotFoundException();
             }
 
-            if (CurrentUser == null) return;
-
-            try
-            {
-                WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
-            }
-            catch (AuthorizedPersonTypeNotFoundException e)
-            {
-                throw e;
-            }
+            WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
         }
 
         public static string[] GetGeneralUserInfo()
         {
-            if (CurrentUser is Student)
+            if (CurrentUser is Student student)
             {
                 return new[]
                 {
-                    CurrentUser.FullName, CurrentUser.BirthYear.ToString(),
-                    Enum.GetName(typeof(gender), CurrentUser.Gender),
-                    Enum.GetName(typeof(Race), CurrentUser.Race),
-                    CurrentUser.Father?.FullName,
-                    CurrentUser.ID.ToString(), Enum.GetName(typeof(petType), CurrentUser.Pet),
-                    Enum.GetName(typeof(FactionType), (CurrentUser as Student).Faction),
-                    (CurrentUser as Student).DormitoryNumber.ToString(),
+                    student.FullName, student.BirthYear.ToString(),
+                    Enum.GetName(typeof(gender), student.Gender),
+                    Enum.GetName(typeof(Race), student.Race),
+                    student.Father?.FullName,
+                    student.ID.ToString(), Enum.GetName(typeof(petType), student.Pet),
+                    Enum.GetName(typeof(FactionType), student.Faction),
+                    student.DormitoryNumber.ToString(),
                 };
             }
             
@@ -65,17 +57,33 @@ namespace hogwartsBingus.Session
                 return new []{"Albus Dumbledore"};
             }
 
-            throw new AuthorizedPersonTypeNotFoundException("Authorization type not correct");
+            throw new InvalidAuthorizationTypeException("Authorization type not correct");
         }
 
+        public static FactionType? GetUserFaction() => (CurrentUser as Student)?.Faction;
         public static List<Message> GetMessageList() => CurrentUser.Messages;
         public static List<TrainTicket> GetTickets() => CurrentUser.Tickets;
-        public static AuthorizationType UserType => CurrentUser.AuthType;
-        public static Location UserLocation => CurrentUser.CurrentLocation;
-
+        public static AuthorizationType GetUserType() => CurrentUser.AuthType;
+        public static Location GetUserLocation() => CurrentUser.CurrentLocation;
+        public static WeeklySchedule GetWeeklySchedule() => (CurrentUser as Student)?.Schedule;
+        public static int GetUserID() => CurrentUser.ID;
         public static void RequestTransport(TrainTicket ticket)
         {
             TransportManager.RequestTransport(ticket, CurrentUser);
+        }
+        public static void AttemptToSetFaction(FactionType factionType)
+        {
+            if (!(CurrentUser is Student student)) throw new InvalidAuthorizationTypeException();
+            student.SetFaction(factionType);
+        }
+        public static void AttemptToSetBedNumber(int bedNumber)
+        {
+            if (!(CurrentUser is Student student)) throw new InvalidAuthorizationTypeException();
+            student.SetBedNumber(bedNumber);
+        }
+        public static void UpdateWeeklySchedule(WeeklySchedule schedule)
+        {
+            (CurrentUser as Student)?.SetWeeklySchedule(schedule);
         }
     }
 }

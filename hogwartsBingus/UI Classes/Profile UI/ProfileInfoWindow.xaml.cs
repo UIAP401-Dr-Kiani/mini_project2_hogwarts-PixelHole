@@ -38,7 +38,7 @@ namespace hogwartsBingus.UI_Classes.Profile_UI
 
             finalText.Append($"\n\nID : {generalInfo[5]}\n\nAssigned Pet : {generalInfo[6]}");
 
-            switch (SessionManager.UserType)
+            switch (SessionManager.GetUserType())
             {
                 case AuthorizationType.Student:
                     finalText.Append($"\n\nHouse : {generalInfo[7]}\n\nDormitory Number : ");

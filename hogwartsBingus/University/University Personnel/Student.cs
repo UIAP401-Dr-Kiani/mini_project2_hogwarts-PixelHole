@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using hogwartsBingus.Base_Classes.SaveReadyPersonnel;
 using Newtonsoft.Json;
 
 namespace hogwartsBingus.Base_Classes
@@ -25,10 +26,10 @@ namespace hogwartsBingus.Base_Classes
         }
 
         [JsonConstructor]
-        public Student(string firstName, string lastName, int birthYear, int gender, int race,
+        public Student(string firstName, string lastName, int birthYear, gender gender, Race race,
             List<Message> messages, List<TrainTicket> tickets, int semester, int dormitoryNumber, int studentNumber, 
-            int faction, LoginData login, int id, WeeklySchedule schedule, int pet, bool hasBaggage, 
-            int currentLocation, int authType)
+            FactionType faction, LoginData login, int id, WeeklySchedule schedule, petType pet, bool hasBaggage, 
+            Location currentLocation, AuthorizationType authType)
         
         : base(firstName, lastName, birthYear, gender, race, messages, tickets, login, id, schedule, pet, hasBaggage, 
             currentLocation, authType)
@@ -40,7 +41,28 @@ namespace hogwartsBingus.Base_Classes
 
         public void SetFaction(FactionType faction)
         {
-            this.Faction = faction;
+            if (Faction != FactionType.None) return;
+            Faction = faction;
+        }
+        
+        public void SetBedNumber(int bedNumber)
+        {
+            if (DormitoryNumber != 0) return;
+            DormitoryNumber = bedNumber;
+        }
+
+        public void SetWeeklySchedule(WeeklySchedule newSchedule)
+        {
+            Schedule = newSchedule;
+        }
+
+        public SaveReadyStudent ToSaveFormat()
+        {
+            List<string> subjectNames = new List<string>();
+            foreach (var subject in Schedule.Subjects) subjectNames.Add(subject.Name);
+
+            return new SaveReadyStudent(FirstName, LastName, BirthYear, Gender, Race, subjectNames, Login, ID, Pet,
+                HasBaggage, CurrentLocation, AuthType, Semester, DormitoryNumber, Faction);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.UI_Classes;
@@ -6,19 +7,46 @@ using hogwartsBingus.Execptions;
 using hogwartsBingus.UI_Classes.Profile_UI;
 using hogwartsBingus.UI_Classes.TicketBox_UI;
 using hogwartsBingus.UI_Classes.TrainStation;
+using hogwartsBingus.UI_Classes.Ceremony;
+using hogwartsBingus.UI_Classes.Dialogs;
+using hogwartsBingus.UI_Classes.Hogwarts;
+using hogwartsBingus.UI_Classes.Hogwarts.Student_Specific;
+using hogwartsBingus.UI_Classes.LandingPages;
+using Microsoft.Win32;
 
 namespace hogwartsBingus.Session
 {
     public static class WindowManager
     {
         private static readonly List<Window> TrackedWindows = new List<Window>();
+
+        private const string ProfileInfoName = "ProfileInfo",
+            EditLoginName = "EditLogin",
+            MessageBoxName = "MessageBox",
+            TicketBoxName = "TicketBox",
+            ComposeMessageName = "ComposeMessage",
+            RequestTicketName = "RequestTicket",
+            TrainStationName = "TrainStation",
+            UpdateScheduleName = "Updateschedule",
+            FactionAssignmentName = "FactionAssignment",
+            WeeklyScheduleName = "WeeklySchedule",
+            SaveDialogName = "SaveDialog",
+            LoadDialogName = "LoadDialog";
         
-        private const string ProfileInfoName = "ProfileInfo", EditLoginName = "EditLogin", 
-            MessageBoxName = "MessageBox", TicketBoxName = "TicketBox", ComposeMessageName = "ComposeMessage",
-            RequestTicketName = "RequestTicket", TrainStationName = "TrainStation";
+        delegate void IfWindowOpen();
         public static void AppStartup()
         {
             LaunchLoginPage();
+        }
+        public static void AppEnd()
+        {
+        }
+        private static void AppEndTrigger()
+        {
+            if (NoWindowsOpen())
+            {
+                AppEnd();
+            }
         }
         public static void LaunchLoginPage()
         {
@@ -47,150 +75,148 @@ namespace hogwartsBingus.Session
                     OpenAndTrackWindow(dumbledoreLandingPage, true);
                     break;
                 default:
-                    throw new AuthorizedPersonTypeNotFoundException("the Authorized person's type not recognised");
+                    throw new InvalidAuthorizationTypeException("the Authorized person's type not recognised");
+            }
+        }
+        public static void LaunchHogwartsPageOfType(AuthorizationType type)
+        {
+            switch (type)
+            {
+                case AuthorizationType.Student:
+                    StudentHogwartsWindow studentHogwartsWindow = new StudentHogwartsWindow();
+                    OpenAndTrackWindow(studentHogwartsWindow, true);
+                    break;
+                
+                case AuthorizationType.Professor:
+                    break;
+                
+                case AuthorizationType.Dumbledore:
+                    break;
+                default:
+                    throw new InvalidAuthorizationTypeException("the Authorized person's type not recognised");
             }
         }
 
+        
+        // single instance window handling
+        public static void OpenWeeklyScheduleWindow()
+        {
+            StudentWeeklyScheduleWindow weeklyScheduleWindow = new StudentWeeklyScheduleWindow();
+            OpenSingleInstanceWindow(weeklyScheduleWindow, WeeklyScheduleName, () => FocusWindow(weeklyScheduleWindow));
+        }
+        public static void OpenFactionAssignmentWindow()
+        {
+            FactionAssignmentWindow factionAssignmentWindow = new FactionAssignmentWindow();
+            OpenSingleInstanceWindow(factionAssignmentWindow, FactionAssignmentName, () => FocusWindow(factionAssignmentWindow));
+        }
+        public static void OpenUpdateScheduleWindow()
+        {
+            UpdateScheduleUpdaterWindow updateScheduleUpdaterWindow = new UpdateScheduleUpdaterWindow();
+            OpenSingleInstanceWindow(updateScheduleUpdaterWindow, UpdateScheduleName, () => FocusWindow(updateScheduleUpdaterWindow));
+        }
         public static void OpenTrainStationWindow()
         {
             TrainStationWindow trainStationWindow = new TrainStationWindow();
-            try
-            {
-                OpenSingleInstanceWindow(trainStationWindow, TrainStationName);
-            }
-            catch (WindowAlreadyOpenException)
-            {
-                trainStationWindow.Focus();
-            }
+            
+            OpenSingleInstanceWindow(trainStationWindow, TrainStationName, () => FocusWindow(trainStationWindow));
         }
-
         public static void OpenProfileInfoWindow()
         {
             ProfileInfoWindow profileInfoWindow = new ProfileInfoWindow();
-            try
-            {
-                OpenSingleInstanceWindow(profileInfoWindow, ProfileInfoName);
-            }
-            catch (WindowAlreadyOpenException)
-            {
-                profileInfoWindow.Focus();
-            }
+            
+            OpenSingleInstanceWindow(profileInfoWindow, ProfileInfoName, () => FocusWindow(profileInfoWindow));
         }
-
         public static void OpenEditLoginWindow()
         {
             EditLoginWindow editLoginWindow = new EditLoginWindow();
 
-            try
-            {
-                OpenSingleInstanceWindow(editLoginWindow, EditLoginName);
-            }
-            catch (WindowAlreadyOpenException)
-            {
-                editLoginWindow.Focus();
-            }
+            OpenSingleInstanceWindow(editLoginWindow, EditLoginName, () => FocusWindow(editLoginWindow));
         }
-
         public static void OpenMessageBoxWindow()
         {
             MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
             
-            try
-            {
-                OpenSingleInstanceWindow(messageBoxWindow, MessageBoxName);
-            }
-            catch (WindowAlreadyOpenException)
-            {
-                messageBoxWindow.Focus();
-            }
+            OpenSingleInstanceWindow(messageBoxWindow, MessageBoxName, () => FocusWindow(messageBoxWindow));
         }
-
         public static void OpenTicketBoxWindow()
         {
             TicketBoxWindow ticketBoxWindow = new TicketBoxWindow();
             
-            try
-            {
-                OpenSingleInstanceWindow(ticketBoxWindow, TicketBoxName);
-            }
-            catch (WindowAlreadyOpenException)
-            {
-                ticketBoxWindow.Focus();
-            }
+            OpenSingleInstanceWindow(ticketBoxWindow, TicketBoxName, () => FocusWindow(ticketBoxWindow));
         }
-        
         public static void OpenComposeMessageWindow()
         {
             ComposeMessageWindow composeMessageWindow = new ComposeMessageWindow();
-            
-            try
-            {
-                OpenSingleInstanceWindow(composeMessageWindow, ComposeMessageName);
-            }
-            catch (WindowAlreadyOpenException)
-            {
-                composeMessageWindow.Focus();
-            }
-        }
 
+            OpenSingleInstanceWindow(composeMessageWindow, ComposeMessageName, () => FocusWindow(composeMessageWindow));
+        }
         public static void OpenRequestTicketWindow()
         {
             RequestTicketWindow requestTicketWindow = new RequestTicketWindow();
 
-            try
-            {
-                OpenSingleInstanceWindow(requestTicketWindow, RequestTicketName);
-            }
-            catch (WindowAlreadyOpenException)
-            {
-                requestTicketWindow.Focus();
-            }
+            OpenSingleInstanceWindow(requestTicketWindow, RequestTicketName, () => FocusWindow(requestTicketWindow));
         }
 
-        private static void OpenSingleInstanceWindow(Window window, string name)
+        private static void OpenSingleInstanceWindow(Window window, string name, IfWindowOpen ifWindowOpen)
         {
-            if (FindWindowWithName(name) != null) throw new WindowAlreadyOpenException();
+            if (FindWindowWithName(name) != null) ifWindowOpen();
 
             window.Name = name;
             
             OpenAndTrackWindow(window, false);
         }
 
-        private static void OpenAndTrackWindow(Window window, bool closeOthers)
+        
+        // Dialog Windows
+        public static void OpenSaveDialog(bool autoClose)
         {
-            if (WindowIsTracked(window)) return;
-            
-            window.Show();
-
-            if (closeOthers) CloseAllWindows();
-            
-            TrackWindow(window);
+            SavingDataDialog savingDataDialog = new SavingDataDialog(autoClose);
+            OpenSingleInstanceWindow(savingDataDialog, SaveDialogName, (() => FocusWindow(savingDataDialog)));
         }
-
+        public static void SetSaveDialogProgress(int progress)
+        {
+            SavingDataDialog saveDialog = FindWindowWithName(SaveDialogName) as SavingDataDialog;
+            saveDialog?.SetProgress(progress);
+        }
+        public static void OpenLoadDialog(bool autoClose)
+        {
+            LoadingDataDialog loadDialog = new LoadingDataDialog(autoClose);
+            OpenSingleInstanceWindow(loadDialog, LoadDialogName, () => FocusWindow(loadDialog));
+        }
+        public static void SetLoadDialogProgress(int progress)
+        {
+            LoadingDataDialog loadDialog = FindWindowWithName(LoadDialogName) as LoadingDataDialog;
+            loadDialog?.SetProgress(progress);
+        }
+        
+        // tracking and un-tracking
         private static void TrackWindow(Window window)
         {
             if (WindowIsTracked(window)) return;
             TrackedWindows.Add(window);
         }
-
         public static void UnTrackWindow(Window window)
         {
             if (!WindowIsTracked(window)) return;
             TrackedWindows.Remove(window);
         }
-
         private static void UntrackAllWindows()
         {
             TrackedWindows?.Clear();
         }
-
+        
+        
+        // track check
         private static bool WindowIsTracked(Window window) => TrackedWindows.Contains(window);
+        private static bool NoWindowsOpen() => TrackedWindows.Count == 0;
+        
+        
+        // closing windows
         public static void CloseTrackedWindow(Window window)
         {
             UnTrackWindow(window);
             window.Close();
         }
-
         public static void CloseAllWindows()
         {
             for (int i = 0; i < TrackedWindows.Count; i++)
@@ -202,7 +228,22 @@ namespace hogwartsBingus.Session
             }
             UntrackAllWindows();
         }
+        
+        
+        // opening windows
+        private static void OpenAndTrackWindow(Window window, bool closeOthers)
+        {
+            if (WindowIsTracked(window)) return;
+            
+            window.Show();
 
+            if (closeOthers) CloseAllWindows();
+            
+            TrackWindow(window);
+        }
+        
+        
+        // find window
         private static Window FindWindowWithName(string name)
         {
             foreach (var trackedWindow in TrackedWindows)
@@ -215,7 +256,13 @@ namespace hogwartsBingus.Session
 
             return null;
         }
+        
+        
+        // focusing windows
+        private static void FocusWindow(Window window) => window.Topmost = true;
 
+        
+        // Debugging
         public static void ThrowError(string message)
         {
             MainWindow mianWindow = new MainWindow();

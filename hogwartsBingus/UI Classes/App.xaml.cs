@@ -16,8 +16,11 @@ namespace hogwartsBingus.UI_Classes
         {
             GlobalClock.SetInitialTime();
             //addTestData();
+            //SubjectManager.AddTestSubjects();
+            //SaveFileManager.SaveAllData(false);
+            SaveFileManager.LoadAllData(false);
+            SubjectManager.AddTimeCheckToTimeChangeEvent();
             WindowManager.AppStartup();
-            UserManager.RequestLoad();
         }
 
         private void addTestData()
@@ -54,13 +57,13 @@ namespace hogwartsBingus.UI_Classes
             UserManager.Users[0].AddTicket(TransportManager.GenerateTicket(
                 GlobalClock.CurrentTime.AddMinutes(30), 
                 Location.HogwartsUniversity, Location.London));
-            
-            UserManager.RequestSave();
+
+            //UserManager.RequestSave();
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
         {
-            UserManager.RequestSave();
+            SaveFileManager.SaveAllData(true);
         }
     }
 }

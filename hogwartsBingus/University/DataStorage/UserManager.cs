@@ -67,7 +67,7 @@ namespace hogwartsBingus.DataStorage
 
             return -1;
         }
-        public static int FindWithStudentNumber(int number)
+        public static int FindWithID(int number)
         {
             int result = -1;
 
@@ -90,6 +90,8 @@ namespace hogwartsBingus.DataStorage
             if (index > Users.Count || index < 0) return null;
             return Users[index];
         }
+
+        public static FactionType? GetFactionAt(int index) => (Users[index] as Student)?.Faction;
 
         public static void RequestSave()
         {

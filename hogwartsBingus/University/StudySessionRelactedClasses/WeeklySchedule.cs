@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Management.Instrumentation;
 using System.Runtime.Remoting.Messaging;
 using hogwartsBingus.Execptions;
+using hogwartsBingus.University.StudySessionRelactedClasses;
 
 namespace hogwartsBingus.Base_Classes
 {
@@ -9,49 +12,56 @@ namespace hogwartsBingus.Base_Classes
     {
         public readonly List<StudySubject> Subjects = new List<StudySubject>();
 
-        public void addSubject(StudySubject newSubject)
-        {
-            if (StudySessionIntersects(newSubject)) throw new StudySessionIntersectionException();
+        public WeeklySchedule(){}
 
+        public WeeklySchedule(List<StudySubject> newSubjects)
+        {
+            foreach (var subject in newSubjects)
+            {
+                AddSubject(subject);
+            }
+        }
+        public void AddSubject(StudySubject newSubject)
+        {
+            if (Subjects.Contains(newSubject)) return;
+            if (SubjectIntersects(newSubject)) throw new StudySessionIntersectionException();
+            
             Subjects.Add(newSubject);
         }
 
-        public void removeSubject(StudySubject subject)
+        public void RemoveSubject(StudySubject subject)
         {
-            //sec check
-
+            if (!Subjects.Contains(subject)) throw new InstanceNotFoundException();
             Subjects.Remove(subject);
         }
 
-        private bool StudySessionIntersects(StudySubject newSubject)
+        private bool SubjectIntersects(StudySubject newSubject)
         {
-            foreach (var session in newSubject.sessions)
+            foreach (var session in newSubject.Sessions)
             {
-                foreach (var sessionsInDay in GetSessionTimesInDay(session.StartTime.DayOfWeek))
+                if (SessionIntersects(session))
                 {
-                    if (session.IntersectsWith(sessionsInDay)) return true;
+                    return true;
                 }
             }
 
             return false;
         }
 
-        private List<StudySessionTime> GetSessionTimesInDay(DayOfWeek dayOfWeek)
+        private bool SessionIntersects(StudySessionTime newSession)
         {
-            List<StudySessionTime> times = new List<StudySessionTime>();
-            
             foreach (var subject in Subjects)
             {
-                foreach (var session in subject.sessions)
+                foreach (var session in subject.Sessions.Where(session => newSession.StartTime.Days == session.StartTime.Days))
                 {
-                    if (session.StartTime.DayOfWeek == dayOfWeek)
+                    if (session.IntersectsWith(newSession))
                     {
-                        times.Add(session);
+                        return true;
                     }
                 }
             }
 
-            return times;
+            return false;
         }
     }
 }

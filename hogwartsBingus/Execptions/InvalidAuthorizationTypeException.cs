@@ -3,21 +3,21 @@ using System.Runtime.Serialization;
 
 namespace hogwartsBingus.Execptions
 {
-    public class AuthorizedPersonTypeNotFoundException : Exception
+    public class InvalidAuthorizationTypeException : Exception
     {
-        public AuthorizedPersonTypeNotFoundException()
+        public InvalidAuthorizationTypeException()
         {
         }
 
-        public AuthorizedPersonTypeNotFoundException(string message) : base(message)
+        public InvalidAuthorizationTypeException(string message) : base(message)
         {
         }
 
-        public AuthorizedPersonTypeNotFoundException(string message, Exception innerException) : base(message, innerException)
+        public InvalidAuthorizationTypeException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
-        protected AuthorizedPersonTypeNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected InvalidAuthorizationTypeException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

@@ -15,9 +15,9 @@ namespace hogwartsBingus.Base_Classes
         }
         
         [JsonConstructor]
-        public Professor(string firstName, string lastName, int birthYear, int gender, int race,
+        public Professor(string firstName, string lastName, int birthYear, gender gender, Race race,
             List<Message> messages, List<TrainTicket> tickets, LoginData login, int id, WeeklySchedule schedule, 
-            int pet, bool hasBaggage, int currentLocation, int authType)
+            petType pet, bool hasBaggage, Location currentLocation, AuthorizationType authType)
         
             : base(firstName, lastName, birthYear, gender, race, messages, tickets, login, id, schedule, pet, hasBaggage, 
                 currentLocation, authType)

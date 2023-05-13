@@ -6,47 +6,40 @@ using hogwartsBingus.Factions;
 
 namespace hogwartsBingus.University.Excercies
 {
-    public class PlantBiologyExercise : IExercise
+    public class PlantBiologyExercise : Exercise
     {
-        private Random random = new Random();
-        
-        private Student Performer;
-        private List<Plant> Targets = new List<Plant>();
-        private int TargetCount;
-        public PlantBiologyExercise(Student performer)
+        public PlantBiologyExercise()
         {
-            Performer = performer;
         }
 
-        public void PrepareExercise()
+        public PlantBiologyExercise(string name, string description, DateTime deadLine) : base(name, description, deadLine)
         {
-            TargetCount = random.Next(1, 10);
-            GenerateTargetList();
         }
 
-        public void PerformExercise()
+        public PlantBiologyExercise(string name, string description, DateTime deadLine, List<int> attendees) 
+            : base(attendees ,name, description, deadLine)
+        {
+        }
+
+        public override void PrepareExercise()
         {
             
         }
-
-        public void AwardPoints(Faction faction, int amount)
+        public override void StudentFinishedExercise(int attendee)
         {
-            FactionManager.AwardPointsToFaction(Performer.Faction, EvaluatePoints());
+            base.StudentFinishedExercise(attendee);
+        }
+        public override void AwardPoints(FactionType faction, int amount)
+        {
+            FactionManager.AwardPointsToFaction(faction, amount);
         }
 
-        private int EvaluatePoints()
+        protected override int EvaluatePoints()
         {
             // implement later
             return 1;
         }
-
-        private void GenerateTargetList()
-        {
-            for (int i = 0; i < TargetCount; i++)
-            {
-                Targets.Add(PlantManager.GenerateRandomPlant(1,10));
-            }
-        }
+        
         public void SearchLocation(Location location)
         {
             List<Plant> foundPlants = PlantManager.SearchForPlantsAtLocation(location);

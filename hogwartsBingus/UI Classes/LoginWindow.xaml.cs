@@ -24,7 +24,7 @@ namespace hogwartsBingus.UI_Classes
             {
                 ErrorLabel.Content = "Login Credentials Not Found";
             }
-            catch (AuthorizedPersonTypeNotFoundException)
+            catch (InvalidAuthorizationTypeException)
             {
                 ErrorLabel.Content = "Login found, but no Auth-type assigned to your account";
             }

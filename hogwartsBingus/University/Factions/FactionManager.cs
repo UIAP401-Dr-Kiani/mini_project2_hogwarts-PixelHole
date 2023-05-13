@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using hogwartsBingus.Base_Classes;
+using hogwartsBingus.Execptions;
 
 namespace hogwartsBingus.Factions
 {
@@ -47,6 +48,10 @@ namespace hogwartsBingus.Factions
                 case FactionType.Raveclaw :
                     Ravenclaw.AwardPoints(points);
                     return;
+                case FactionType.None:
+                    return;
+                default:
+                    throw new FactionNotFoundException();
             }
         }
     }

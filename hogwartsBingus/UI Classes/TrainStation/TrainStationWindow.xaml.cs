@@ -36,7 +36,7 @@ namespace hogwartsBingus.UI_Classes.TrainStation
 
         private void UpdateLocationLabel()
         {
-            LocationLabel.Content = SessionManager.UserLocation;
+            LocationLabel.Content = SessionManager.GetUserLocation();
         }
 
         private void UpdateTrainsList()
@@ -60,7 +60,7 @@ namespace hogwartsBingus.UI_Classes.TrainStation
             foreach (var ticket in SessionManager.GetTickets())
             {
                 //this check shouldn't be here, move it in future commits
-                if (ticket.Location.ToString() == (SessionManager.UserLocation).ToString() && 
+                if (ticket.Location.ToString() == (SessionManager.GetUserLocation()).ToString() && 
                     GlobalClock.CurrentTime > ticket.MoveTime.Subtract(new TimeSpan(0, 1, 0, 0)) &&
                     GlobalClock.CurrentTime < ticket.MoveTime.AddMinutes(10))
                 {

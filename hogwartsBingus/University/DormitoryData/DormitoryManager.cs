@@ -12,6 +12,9 @@ namespace hogwartsBingus.University.DormitoryData
         {
             //this is for Test purposes, remove later ↓
             Dormitories.Add(new Dormitory(6, FactionType.Gryffindor));
+            Dormitories.Add(new Dormitory(8, FactionType.Slytherin));
+            Dormitories.Add(new Dormitory(6, FactionType.Raveclaw));
+            Dormitories.Add(new Dormitory(6, FactionType.Hufflepuff));
         }
 
         public static int GetBedNumberOfType(FactionType faction)

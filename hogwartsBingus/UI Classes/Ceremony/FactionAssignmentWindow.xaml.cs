@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using hogwartsBingus.Base_Classes;
+using hogwartsBingus.Execptions;
+using hogwartsBingus.Session;
+using hogwartsBingus.University.DormitoryData;
 
 namespace hogwartsBingus.UI_Classes.Ceremony
 {
@@ -18,6 +12,8 @@ namespace hogwartsBingus.UI_Classes.Ceremony
     /// </summary>
     public partial class FactionAssignmentWindow : Window
     {
+        private Random random = new Random();
+        
         public FactionAssignmentWindow()
         {
             InitializeComponent();
@@ -25,7 +21,30 @@ namespace hogwartsBingus.UI_Classes.Ceremony
 
         private void AssignBtn_Click(object sender, RoutedEventArgs e)
         {
+            AssignFaction();
+        }
 
+        private void AssignFaction()
+        {
+            FactionType chosenFaction = (FactionType)random.Next(0, 4);
+            try
+            {
+                SessionManager.AttemptToSetFaction(chosenFaction);
+                SessionManager.AttemptToSetBedNumber(DormitoryManager.GetBedNumberOfType(SessionManager.GetUserFaction().Value));
+            }
+            catch (StudentAlreadyHasFactionException e)
+            {
+                Console.WriteLine(e);
+                //add error handling here later
+            }
+
+            AssignBtn.IsEnabled = false;
+            UpdateAssignedFactionLabelText(Enum.GetName(typeof(FactionType), chosenFaction));
+        }
+
+        private void UpdateAssignedFactionLabelText(string factionName)
+        {
+            FactionNameDisplayLabel.Content = factionName;
         }
     }
 }

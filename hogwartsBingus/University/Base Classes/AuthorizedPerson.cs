@@ -13,7 +13,7 @@ namespace hogwartsBingus.Base_Classes
         public LoginData Login { get; protected set; }
         public int ID { get; protected set; }
 
-        public WeeklySchedule Schedule { get; protected set; }
+        public WeeklySchedule Schedule { get; protected set; } = new WeeklySchedule();
         public petType Pet { get; protected set; }
 
         public bool HasBaggage { get; protected set; }
@@ -31,9 +31,9 @@ namespace hogwartsBingus.Base_Classes
         }
 
         [JsonConstructor]
-        protected AuthorizedPerson(string firstName, string lastName, int birthYear, int gender, int race,
+        protected AuthorizedPerson(string firstName, string lastName, int birthYear, gender gender, Race race,
             List<Message> messages, List<TrainTicket> tickets, LoginData login, int id, 
-            WeeklySchedule schedule, int pet, bool hasBaggage, int currentLocation, int authType)
+            WeeklySchedule schedule, petType pet, bool hasBaggage, Location currentLocation, AuthorizationType authType)
             : base(firstName, lastName, birthYear, gender, race)
         {
             Messages = messages;
@@ -41,10 +41,10 @@ namespace hogwartsBingus.Base_Classes
             Login = login;
             ID = id;
             Schedule = schedule;
-            Pet = (petType)pet;
+            Pet = pet;
             HasBaggage = hasBaggage;
-            CurrentLocation = (Location)currentLocation;
-            AuthType = (AuthorizationType)authType;
+            CurrentLocation = currentLocation;
+            AuthType = authType;
         }
         
         
