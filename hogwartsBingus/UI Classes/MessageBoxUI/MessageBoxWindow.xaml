@@ -14,13 +14,15 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="27*"/>
-            <RowDefinition Height="215*"/>
+            <RowDefinition Height="190*"/>
+            <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Rectangle Fill="#FF44475A" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="MessageList" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10, 10, 0, 10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" SelectionChanged="MessageList_OnSelectionChanged"/>
+        <ListBox x:Name="MessageList" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,0,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" SelectionChanged="MessageList_OnSelectionChanged"/>
         <TextBlock x:Name="MessageContentBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="" Margin="10,10,10,10" Background="#FF44475A" Foreground="#FFF8F8F2"/>
         <Button x:Name="BackBtn" Content="Close" HorizontalAlignment="Left" Margin="10,10,0,10" Width="64" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Click="BackBtn_OnClick"/>
-        <Button x:Name="ComposeMessageBtn" Content="Compose" Margin="0,10,10,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Grid.Column="1" Click="ComposeMessageBtn_OnClick" HorizontalAlignment="Right" Width="64"/>
+        <Button x:Name="ComposeMessageBtn" Content="Compose" Margin="333,10,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Grid.Column="1" Click="ComposeMessageBtn_OnClick" HorizontalAlignment="Left" Width="64"/>
+        <Button x:Name="DeleteBtn" Content="Delete" HorizontalAlignment="Center" Margin="0,10,0,10" Width="173" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Click="DeleteBtn_Click" Grid.Row="2"/>
 
     </Grid>
 </Window>

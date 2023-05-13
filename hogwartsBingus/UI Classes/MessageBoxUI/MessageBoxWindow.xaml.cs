@@ -66,5 +66,10 @@ namespace hogwartsBingus.UI_Classes
         {
             return $"From : {message.Sender}\tTo : {message.Receiver}\n\n{message.Title}\n\n{message.Text}";
         }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

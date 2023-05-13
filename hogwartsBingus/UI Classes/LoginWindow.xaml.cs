@@ -34,5 +34,10 @@ namespace hogwartsBingus.UI_Classes
         {
             WindowManager.UnTrackWindow(this);
         }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowManager.CloseTrackedWindow(this);
+        }
     }
 }

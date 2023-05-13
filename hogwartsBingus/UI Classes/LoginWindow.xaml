@@ -29,7 +29,7 @@
         <TextBox x:Name="UsernameField" Grid.Column="3" Grid.Row="1" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" VerticalContentAlignment ="Center" Grid.ColumnSpan="2" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2"/>
         <Label Grid.Column="1" Content="Username :" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="17" FontFamily="Microsoft JhengHei Light" Foreground="#FFF8F8F2" Margin="0,0,0,0"/>
         <Label Content="Password :" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="17" FontFamily="Microsoft JhengHei Light" Foreground="#FFF8F8F2" Margin="0,0,0,0"/>
-        <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Grid.Column="1" Height="39" Width="98" FontSize="18" Foreground="#FFF8F8F2" Background="#FFBD93F9" FontFamily="Microsoft YaHei Light" BorderBrush="#FFBD93F9"/>
+        <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Grid.Column="1" Height="39" Width="98" FontSize="18" Foreground="#FFF8F8F2" Background="#FFBD93F9" FontFamily="Microsoft YaHei Light" BorderBrush="#FFBD93F9" Click="CancelBtn_Click"/>
         <Button x:Name="LoginBtn" Content="Login" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Grid.Column="3" FontSize="18" Foreground="#FFF8F8F2" Background="#FFBD93F9" Width="98" Height="39" FontFamily="Microsoft YaHei Light" Click="LoginBtn_Click" BorderBrush="#FFBD93F9"/>
         <Label x:Name="ErrorLabel" Grid.Column="4" Content="" Grid.Row="5" Foreground="#FFFF79C6" Background="#FF44475A" Margin="10,0,0,0"/>
     </Grid>

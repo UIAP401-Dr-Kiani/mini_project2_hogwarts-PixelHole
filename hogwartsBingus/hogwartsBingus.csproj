@@ -78,6 +78,15 @@
     <Compile Include="UI Classes\Dialogs\SavingDataDialog.xaml.cs">
       <DependentUpon>SavingDataDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI Classes\Hogwarts\Dumbledore Specific\DumbledoreHogwartsWindow.xaml.cs">
+      <DependentUpon>DumbledoreHogwartsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Hogwarts\Professor Specific\ExerciseConfigWindow.xaml.cs">
+      <DependentUpon>ExerciseConfigWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Hogwarts\Professor Specific\ProfessorHogwartsWindow.xaml.cs">
+      <DependentUpon>ProfessorHogwartsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI Classes\Hogwarts\Student Specific\StudentHogwartsWindow.xaml.cs">
       <DependentUpon>StudentHogwartsWindow.xaml</DependentUpon>
     </Compile>
@@ -204,6 +213,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI Classes\Dialogs\SavingDataDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Hogwarts\Dumbledore Specific\DumbledoreHogwartsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Hogwarts\Professor Specific\ExerciseConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Hogwarts\Professor Specific\ProfessorHogwartsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
