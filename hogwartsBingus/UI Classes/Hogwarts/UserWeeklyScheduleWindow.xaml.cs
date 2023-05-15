@@ -18,10 +18,10 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Student_Specific
     /// <summary>
     /// Interaction logic for StudentWeeklyScheduleWindow.xaml
     /// </summary>
-    public partial class StudentWeeklyScheduleWindow : Window
+    public partial class UserWeeklyScheduleWindow : Window
     {
         private WeeklySchedule Schedule;
-        public StudentWeeklyScheduleWindow()
+        public UserWeeklyScheduleWindow()
         {
             InitializeComponent();
             GetSchedule();
