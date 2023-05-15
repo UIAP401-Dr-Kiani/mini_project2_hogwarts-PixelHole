@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using hogwartsBingus.Base_Classes.SaveReadyPersonnel;
 using Newtonsoft.Json;
 
 namespace hogwartsBingus.Base_Classes
@@ -11,6 +12,7 @@ namespace hogwartsBingus.Base_Classes
             int id, bool canTeachAtMultipleClasses)
             : base(firstName, lastName, birthYear, gender, race, login, id)
         {
+            AuthType = AuthorizationType.Professor;
             CanTeachAtMultipleClasses = canTeachAtMultipleClasses;
         }
         
@@ -22,7 +24,20 @@ namespace hogwartsBingus.Base_Classes
             : base(firstName, lastName, birthYear, gender, race, messages, tickets, login, id, schedule, pet, hasBaggage, 
                 currentLocation, authType)
         {
+            AuthType = AuthorizationType.Professor;
+        }
+
+        public SaveReadyProfessor ToSaveFormat()
+        {
+            List<string> subjectNames = new List<string>();
             
+            foreach (var subject in Schedule.Subjects)
+            {
+                subjectNames.Add(subject.Name);
+            }
+            
+            return new SaveReadyProfessor(FirstName, LastName, BirthYear, Gender, Race, subjectNames,
+                Login, ID, Pet, HasBaggage, CurrentLocation, AuthType, CanTeachAtMultipleClasses);
         }
     }
 }

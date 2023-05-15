@@ -10,8 +10,11 @@ using hogwartsBingus.UI_Classes.TrainStation;
 using hogwartsBingus.UI_Classes.Ceremony;
 using hogwartsBingus.UI_Classes.Dialogs;
 using hogwartsBingus.UI_Classes.Hogwarts;
+using hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific;
+using hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific;
 using hogwartsBingus.UI_Classes.Hogwarts.Student_Specific;
 using hogwartsBingus.UI_Classes.LandingPages;
+using hogwartsBingus.University.Excercies;
 using Microsoft.Win32;
 
 namespace hogwartsBingus.Session
@@ -20,7 +23,8 @@ namespace hogwartsBingus.Session
     {
         private static readonly List<Window> TrackedWindows = new List<Window>();
 
-        private const string ProfileInfoName = "ProfileInfo",
+        private const string
+            ProfileInfoName = "ProfileInfo",
             EditLoginName = "EditLogin",
             MessageBoxName = "MessageBox",
             TicketBoxName = "TicketBox",
@@ -31,7 +35,9 @@ namespace hogwartsBingus.Session
             FactionAssignmentName = "FactionAssignment",
             WeeklyScheduleName = "WeeklySchedule",
             SaveDialogName = "SaveDialog",
-            LoadDialogName = "LoadDialog";
+            LoadDialogName = "LoadDialog",
+            ExerciseConfigName = "ExerciseConfig";
+            
         
         delegate void IfWindowOpen();
         public static void AppStartup()
@@ -56,27 +62,10 @@ namespace hogwartsBingus.Session
             CloseAllWindows();
             TrackWindow(loginWindow);
         }
-        public static void LaunchLandingPageOfType(AuthorizationType type)
+        public static void LaunchLandingPage()
         {
-            switch (type)
-            {
-                case AuthorizationType.Student:
-                    StudentLandingPage studentLandingPage = new StudentLandingPage();
-                    OpenAndTrackWindow(studentLandingPage, true);
-                    break;
-                
-                case AuthorizationType.Professor:
-                    ProfessorLandingPage professorLandingPage = new ProfessorLandingPage();
-                    OpenAndTrackWindow(professorLandingPage, true);
-                    break;
-                
-                case AuthorizationType.Dumbledore:
-                    DumbledoreLandingPage dumbledoreLandingPage = new DumbledoreLandingPage();
-                    OpenAndTrackWindow(dumbledoreLandingPage, true);
-                    break;
-                default:
-                    throw new InvalidAuthorizationTypeException("the Authorized person's type not recognised");
-            }
+            LandingPage landingPage = new LandingPage();
+            OpenAndTrackWindow(landingPage, true);
         }
         public static void LaunchHogwartsPageOfType(AuthorizationType type)
         {
@@ -88,9 +77,13 @@ namespace hogwartsBingus.Session
                     break;
                 
                 case AuthorizationType.Professor:
+                    ProfessorHogwartsWindow professorHogwartsWindow = new ProfessorHogwartsWindow();
+                    OpenAndTrackWindow(professorHogwartsWindow, true);
                     break;
                 
                 case AuthorizationType.Dumbledore:
+                    DumbledoreHogwartsWindow dumbledoreHogwartsWindow = new DumbledoreHogwartsWindow();
+                    OpenAndTrackWindow(dumbledoreHogwartsWindow, true);
                     break;
                 default:
                     throw new InvalidAuthorizationTypeException("the Authorized person's type not recognised");
@@ -101,7 +94,7 @@ namespace hogwartsBingus.Session
         // single instance window handling
         public static void OpenWeeklyScheduleWindow()
         {
-            StudentWeeklyScheduleWindow weeklyScheduleWindow = new StudentWeeklyScheduleWindow();
+            UserWeeklyScheduleWindow weeklyScheduleWindow = new UserWeeklyScheduleWindow();
             OpenSingleInstanceWindow(weeklyScheduleWindow, WeeklyScheduleName, () => FocusWindow(weeklyScheduleWindow));
         }
         public static void OpenFactionAssignmentWindow()
@@ -156,10 +149,24 @@ namespace hogwartsBingus.Session
 
             OpenSingleInstanceWindow(requestTicketWindow, RequestTicketName, () => FocusWindow(requestTicketWindow));
         }
+        public static void OpenExerciseEditWindow(string subjectName, string exercise)
+        {
+            ExerciseConfigWindow exerciseConfigWindow = new ExerciseConfigWindow(subjectName, exercise);
+            OpenSingleInstanceWindow(exerciseConfigWindow, ExerciseConfigName, () => FocusWindow(exerciseConfigWindow));
+        }
+        public static void OpenExerciseAddWindow(string subjectName)
+        {
+            ExerciseConfigWindow exerciseConfigWindow = new ExerciseConfigWindow(subjectName);
+            OpenSingleInstanceWindow(exerciseConfigWindow, ExerciseConfigName, () => FocusWindow(exerciseConfigWindow));
+        }
 
         private static void OpenSingleInstanceWindow(Window window, string name, IfWindowOpen ifWindowOpen)
         {
-            if (FindWindowWithName(name) != null) ifWindowOpen();
+            if (FindWindowWithName(name) != null)
+            {
+                ifWindowOpen();
+                return;
+            }
 
             window.Name = name;
             
@@ -259,7 +266,11 @@ namespace hogwartsBingus.Session
         
         
         // focusing windows
-        private static void FocusWindow(Window window) => window.Topmost = true;
+        private static void FocusWindow(Window window)
+        {
+            window.Topmost = true;
+            window.Topmost = false;
+        }
 
         
         // Debugging

@@ -93,5 +93,10 @@ namespace hogwartsBingus.Base_Classes
         }
 
         public void MoveToLocation(Location newLocation) => CurrentLocation = newLocation;
+
+        public override string ToString()
+        {
+            return $"[{AuthType}] {FullName}";
+        }
     }
 }

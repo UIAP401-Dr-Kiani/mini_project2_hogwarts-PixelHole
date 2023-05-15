@@ -19,7 +19,7 @@ namespace hogwartsBingus.University.Excercies
         {
             
         }
-        protected Exercise(string name, string description, DateTime deadLine)
+        public Exercise(string name, string description, DateTime deadLine)
         {
             Name = name;
             Description = description;
@@ -27,7 +27,7 @@ namespace hogwartsBingus.University.Excercies
         }
 
         [JsonConstructor]
-        protected Exercise(List<int> attendees, string name, string description, DateTime deadLine)
+        public Exercise(List<int> attendees, string name, string description, DateTime deadLine)
         {
             Name = name;
             Description = description;

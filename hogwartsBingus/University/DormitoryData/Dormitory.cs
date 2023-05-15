@@ -1,9 +1,10 @@
-using System.Collections.Generic;
+using hogwartsBingus.Base_Classes;
 
-namespace hogwartsBingus.Base_Classes
+namespace hogwartsBingus.University.DormitoryData
 {
     public class Dormitory
     {
+        public string Name { get; protected set; }
         public FactionType Faction { get; protected set; }
 
         /*
@@ -30,8 +31,9 @@ namespace hogwartsBingus.Base_Classes
             }
         }
 
-        public Dormitory(int floorCount, FactionType faction)
+        public Dormitory(string name, int floorCount, FactionType faction)
         {
+            Name = name;
             this.FloorCount = floorCount;
             this.Faction = faction;
             ResidentsCount = 0;
@@ -41,6 +43,11 @@ namespace hogwartsBingus.Base_Classes
         {
             ResidentsCount++;
             return LastEmptyBed;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} [{Faction.ToString()}] : {ResidentsCount}/{Capacity}";
         }
     }
 }

@@ -90,8 +90,8 @@
     <Compile Include="UI Classes\Hogwarts\Student Specific\StudentHogwartsWindow.xaml.cs">
       <DependentUpon>StudentHogwartsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI Classes\Hogwarts\Student Specific\StudentWeeklyScheduleWindow.xaml.cs">
-      <DependentUpon>StudentWeeklyScheduleWindow.xaml</DependentUpon>
+    <Compile Include="UI Classes\Hogwarts\UserWeeklyScheduleWindow.xaml.cs">
+      <DependentUpon>UserWeeklyScheduleWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI Classes\MessageBoxUI\ComposeMessageWindow.xaml.cs">
       <DependentUpon>ComposeMessageWindow.xaml</DependentUpon>
@@ -102,8 +102,8 @@
     <Compile Include="UI Classes\LandingPages\ProfessorLandingPage.xaml.cs">
       <DependentUpon>ProfessorLandingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI Classes\LandingPages\StudentLandingPage.xaml.cs">
-      <DependentUpon>StudentLandingPage.xaml</DependentUpon>
+    <Compile Include="UI Classes\LandingPages\LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI Classes\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -148,6 +148,7 @@
     <Compile Include="University\DormitoryData\DormitoryManager.cs" />
     <Compile Include="University\Enums\AuthorizationType.cs" />
     <Compile Include="University\Enums\Day.cs" />
+    <Compile Include="University\Enums\ExerciseEditMode.cs" />
     <Compile Include="University\Enums\FactionType.cs" />
     <Compile Include="University\Enums\gender.cs" />
     <Compile Include="University\Enums\Location.cs" />
@@ -232,7 +233,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI Classes\Hogwarts\Student Specific\StudentWeeklyScheduleWindow.xaml">
+    <Page Include="UI Classes\Hogwarts\UserWeeklyScheduleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,7 +243,7 @@
     </Page>
     <Page Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml" />
     <Page Include="UI Classes\LandingPages\ProfessorLandingPage.xaml" />
-    <Page Include="UI Classes\LandingPages\StudentLandingPage.xaml" />
+    <Page Include="UI Classes\LandingPages\LandingPage.xaml" />
     <Page Include="UI Classes\LoginWindow.xaml" />
     <Page Include="UI Classes\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

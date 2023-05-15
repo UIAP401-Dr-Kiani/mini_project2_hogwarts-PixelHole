@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Management.Instrumentation;
 using hogwartsBingus.Base_Classes;
+using hogwartsBingus.University.DataStorage;
 using hogwartsBingus.University.Excercies;
 using hogwartsBingus.University.StudySessionRelactedClasses;
 
@@ -12,7 +13,7 @@ namespace hogwartsBingus.DataStorage
         private static List<StudySubject> StudySubjects = new List<StudySubject>();
         public static void AddTestSubjects()
         {
-            AddStudySubject(new StudySubject("Test1", UserManager.GetUserAtIndex(1) as Professor, 
+            AddStudySubject(new StudySubject("Test1", UserManager.GetUserAtIndex(1).FullName, 
                 new List<StudySessionTime>()
             {
                 new StudySessionTime(
@@ -31,7 +32,7 @@ namespace hogwartsBingus.DataStorage
                 12,
                 1));
             
-            AddStudySubject(new StudySubject("Test2", UserManager.GetUserAtIndex(1) as Professor, 
+            AddStudySubject(new StudySubject("Test2", UserManager.GetUserAtIndex(1).FullName, 
                 new List<StudySessionTime>()
                 {
                     new StudySessionTime(
@@ -50,9 +51,10 @@ namespace hogwartsBingus.DataStorage
                 12,
                 1));
             
-            UserManager.Users[0].Schedule.AddSubject(SubjectManager.GetSubjectAt(0));
-            UserManager.Users[0].Schedule.AddSubject(SubjectManager.GetSubjectAt(1));
-            
+            UserManager.Users[0].Schedule.AddSubject(GetSubjectAt(0));
+            UserManager.Users[0].Schedule.AddSubject(GetSubjectAt(1));
+            UserManager.Users[1].Schedule.AddSubject(GetSubjectAt(0));
+
             StudySubjects[0].AddExercise(new PlantBiologyExercise(
                 "test Exercise",
                 "test description",

@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific"
         mc:Ignorable="d"
-        Title="ExerciseConfigWindow" Height="550" Width="500" Background="#FF282A36">
+        Title="ExerciseConfigWindow" Height="550" Width="500" Background="#FF282A36"
+        Closed="ExerciseConfigWindow_OnClosed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -23,17 +23,22 @@
             <RowDefinition Height="66*"/>
         </Grid.RowDefinitions>
         <TextBox x:Name="ExerciseTitleField" Grid.Row="1" TextWrapping="Wrap" Margin="10,0,10,0" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="3"/>
-        <Label Content="Label" Margin="10,0,10,0" Grid.ColumnSpan="3"/>
-        <Label Content="Exercise Title" Margin="10,0,10,0" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Grid.ColumnSpan="3"/>
-        <Label Content="Exercise Description" Margin="10,0,10,0" Foreground="#FFF8F8F2" Grid.Row="2" FontFamily="Microsoft JhengHei UI Light" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="ExerciseDescField" Grid.Row="3" TextWrapping="Wrap" Margin="10,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Grid.ColumnSpan="3"/>
-        <Button x:Name="CancelBtn" Content="Cancel" Margin="10,0,5,10" Grid.Row="7" Background="#FFBD93F9" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" FontFamily="Microsoft JhengHei Light" FontSize="18"/>
-        <Button x:Name="ConfirmBtn" Content="Confirm" Margin="5,0,10,10" Grid.Row="7" Background="#FFBD93F9" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" FontFamily="Microsoft JhengHei Light" FontSize="18" Grid.Column="2"/>
-        <TextBox x:Name="YearField" Grid.Row="6" TextWrapping="Wrap" Margin="10,0,5,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="MonthField" Grid.Row="6" TextWrapping="Wrap" Margin="5,0,5,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1"/>
-        <TextBox x:Name="DayField" Grid.Row="6" TextWrapping="Wrap" Margin="5,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2"/>
-        <Label Content="Year" Margin="10,0,10,0" Foreground="#FFF8F8F2" Grid.Row="5" FontFamily="Microsoft JhengHei UI Light"/>
-        <Label Content="Exercise Dead Line" Margin="10,0,10,0" Foreground="#FFF8F8F2" Grid.Row="4" FontFamily="Microsoft JhengHei UI Light" Grid.ColumnSpan="3"/>
+        <Label Content="Label" Margin="10,0,10,0" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" />
+        <Label Content="Exercise Title" Margin="10,0,10,0" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light"
+               Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" />
+        <Label Content="Exercise Description" Margin="10,0,10,0" Foreground="#FFF8F8F2" Grid.Row="2" FontFamily="Microsoft JhengHei UI Light" Grid.ColumnSpan="3"
+               Grid.Column="0" />
+        <TextBox x:Name="ExerciseDescField" Grid.Row="3" TextWrapping="Wrap" Margin="10,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Grid.ColumnSpan="3"
+                 Grid.Column="0" />
+        <Button x:Name="CancelBtn" Content="Cancel" Margin="10,0,5,10" Grid.Row="7" Grid.Column="0" Background="#FFBD93F9" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" FontFamily="Microsoft JhengHei Light" FontSize="18" Click="CancelBtn_OnClick"></Button>
+        <Button x:Name="ConfirmBtn" Content="Confirm" Margin="5,0,10,10" Grid.Row="7" Background="#FFBD93F9" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" FontFamily="Microsoft JhengHei Light" FontSize="18" Grid.Column="2" Click="ConfirmBtn_OnClick"/>
+        <TextBox x:Name="YearField" Grid.Row="6" Grid.Column="0" TextWrapping="Wrap" Margin="10,0,5,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="YearField_OnTextChanged"/>
+        <TextBox x:Name="MonthField" Grid.Row="6" TextWrapping="Wrap" Margin="5,0,5,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" TextChanged="MonthField_OnTextChanged"/>
+        <TextBox x:Name="DayField" Grid.Row="6" TextWrapping="Wrap" Margin="5,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" TextChanged="DayField_OnTextChanged"/>
+        <Label Content="Year" Margin="10,0,10,0" Foreground="#FFF8F8F2" Grid.Row="5" Grid.Column="0"
+               FontFamily="Microsoft JhengHei UI Light"/>
+        <Label Content="Exercise Dead Line" Margin="10,0,10,0" Foreground="#FFF8F8F2" Grid.Row="4" FontFamily="Microsoft JhengHei UI Light" Grid.ColumnSpan="3"
+               Grid.Column="0" />
         <Label Content="Month" Margin="10,0,10,0" Foreground="#FFF8F8F2" Grid.Row="5" FontFamily="Microsoft JhengHei UI Light" Grid.Column="1"/>
         <Label Content="Day" Margin="10,0,10,0" Foreground="#FFF8F8F2" Grid.Row="5" FontFamily="Microsoft JhengHei UI Light" Grid.Column="2"/>
     </Grid>

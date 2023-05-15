@@ -9,7 +9,7 @@ namespace hogwartsBingus.UI_Classes.Profile_UI
     /// <summary>
     /// Interaction logic for ProfileInfoWindow.xaml
     /// </summary>
-    public partial class ProfileInfoWindow : Window
+    public partial class ProfileInfoWindow
     {
         public ProfileInfoWindow()
         {
@@ -36,11 +36,11 @@ namespace hogwartsBingus.UI_Classes.Profile_UI
                 finalText.Append($"\n\nFather : {generalInfo[4]}");
             }
 
-            finalText.Append($"\n\nID : {generalInfo[5]}\n\nAssigned Pet : {generalInfo[6]}");
+            finalText.Append($"\n\nID : {generalInfo[5]}\n\nAssigned Pet : {generalInfo[6]}\n\n");
 
             switch (SessionManager.GetUserType())
             {
-                case AuthorizationType.Student:
+                case AuthorizationType.Student :
                     finalText.Append($"\n\nHouse : {generalInfo[7]}\n\nDormitory Number : ");
                     
                     if (generalInfo[8] != "0")
@@ -51,7 +51,11 @@ namespace hogwartsBingus.UI_Classes.Profile_UI
 
                     finalText.Append("Not Assigned");
                     break;
-                case AuthorizationType.Professor:
+                case AuthorizationType.Professor :
+                    finalText.Append($"Can Teach At multiple locations : {generalInfo[7]}\n");
+                    break;
+                case AuthorizationType.Dumbledore :
+                    finalText.Append("\n\nSystem Admin");
                     break;
             }
 

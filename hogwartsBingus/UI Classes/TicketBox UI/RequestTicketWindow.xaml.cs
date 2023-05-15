@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,7 +15,11 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
     public partial class RequestTicketWindow : Window
     {
         private Location Location, Destination;
+        private DateTime time;
         private int SenderIndex;
+        
+        Regex timeFormat = new Regex(@"([01][01]?[0-9]|2[0-3]):[0-5][0-9]");
+        Regex dateFormat = new Regex(@"^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$");
         public RequestTicketWindow()
         {
             InitializeComponent();
@@ -64,6 +69,21 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
             }
         }
 
+        private void UpdateTime()
+        {
+            if (!timeFormat.IsMatch(TimeField.Text) && dateFormat.IsMatch(DateField.Text))
+            {
+                time = DateTime.MinValue;
+                return;
+            }
+
+            string[] dateString = DateField.Text.Split('-'),
+                timeString = TimeField.Text.Split(':');
+
+            time = new DateTime(int.Parse(dateString[0]), int.Parse(dateString[1]), int.Parse(dateString[2]),
+                int.Parse(timeString[0]), int.Parse(timeString[1]), 0);
+        }
+
         private void UpdateFieldColors()
         {
             if (Location == Location.None)
@@ -101,11 +121,11 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
 
         private void SubmitBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Location == Location.None || Destination == Location.None || SenderIndex == -1) return;
+            if (Location == Location.None || Destination == Location.None || SenderIndex == -1 || time == DateTime.MinValue) return;
 
             try
             {
-                TicketRequestHandler.RequestTicket(new TicketRequest(SenderNameField.Text, Location, Destination));
+                TicketRequestHandler.RequestTicket(new TicketRequest(SenderNameField.Text, Location, Destination, time));
             }
             catch (Exception)
             {
@@ -113,6 +133,29 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
             }
             
             WindowManager.CloseTrackedWindow(this);
+        }
+
+        private void TimeField_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!timeFormat.IsMatch(TimeField.Text))
+            {
+                TimeField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+                return;
+            }
+            
+            TimeField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+            UpdateTime();
+        }
+        private void DateField_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!dateFormat.IsMatch(DateField.Text))
+            {
+                DateField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+                return;
+            }
+            
+            DateField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+            UpdateTime();
         }
     }
 }

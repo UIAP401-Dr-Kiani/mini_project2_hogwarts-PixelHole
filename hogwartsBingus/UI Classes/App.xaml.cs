@@ -4,6 +4,7 @@ using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Session;
 using hogwartsBingus.University;
+using hogwartsBingus.University.DataStorage;
 
 namespace hogwartsBingus.UI_Classes
 {
@@ -19,7 +20,11 @@ namespace hogwartsBingus.UI_Classes
             //SubjectManager.AddTestSubjects();
             //SaveFileManager.SaveAllData(false);
             SaveFileManager.LoadAllData(false);
+            
             SubjectManager.AddTimeCheckToTimeChangeEvent();
+            
+            
+            
             WindowManager.AppStartup();
         }
 

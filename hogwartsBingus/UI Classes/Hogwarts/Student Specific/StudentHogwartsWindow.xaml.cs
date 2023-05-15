@@ -50,7 +50,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Student_Specific
         private void UpdateSubjectDescription()
         {
             if (subject == null) return;
-            SubjectInfoLabel.Content = $"{subject.Name}\n\nTeaching Professor : Prf. {subject.Professor.LastName}\n\n" +
+            SubjectInfoLabel.Content = $"{subject.Name}\n\nTeaching Professor : Prf. {subject.ProfessorName}\n\n" +
                                        $"Students in class : {subject.StudentCount}";
         }
         private void UpdateExerciseDescription()
@@ -137,7 +137,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Student_Specific
         }
         private void BackBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            WindowManager.LaunchLandingPageOfType(SessionManager.GetUserType());
+            WindowManager.LaunchLandingPage();
         }
 
         private void DoExerciseBtn_OnClick(object sender, RoutedEventArgs e)

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific"
         mc:Ignorable="d"
-        Title="ProfessorHogwartsWindow" Height="500" Width="600" Background="#FF282A36">
+        Title="ProfessorHogwartsWindow" Height="500" Width="600" Background="#FF282A36"
+        MouseEnter="ProfessorHogwartsWindow_OnMouseEnter">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="82*"/>
@@ -26,15 +27,15 @@
         <Label Grid.Row="0" Grid.Column="0" x:Name="DayNameLabel" Content="Wednesday" FontFamily="Microsoft JhengHei UI" Foreground="#FFF8F8F2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
         <Label x:Name="DateLabel" Grid.Row="0" Grid.Column="1" Content="1984/3/12" Margin="0,5,0,8" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" FontSize="16" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light"/>
         <Label x:Name="TimeLabel" Grid.Row="0" Grid.Column="2" Content="12:00" Margin="66,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light"/>
-        <ListBox x:Name="SubjectsList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="5" Margin="10,0,0,10" BorderBrush="#FF44475A" Background="#FF44475A" Foreground="#FFF8F8F2"/>
-        <ListBox x:Name="ExercisesList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="5" Margin="10,0,0,10" Grid.Column="1" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2"/>
+        <ListBox x:Name="SubjectsList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="5" Margin="10,0,0,10" BorderBrush="#FF44475A" Background="#FF44475A" Foreground="#FFF8F8F2" SelectionChanged="SubjectsList_OnSelectionChanged"/>
+        <ListBox x:Name="ExercisesList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="5" Margin="10,0,0,10" Grid.Column="1" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" SelectionChanged="ExercisesList_OnSelectionChanged"/>
         <Label Content="Subjects" HorizontalAlignment="Center" Grid.Row="1" VerticalContentAlignment="Bottom" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Width="145"/>
         <Label Content="Exercises" Grid.Row="1" VerticalContentAlignment="Bottom" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Margin="10,0,10,0" Grid.Column="1"/>
-        <Button x:Name="AddExerciseBtn" Grid.Column="2" Content="Add Exercise" HorizontalAlignment="Center" Grid.Row="3" Width="180" FontFamily="Microsoft JhengHei Light" FontSize="16" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Margin="0,0,0,10"/>
-        <Button x:Name="RemoveExerciseBtn" Grid.Column="2" Content="Remove Exercise" HorizontalAlignment="Center" Grid.Row="4" Width="180" FontFamily="Microsoft JhengHei Light" FontSize="16" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Margin="0,0,0,10"/>
-        <Button x:Name="EditExerciseBtn" Grid.Column="2" Content="Edit Exercise" HorizontalAlignment="Center" Grid.Row="5" Width="180" FontFamily="Microsoft JhengHei Light" FontSize="16" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Margin="0,0,0,10"/>
-        <Button x:Name="BackBtn" Grid.Column="2" Content="Back" HorizontalAlignment="Center" Grid.Row="6" Width="180" FontFamily="Microsoft JhengHei Light" FontSize="16" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Margin="0,0,0,10"/>
-        <Label x:Name="ExerciseDesxriptionLabel" Grid.Column="2" Content="Label" Grid.Row="2" Background="#FF44475A" Foreground="#FFF8F8F2" Margin="10,0,10,10"/>
+        <Button x:Name="AddExerciseBtn" Grid.Column="2" Content="Add Exercise" HorizontalAlignment="Center" Grid.Row="3" Width="180" FontFamily="Microsoft JhengHei Light" FontSize="16" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Margin="0,0,0,10" Click="AddExerciseBtn_OnClick" IsEnabled="False"/>
+        <Button x:Name="RemoveExerciseBtn" Grid.Column="2" Content="Remove Exercise" HorizontalAlignment="Center" Grid.Row="4" Width="180" FontFamily="Microsoft JhengHei Light" FontSize="16" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Margin="0,0,0,10" Click="RemoveExerciseBtn_OnClick" IsEnabled="False"/>
+        <Button x:Name="EditExerciseBtn" Grid.Column="2" Content="Edit Exercise" HorizontalAlignment="Center" Grid.Row="5" Width="180" FontFamily="Microsoft JhengHei Light" FontSize="16" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Margin="0,0,0,10" Click="EditExerciseBtn_OnClick" IsEnabled="False"/>
+        <Button x:Name="BackBtn" Grid.Column="2" Content="Back" HorizontalAlignment="Center" Grid.Row="6" Width="180" FontFamily="Microsoft JhengHei Light" FontSize="16" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Margin="0,0,0,10" Click="BackBtn_OnClick"/>
+        <Label x:Name="ExerciseDescriptionLabel" Grid.Column="2" Grid.Row="2" Background="#FF44475A" Foreground="#FFF8F8F2" Margin="10,0,10,10"/>
 
     </Grid>
 </Window>

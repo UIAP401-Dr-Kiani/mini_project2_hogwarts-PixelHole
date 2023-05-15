@@ -21,7 +21,7 @@ namespace hogwartsBingus.Session
                 throw new LoginNotFoundException();
             }
 
-            WindowManager.LaunchLandingPageOfType(CurrentUser.AuthType);
+            WindowManager.LaunchLandingPage();
         }
 
         public static string[] GetGeneralUserInfo()
@@ -49,12 +49,20 @@ namespace hogwartsBingus.Session
                     Enum.GetName(typeof(Race), CurrentUser.Race),
                     CurrentUser.Father?.FullName,
                     CurrentUser.ID.ToString(), Enum.GetName(typeof(petType), CurrentUser.Pet),
+                    (CurrentUser as Professor)?.CanTeachAtMultipleClasses.ToString()
                 };
             }
 
             if (CurrentUser is Dumbledore)
             {
-                return new []{"Albus Dumbledore"};
+                return new[]
+                {
+                    CurrentUser.FullName, CurrentUser.BirthYear.ToString(),
+                    Enum.GetName(typeof(gender), CurrentUser.Gender),
+                    Enum.GetName(typeof(Race), CurrentUser.Race),
+                    CurrentUser.Father?.FullName,
+                    CurrentUser.ID.ToString(), Enum.GetName(typeof(petType), CurrentUser.Pet),
+                };
             }
 
             throw new InvalidAuthorizationTypeException("Authorization type not correct");
@@ -65,7 +73,7 @@ namespace hogwartsBingus.Session
         public static List<TrainTicket> GetTickets() => CurrentUser.Tickets;
         public static AuthorizationType GetUserType() => CurrentUser.AuthType;
         public static Location GetUserLocation() => CurrentUser.CurrentLocation;
-        public static WeeklySchedule GetWeeklySchedule() => (CurrentUser as Student)?.Schedule;
+        public static WeeklySchedule GetWeeklySchedule() => CurrentUser.Schedule;
         public static int GetUserID() => CurrentUser.ID;
         public static void RequestTransport(TrainTicket ticket)
         {

@@ -7,10 +7,9 @@ namespace hogwartsBingus.Factions
     public class Faction
     {
         public FactionType type { get; private set; }
-        
-        public static Int64 Points { get; private set; }
-        
-        public static readonly List<Student> quidditchPlayers = new List<Student>();
+        public Int64 Points { get; private set; }
+        public int MemberCount { get; private set; }
+        public readonly List<string> quidditchPlayers = new List<string>();
 
         public Faction(FactionType factionType)
         {

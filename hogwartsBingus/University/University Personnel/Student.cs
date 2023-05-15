@@ -36,7 +36,7 @@ namespace hogwartsBingus.Base_Classes
         {
             Semester = semester;
             DormitoryNumber = dormitoryNumber;
-            Faction = (FactionType)faction;
+            Faction = faction;
         }
 
         public void SetFaction(FactionType faction)

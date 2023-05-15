@@ -5,7 +5,7 @@ namespace hogwartsBingus.Base_Classes.Study_Subjects
 {
     public class SpellCraft : StudySubject
     {
-        public SpellCraft(string name, Professor professor, List<StudySessionTime> sessions, int capacity, int semesterIndex) : base(name, professor, sessions, capacity, semesterIndex)
+        public SpellCraft(string name, string professorName, List<StudySessionTime> sessions, int capacity, int semesterIndex) : base(name, professorName, sessions, capacity, semesterIndex)
         {
         }
     }

@@ -14,27 +14,27 @@ namespace hogwartsBingus.University.StudySessionRelactedClasses
         public int StudentCount { get; }
         public int SemesterIndex { get; }
         
-        public Professor Professor { get; protected set; }
+        public string ProfessorName { get; protected set; }
         
         public StudySubject(string name,
-            Professor professor,
+            string professorName,
             List<StudySessionTime> sessions,
             int capacity,
             int semesterIndex)
         {
             Name = name;
-            Professor = professor;
+            ProfessorName = professorName;
             Sessions = sessions;
             Capacity = capacity;
             SemesterIndex = semesterIndex;
         }
         
         [JsonConstructor]
-        public StudySubject(string name, Professor professor, List<StudySessionTime> sessions, List<Exercise> exercises,
+        public StudySubject(string name, string professorName, List<StudySessionTime> sessions, List<Exercise> exercises,
             int capacity, int semesterIndex)
         {
             Name = name;
-            Professor = professor;
+            ProfessorName = professorName;
             Sessions = sessions;
             Exercises = exercises;
             Capacity = capacity;
@@ -46,13 +46,29 @@ namespace hogwartsBingus.University.StudySessionRelactedClasses
             if (Exercises.Contains(exercise)) return;
             Exercises.Add(exercise);
         }
+
+        public void RemoveExerciseByName(string name)
+        {
+            RemoveExercise(GetExerciseWithName(name));
+        }
         public void RemoveExercise(Exercise exercise)
         {
             if (!Exercises.Contains(exercise)) return;
             Exercises.Remove(exercise);
         }
+
+        public void EditExercise(Exercise oldExercise, Exercise newExercise)
+        {
+            if (!Exercises.Contains(oldExercise)) return;
+            Exercises[Exercises.IndexOf(oldExercise)] = newExercise;
+        }
         public Exercise GetExerciseAt(int index) => Exercises[index];
         public Exercise GetExerciseWithName(string name) => Exercises.Find(exercise => exercise.Name == name);
+
+        public override string ToString()
+        {
+            return Name;
+        }
         protected bool Equals(StudySubject other)
         {
             return Equals(Sessions, other.Sessions) && Name == other.Name && Capacity == other.Capacity && StudentCount == other.StudentCount && SemesterIndex == other.SemesterIndex;

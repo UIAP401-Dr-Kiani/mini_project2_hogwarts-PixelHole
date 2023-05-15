@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Documents;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.Base_Classes.SaveReadyPersonnel;
+using hogwartsBingus.DataStorage;
 using hogwartsBingus.Execptions;
 using hogwartsBingus.Session;
 using hogwartsBingus.University.StudySessionRelactedClasses;
 using Newtonsoft.Json;
 
-namespace hogwartsBingus.DataStorage
+namespace hogwartsBingus.University.DataStorage
 {
     public static class SaveFileManager
     {
         private const string
             StudentsFileName = "students.json",
-            ProfessorsFileName = "professor.json",
+            ProfessorsFileName = "professors.json",
             DumbledoreFileName = "dumbledore.json",
-            StudySubjectsFileName = "studySubjects.json";
+            StudySubjectsFileName = "studySubjects.json",
+            TicketRequestsFileName = "ticketRequests.json";
         
         /*
          * in order to save Users, you either have to write a custom json deserializer that can detect different
@@ -29,34 +30,41 @@ namespace hogwartsBingus.DataStorage
         {
             WindowManager.OpenLoadDialog(autoCloseDialog);
             SubjectManager.RequestLoad();
-            WindowManager.SetLoadDialogProgress(50);
+            WindowManager.SetLoadDialogProgress(33);
             UserManager.RequestLoad();
+            WindowManager.SetSaveDialogProgress(66);
+            TicketRequestHandler.RequestLoad();
             WindowManager.SetLoadDialogProgress(100);
         }
         public static void SaveAllData(bool autoCloseDialog)
         {
             WindowManager.OpenSaveDialog(autoCloseDialog);
             SubjectManager.RequestSave();
-            WindowManager.SetSaveDialogProgress(50);
+            WindowManager.SetSaveDialogProgress(33);
             UserManager.RequestSave();
+            WindowManager.SetSaveDialogProgress(66);
+            TicketRequestHandler.RequestSave();
             WindowManager.SetSaveDialogProgress(100);
         }
-        public static void SaveUsers(List<AuthorizedPerson> Users)
+        
+        
+        // Users
+        public static void SaveUsers(List<AuthorizedPerson> users)
         {
             List<SaveReadyStudent> students = new List<SaveReadyStudent>();
-            List<Professor> professors = new List<Professor>();
+            List<SaveReadyProfessor> professors = new List<SaveReadyProfessor>();
 
-            foreach (var user in Users)
+            foreach (var user in users)
             {
-                if (user is Student)
+                if (user is Dumbledore) continue;
+                if (user is Student student)
                 {
-                    students.Add((user as Student).ToSaveFormat());
+                    students.Add(student.ToSaveFormat());
                     continue;
                 }
-
-                if (user is Professor)
+                if (user is Professor professor)
                 {
-                    professors.Add(user as Professor);
+                    professors.Add(professor.ToSaveFormat());
                 }
             }
             
@@ -67,67 +75,57 @@ namespace hogwartsBingus.DataStorage
         public static List<AuthorizedPerson> LoadUsers()
         {
             List<AuthorizedPerson> loadedUsers = new List<AuthorizedPerson>();
-            
-            List<Dumbledore> dumbledores = ReadFromJsonFile<Dumbledore>(DumbledoreFileName);
+            List<Dumbledore> dumbledors = ReadFromJsonFile<Dumbledore>(DumbledoreFileName);
 
-            if (dumbledores.Count > 1) throw new MultipleAdminsLoadedException();
-
-            if (dumbledores.Count == 0) throw new NoAdminsLoadedException();
+            // admin load Error handling
+            if (dumbledors.Count > 1) throw new MultipleAdminsLoadedException();
+            if (dumbledors.Count == 0) throw new NoAdminsLoadedException();
             
+            loadedUsers.Add(dumbledors[0]);
+            Dumbledore.Instance = dumbledors[0];
+            
+            // loading Students
             List<SaveReadyStudent> savedStudents = ReadFromJsonFile<SaveReadyStudent>(StudentsFileName);
-            List<Student> students = new List<Student>();
 
             foreach (var savedStudent in savedStudents)
             {
-                students.Add(savedStudent.ToStudent());
+                loadedUsers.Add(savedStudent.ToStudent());
             }
-            
-            List<Professor> professors = ReadFromJsonFile<Professor>(ProfessorsFileName);
 
-            /* the weekly schedule loaded from this method is in a separate space in memory
-             * so when comparing the contents (aka subjects) to ones loaded from another file
-             * it will not see them as equal. so in order to make them equal i have to reference
-             * it to the subjects that where loaded from file
-             * this is done by updating the WeeklySchedule instance of every student
-             */
-            
-            foreach (var student in students)
+            // loading professors
+            List<SaveReadyProfessor> savedProfessors = ReadFromJsonFile<SaveReadyProfessor>(ProfessorsFileName);
+
+            foreach (var professor in savedProfessors)
             {
-                WeeklySchedule memorySchedule = new WeeklySchedule();
-                if (student.Schedule == null) continue;
-                
-                foreach (var subject in student.Schedule.Subjects)
-                {
-                    memorySchedule.AddSubject(SubjectManager.GetSubjectByName(subject.Name));
-                }
-
-                student.SetWeeklySchedule(memorySchedule);
+                loadedUsers.Add(professor.ToProfessor());
             }
-
-            foreach (var student in students)
-            {
-                loadedUsers.Add(student);
-            }
-
-            foreach (var professor in professors)
-            {
-                loadedUsers.Add(professor);
-            }
-            
-            loadedUsers.Add(dumbledores[0]);
 
             return loadedUsers;
         }
 
+        
+        // Study Subjects
         public static void SaveStudySubjects(List<StudySubject> subjects)
         {
             WriteToJsonFile(StudySubjectsFileName, subjects);
         }
-
         public static List<StudySubject> LoadStudySubjects()
         {
             return ReadFromJsonFile<StudySubject>(StudySubjectsFileName);
         }
+        
+        
+        // Ticket Requests
+        public static void SaveTicketRequests(List<TicketRequest> requests)
+        {
+            WriteToJsonFile(TicketRequestsFileName, requests);
+        }
+        public static List<TicketRequest> LoadTicketRequests()
+        {
+            return ReadFromJsonFile<TicketRequest>(TicketRequestsFileName);
+        }
+
+        // General Read/Write Handlers
         private static void WriteToJsonFile<T>(string fileName, List<T> Data)
         {
             StreamWriter writer = new StreamWriter(fileName);

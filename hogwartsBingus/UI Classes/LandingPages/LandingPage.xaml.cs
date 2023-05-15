@@ -6,9 +6,9 @@ using hogwartsBingus.Session;
 
 namespace hogwartsBingus.UI_Classes.LandingPages
 {
-    public partial class StudentLandingPage
+    public partial class LandingPage
     {        
-        public StudentLandingPage()
+        public LandingPage()
         {
             InitializeComponent();
             CheckLocation();

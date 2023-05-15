@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using hogwartsBingus.Base_Classes;
+using hogwartsBingus.University.DataStorage;
 using Newtonsoft.Json;
 
 namespace hogwartsBingus.DataStorage
