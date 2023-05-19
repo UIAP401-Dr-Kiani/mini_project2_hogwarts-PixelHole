@@ -20,8 +20,9 @@ namespace hogwartsBingus.Base_Classes
         public Location CurrentLocation { get; protected set; }
         public AuthorizationType AuthType { get; protected set; }
 
-        public List<Message> Messages = new List<Message>();
-        public List<TrainTicket> Tickets = new List<TrainTicket>();
+        
+        public readonly List<Message> Messages;
+        public readonly List<TrainTicket> Tickets;
 
         protected AuthorizedPerson(string firstName, string lastName, int birthYear, gender gender, Race race,
             LoginData login, int id) : base(firstName, lastName, birthYear, gender, race)
@@ -96,7 +97,7 @@ namespace hogwartsBingus.Base_Classes
 
         public override string ToString()
         {
-            return $"[{AuthType}] {FullName}";
+            return FullName;
         }
     }
 }
