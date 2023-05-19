@@ -18,13 +18,16 @@ namespace hogwartsBingus.Base_Classes
         {
             foreach (var subject in newSubjects)
             {
-                AddSubject(subject);
+                AddSubject(subject, false);
             }
         }
-        public void AddSubject(StudySubject newSubject)
+        public void AddSubject(StudySubject newSubject, bool CheckForIntersection)
         {
             if (Subjects.Contains(newSubject)) return;
-            if (SubjectIntersects(newSubject)) throw new StudySessionIntersectionException();
+            if (CheckForIntersection)
+            {
+                if (SubjectIntersects(newSubject)) throw new StudySessionIntersectionException();
+            }
             
             Subjects.Add(newSubject);
         }

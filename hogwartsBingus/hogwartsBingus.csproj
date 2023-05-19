@@ -78,8 +78,14 @@
     <Compile Include="UI Classes\Dialogs\SavingDataDialog.xaml.cs">
       <DependentUpon>SavingDataDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI Classes\Hogwarts\Dumbledore Specific\DormitoryConfigWindow.xaml.cs">
+      <DependentUpon>DormitoryConfigWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI Classes\Hogwarts\Dumbledore Specific\DumbledoreHogwartsWindow.xaml.cs">
       <DependentUpon>DumbledoreHogwartsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Hogwarts\Dumbledore Specific\UserConfigWindow.xaml.cs">
+      <DependentUpon>UserConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI Classes\Hogwarts\Professor Specific\ExerciseConfigWindow.xaml.cs">
       <DependentUpon>ExerciseConfigWindow.xaml</DependentUpon>
@@ -95,12 +101,6 @@
     </Compile>
     <Compile Include="UI Classes\MessageBoxUI\ComposeMessageWindow.xaml.cs">
       <DependentUpon>ComposeMessageWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml.cs">
-      <DependentUpon>DumbledoreLandingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI Classes\LandingPages\ProfessorLandingPage.xaml.cs">
-      <DependentUpon>ProfessorLandingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI Classes\LandingPages\LandingPage.xaml.cs">
       <DependentUpon>LandingPage.xaml</DependentUpon>
@@ -130,7 +130,6 @@
     <Compile Include="UI Classes\TrainStation\TrainStationWindow.xaml.cs">
       <DependentUpon>TrainStationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="University\Base Classes\AuthorizedPerson.cs" />
     <Compile Include="University\Base Classes\DateTime.cs" />
     <Compile Include="University\Base Classes\Human.cs" />
     <Compile Include="University\Base Classes\LoginData.cs" />
@@ -148,7 +147,7 @@
     <Compile Include="University\DormitoryData\DormitoryManager.cs" />
     <Compile Include="University\Enums\AuthorizationType.cs" />
     <Compile Include="University\Enums\Day.cs" />
-    <Compile Include="University\Enums\ExerciseEditMode.cs" />
+    <Compile Include="University\Enums\WindowEditMode.cs" />
     <Compile Include="University\Enums\FactionType.cs" />
     <Compile Include="University\Enums\gender.cs" />
     <Compile Include="University\Enums\Location.cs" />
@@ -169,6 +168,7 @@
     <Compile Include="University\StudySessionRelactedClasses\StudySubject.cs" />
     <Compile Include="University\StudySessionRelactedClasses\WeeklySchedule.cs" />
     <Compile Include="University\Train Related Stuff\TransportManager.cs" />
+    <Compile Include="University\University Personnel\AuthorizedPerson.cs" />
     <Compile Include="University\University Personnel\Dumbledore.cs" />
     <Compile Include="University\University Personnel\Professor.cs" />
     <Compile Include="University\University Personnel\SaveReadyPersonnel\SaveReadyAuthorizedPerson.cs" />
@@ -217,7 +217,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI Classes\Hogwarts\Dumbledore Specific\DormitoryConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI Classes\Hogwarts\Dumbledore Specific\DumbledoreHogwartsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Hogwarts\Dumbledore Specific\UserConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,8 +249,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI Classes\LandingPages\DumbledoreLandingPage.xaml" />
-    <Page Include="UI Classes\LandingPages\ProfessorLandingPage.xaml" />
     <Page Include="UI Classes\LandingPages\LandingPage.xaml" />
     <Page Include="UI Classes\LoginWindow.xaml" />
     <Page Include="UI Classes\MainWindow.xaml">
@@ -276,6 +282,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UI Classes\Resources\img\HogAss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TODO List.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

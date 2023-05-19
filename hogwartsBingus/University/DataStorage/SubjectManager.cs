@@ -50,16 +50,6 @@ namespace hogwartsBingus.DataStorage
                 },
                 12,
                 1));
-            
-            UserManager.Users[0].Schedule.AddSubject(GetSubjectAt(0));
-            UserManager.Users[0].Schedule.AddSubject(GetSubjectAt(1));
-            UserManager.Users[1].Schedule.AddSubject(GetSubjectAt(0));
-
-            StudySubjects[0].AddExercise(new PlantBiologyExercise(
-                "test Exercise",
-                "test description",
-                GlobalClock.CurrentTime.AddDays(2)
-            ));
         }
 
         public static void AddTimeCheckToTimeChangeEvent()

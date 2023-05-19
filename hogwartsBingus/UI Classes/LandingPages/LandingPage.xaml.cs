@@ -39,6 +39,13 @@ namespace hogwartsBingus.UI_Classes.LandingPages
                     return;
                 }
             }
+            if (SessionManager.GetWeeklySchedule().Subjects.Count == 0 
+                &&
+                SessionManager.GetUserType() != AuthorizationType.Dumbledore)
+            {
+                WindowManager.OpenUpdateScheduleWindow();
+                return;
+            }
             WindowManager.LaunchHogwartsPageOfType(SessionManager.GetUserType());
         }
 

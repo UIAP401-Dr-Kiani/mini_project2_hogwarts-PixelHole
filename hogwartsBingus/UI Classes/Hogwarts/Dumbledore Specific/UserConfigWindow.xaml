@@ -8,17 +8,75 @@
         Title="UserConfigWindow" Height="550" Width="550" Background="#FF282A36">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="13*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="88*"/>
             <RowDefinition Height="25*"/>
-            <RowDefinition Height="229*"/>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
+        <Grid Grid.RowSpan="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="13*"/>
+                <RowDefinition Height="21*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Margin="10,0,5,10" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="16" VerticalContentAlignment="Center"/>
-            <TextBox Margin="5,0,10,10" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="16" VerticalContentAlignment="Center" Grid.Column="1"/>
+            <TextBox Margin="10,0,5,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="16" VerticalContentAlignment="Center" Grid.Row="1" MaxLines="1"/>
+            <TextBox Margin="5,0,10,0" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="16" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" MaxLines="1"/>
+            <Label Content="First Name" Margin="10,0,10,0" FontFamily="Microsoft JhengHei Light" FontSize="14" Foreground="#FFF8F8F2"/>
+            <Label Content="Last Name" Margin="5,0,10,0" FontFamily="Microsoft JhengHei Light" FontSize="14" Foreground="#FFF8F8F2" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22*"/>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="43*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox Margin="10,0,5,0" Grid.Row="2" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1"/>
+            <TextBox Margin="5,0,5,0" Grid.Row="2" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.Column="1"/>
+            <TextBox Margin="5,0,10,0" Grid.Row="2" TextWrapping="Wrap" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" MaxLines="1" Grid.Column="2"/>
+            <Label Content="Date of Birth" HorizontalAlignment="Left" Width="178" FontSize="10" Foreground="#FFF8F8F2" Margin="5,0,0,0"/>
+            <Label Content="Year" FontSize="10" Foreground="#FFF8F8F2" Margin="5,0,0,0" Grid.Row="1"/>
+            <Label Content="Month" FontSize="10" Foreground="#FFF8F8F2" Margin="5,0,0,0" Grid.Row="1" Grid.Column="1"/>
+            <Label Content="Day" FontSize="10" Foreground="#FFF8F8F2" Margin="0,0,5,0" Grid.Row="1" Grid.Column="2"/>
+        </Grid>
+        <Label Content="Gender" Margin="5,0,10,0" Grid.Row="2" VerticalAlignment="Center" Height="25" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light"/>
+        <ComboBox Margin="10,0,10,0" Grid.Row="3" BorderBrush="#FF44475A" Background="#FF44475A" Foreground="#FFF8F8F2"/>
+        <Label Content="Race" Margin="5,0,10,0" Grid.Row="4" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light"/>
+        <ComboBox Margin="10,0,10,0" Grid.Row="5" BorderBrush="#FF44475A" Background="#FF44475A" Foreground="#FFF8F8F2"/>
+        <Label Content="Name of Father" Margin="5,0,10,0" Grid.Row="6" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light"/>
+        <TextBox HorizontalAlignment="Center" Grid.Row="7" TextWrapping="Wrap" Width="530" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="16" VerticalContentAlignment="Center" MaxLines="1"/>
+        <Grid Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton Content="Student" Margin="10,10,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light"/>
+            <RadioButton Content="Professor" Margin="10,10,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Grid.Column="1"/>
+        </Grid>
+        <Grid x:Name="ProfessorOptionsGrid" Grid.Row="10" Visibility="Hidden" Grid.RowSpan="2">
+            <RadioButton Content="Can Teach At multiple classes" VerticalAlignment="Top" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Margin="10,0,10,0"/>
+        </Grid>
+        <Grid x:Name="StudentOptionsGrid" Grid.Row="10" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="13*"/>
+                <RowDefinition Height="37*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Label" Margin="5,0,10,0" FontFamily="Microsoft JhengHei UI Light" FontSize="14" Foreground="#FFF8F8F2"/>
         </Grid>
 
     </Grid>

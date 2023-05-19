@@ -17,21 +17,21 @@ namespace hogwartsBingus.Base_Classes
         }
         public FactionType Faction { get; protected set; }
 
-        public Student(string firstName, string lastName, int birthYear, gender gender, Race race, LoginData login, int id) 
-            : base(firstName, lastName, birthYear, gender, race, login, id)
+        public Student(string firstName, string lastName, DateTime birthYear, gender gender, string father, Race race, LoginData login, int id) 
+            : base(firstName, lastName, birthYear, gender, father, race, login, id)
         {
-            this.Semester = 1;
-            this.AuthType = AuthorizationType.Student;
-            this.Faction = FactionType.None;
+            Semester = 1;
+            AuthType = AuthorizationType.Student;
+            Faction = FactionType.None;
         }
 
         [JsonConstructor]
-        public Student(string firstName, string lastName, int birthYear, gender gender, Race race,
+        public Student(string firstName, string lastName, DateTime birthYear, gender gender, string father, Race race,
             List<Message> messages, List<TrainTicket> tickets, int semester, int dormitoryNumber, int studentNumber, 
             FactionType faction, LoginData login, int id, WeeklySchedule schedule, petType pet, bool hasBaggage, 
             Location currentLocation, AuthorizationType authType)
         
-        : base(firstName, lastName, birthYear, gender, race, messages, tickets, login, id, schedule, pet, hasBaggage, 
+        : base(firstName, lastName, birthYear, gender, father, race, messages, tickets, login, id, schedule, pet, hasBaggage, 
             currentLocation, authType)
         {
             Semester = semester;
@@ -61,8 +61,8 @@ namespace hogwartsBingus.Base_Classes
             List<string> subjectNames = new List<string>();
             foreach (var subject in Schedule.Subjects) subjectNames.Add(subject.Name);
 
-            return new SaveReadyStudent(FirstName, LastName, BirthYear, Gender, Race, subjectNames, Login, ID, Pet,
-                HasBaggage, CurrentLocation, AuthType, Semester, DormitoryNumber, Faction);
+            return new SaveReadyStudent(FirstName, LastName, BirthYear, Gender, Father, Race, subjectNames, Login, ID, Pet,
+                HasBaggage, CurrentLocation, Messages, Tickets, Semester, DormitoryNumber, Faction);
         }
     }
 }

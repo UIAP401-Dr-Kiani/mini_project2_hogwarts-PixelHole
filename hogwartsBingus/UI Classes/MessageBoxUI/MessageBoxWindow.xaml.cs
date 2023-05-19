@@ -54,7 +54,7 @@ namespace hogwartsBingus.UI_Classes
 
         private void ComposeMessageBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            WindowManager.OpenComposeMessageWindow();
+            WindowManager.OpenComposeMessageWindow("");
         }
 
         private void MessageList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

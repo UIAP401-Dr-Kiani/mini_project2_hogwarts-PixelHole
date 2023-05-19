@@ -1,20 +1,18 @@
 using System.Collections.Generic;
+using System.Management.Instrumentation;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.Execptions;
+using hogwartsBingus.University.DataStorage;
 
 namespace hogwartsBingus.University.DormitoryData
 {
     public static class DormitoryManager
     {
-        public static readonly List<Dormitory> Dormitories = new List<Dormitory>();
+        public static List<Dormitory> Dormitories = new List<Dormitory>();
 
         static DormitoryManager()
         {
-            //this is for Test purposes, remove later ↓
-            Dormitories.Add(new Dormitory("Gryffindor 1",6, FactionType.Gryffindor));
-            Dormitories.Add(new Dormitory("Slytherin 1",8, FactionType.Slytherin));
-            Dormitories.Add(new Dormitory("Ravenclaw 1",6, FactionType.Raveclaw));
-            Dormitories.Add(new Dormitory("Hufflepuff 1",6, FactionType.Hufflepuff));
+            
         }
 
         public static int GetBedNumberOfType(FactionType faction)
@@ -29,6 +27,19 @@ namespace hogwartsBingus.University.DormitoryData
             }
 
             throw new AllDormitoriesAreFullException();
+        }
+        public static Dormitory GetDormitoryByName(string name)
+        {
+            return Dormitories.Find(dormitory => dormitory.Name == name);
+        }
+
+        public static void RequestSave()
+        {
+            SaveFileManager.SaveDormitories(Dormitories);
+        }
+        public static void RequestLoad()
+        {
+            Dormitories = SaveFileManager.LoadDormitories();
         }
     }
 }

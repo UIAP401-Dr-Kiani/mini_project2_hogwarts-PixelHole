@@ -17,7 +17,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
     {
         private string SubjectName;
         private Exercise Exercise;
-        private ExerciseEditMode EditMode;
+        private WindowEditMode EditMode;
 
         private Regex YearFormat = new Regex(@"^\d{4}$"),
             MonthFormat = new Regex(@"(^0?[0-9]$)|(^1[0-2]$)"),
@@ -26,7 +26,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         {
             InitializeComponent();
             SubjectName = subjectName;
-            EditMode = ExerciseEditMode.AddMode;
+            EditMode = WindowEditMode.AddMode;
         }
         
         public ExerciseConfigWindow(string subjectName, string exerciseName)
@@ -34,7 +34,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
             InitializeComponent();
             Exercise = SubjectManager.GetSubjectByName(subjectName).GetExerciseWithName(exerciseName);
             SubjectName = subjectName;
-            EditMode = ExerciseEditMode.EditMode;
+            EditMode = WindowEditMode.EditMode;
             SetFieldValues();
         }
 
@@ -71,10 +71,10 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
             if (newExercise == null) return;
             switch (EditMode)
             {
-                case ExerciseEditMode.EditMode :
+                case WindowEditMode.EditMode :
                     SubjectManager.GetSubjectByName(SubjectName).EditExercise(Exercise, newExercise);
                     break;
-                case ExerciseEditMode.AddMode :
+                case WindowEditMode.AddMode :
                     SubjectManager.GetSubjectByName(SubjectName).AddExercise(newExercise);
                     break;
             }

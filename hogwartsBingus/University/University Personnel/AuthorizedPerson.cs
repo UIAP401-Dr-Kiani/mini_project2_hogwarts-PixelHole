@@ -24,18 +24,20 @@ namespace hogwartsBingus.Base_Classes
         public readonly List<Message> Messages;
         public readonly List<TrainTicket> Tickets;
 
-        protected AuthorizedPerson(string firstName, string lastName, int birthYear, gender gender, Race race,
-            LoginData login, int id) : base(firstName, lastName, birthYear, gender, race)
+        protected AuthorizedPerson(string firstName, string lastName, DateTime birthYear, gender gender, string father, Race race,
+            LoginData login, int id) : base(firstName, lastName, birthYear, gender, father, race)
         {
+            Messages = new List<Message>();
+            Tickets = new List<TrainTicket>();
             Login = login;
             ID = id;
         }
 
         [JsonConstructor]
-        protected AuthorizedPerson(string firstName, string lastName, int birthYear, gender gender, Race race,
+        protected AuthorizedPerson(string firstName, string lastName, DateTime birthYear, gender gender, string fahter, Race race,
             List<Message> messages, List<TrainTicket> tickets, LoginData login, int id, 
             WeeklySchedule schedule, petType pet, bool hasBaggage, Location currentLocation, AuthorizationType authType)
-            : base(firstName, lastName, birthYear, gender, race)
+            : base(firstName, lastName, birthYear, gender, fahter,race)
         {
             Messages = messages;
             Tickets = tickets;

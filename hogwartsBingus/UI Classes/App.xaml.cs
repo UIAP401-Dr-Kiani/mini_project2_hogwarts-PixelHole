@@ -33,8 +33,9 @@ namespace hogwartsBingus.UI_Classes
             Student testStudent = new Student(
                 "Kaka",
                 "Siah",
-                1979,
+                new DateTime(1980, 10,1),
                 gender.Male,
+                "Alex",
                 Race.Half_Blood,
                 new LoginData("nima", "123"),
                 12356343
@@ -42,8 +43,9 @@ namespace hogwartsBingus.UI_Classes
             Professor testProfessor = new Professor(
                 "doc",
                 "oc",
-                1953,
+                new DateTime(1980, 1,16),
                 gender.Male,
+                "Tom",
                 Race.Pure_Blood,
                 new LoginData("doc", "1234"),
                 14643232,
@@ -51,17 +53,6 @@ namespace hogwartsBingus.UI_Classes
             );
             
             UserManager.AddUsers(testStudent, testProfessor, Dumbledore.Instance);
-
-            UserManager.Users[0].AddMessage(new Message("Who", "cares", "lol0","lolololololoolololololollol"));
-            UserManager.Users[0].AddMessage(new Message("Who", "cares", "lol1","lolololololollol"));
-            
-            UserManager.Users[0].AddTicket(TransportManager.GenerateTicket(
-                GlobalClock.CurrentTime.AddMinutes(30), 
-                Location.London, Location.HogwartsUniversity));
-            
-            UserManager.Users[0].AddTicket(TransportManager.GenerateTicket(
-                GlobalClock.CurrentTime.AddMinutes(30), 
-                Location.HogwartsUniversity, Location.London));
 
             //UserManager.RequestSave();
         }

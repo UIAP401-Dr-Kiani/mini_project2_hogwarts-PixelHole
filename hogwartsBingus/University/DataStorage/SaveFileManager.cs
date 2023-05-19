@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.Base_Classes.SaveReadyPersonnel;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Execptions;
+using hogwartsBingus.Factions;
 using hogwartsBingus.Session;
+using hogwartsBingus.University.DormitoryData;
 using hogwartsBingus.University.StudySessionRelactedClasses;
 using Newtonsoft.Json;
 
@@ -17,8 +20,10 @@ namespace hogwartsBingus.University.DataStorage
             ProfessorsFileName = "professors.json",
             DumbledoreFileName = "dumbledore.json",
             StudySubjectsFileName = "studySubjects.json",
-            TicketRequestsFileName = "ticketRequests.json";
-        
+            TicketRequestsFileName = "ticketRequests.json",
+            FactionsFileName = "factions.json",
+            DormitoriesFileName = "Dormitories.json";
+
         /*
          * in order to save Users, you either have to write a custom json deserializer that can detect different
          * inheritors of the AuthorizedPerson.cs class, otherwise it will load all instances as default base class
@@ -30,20 +35,28 @@ namespace hogwartsBingus.University.DataStorage
         {
             WindowManager.OpenLoadDialog(autoCloseDialog);
             SubjectManager.RequestLoad();
-            WindowManager.SetLoadDialogProgress(33);
+            WindowManager.SetLoadDialogProgress(20);
             UserManager.RequestLoad();
-            WindowManager.SetSaveDialogProgress(66);
+            WindowManager.SetSaveDialogProgress(40);
             TicketRequestHandler.RequestLoad();
+            WindowManager.SetSaveDialogProgress(60);
+            FactionManager.RequestLoad();   
+            WindowManager.SetLoadDialogProgress(80);
+            DormitoryManager.RequestLoad();
             WindowManager.SetLoadDialogProgress(100);
         }
         public static void SaveAllData(bool autoCloseDialog)
         {
             WindowManager.OpenSaveDialog(autoCloseDialog);
             SubjectManager.RequestSave();
-            WindowManager.SetSaveDialogProgress(33);
+            WindowManager.SetSaveDialogProgress(20);
             UserManager.RequestSave();
-            WindowManager.SetSaveDialogProgress(66);
+            WindowManager.SetSaveDialogProgress(40);
             TicketRequestHandler.RequestSave();
+            WindowManager.SetSaveDialogProgress(60);
+            FactionManager.RequestSave();
+            WindowManager.SetSaveDialogProgress(80);
+            DormitoryManager.RequestSave();
             WindowManager.SetSaveDialogProgress(100);
         }
         
@@ -123,6 +136,28 @@ namespace hogwartsBingus.University.DataStorage
         public static List<TicketRequest> LoadTicketRequests()
         {
             return ReadFromJsonFile<TicketRequest>(TicketRequestsFileName);
+        }
+        
+        
+        // Factions
+        public static void SaveFactions(List<Faction> factions)
+        {
+            WriteToJsonFile(FactionsFileName, factions);
+        }
+        public static List<Faction> LoadFactions()
+        {
+            return ReadFromJsonFile<Faction>(FactionsFileName);
+        }
+        
+        
+        // Dormitories
+        public static void SaveDormitories(List<Dormitory> dormitories)
+        {
+            WriteToJsonFile(DormitoriesFileName, dormitories);
+        }
+        public static List<Dormitory> LoadDormitories()
+        {
+            return ReadFromJsonFile<Dormitory>(DormitoriesFileName);
         }
 
         // General Read/Write Handlers

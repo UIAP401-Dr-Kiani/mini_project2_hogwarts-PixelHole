@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="DumbledoreHogwartsWindow" Height="600" Width="1200" Background="#FF282A36">
+        Title="DumbledoreHogwartsWindow" Height="600" Width="1200" Background="#FF282A36"
+        Closed="DumbledoreHogwartsWindow_OnClosed"
+        Activated="DumbledoreHogwartsWindow_OnActivated">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
@@ -68,7 +70,7 @@
                 <ColumnDefinition Width="653*"/>
                 <ColumnDefinition Width="107*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BackBtn" Grid.Column="4" Content="Back" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="87" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light"/>
+            <Button x:Name="BackBtn" Grid.Column="4" Content="Back" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="87" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" Click="BackBtn_OnClick"/>
             <Label Grid.Column="0" Content="Wednesday" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24"/>
             <Label Content="1984/10/12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Column="1"/>
             <Label Content="10:00" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Column="2"/>
@@ -84,7 +86,7 @@
                 <ColumnDefinition Width="7*"/>
                 <ColumnDefinition Width="202*"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="DormitoriesList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,0,0,10" Grid.Row="2" BorderBrush="#FF44475A" Background="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light"/>
+            <ListBox x:Name="DormitoriesList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,0,0,10" Grid.Row="2" BorderBrush="#FF44475A" Background="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" SelectionChanged="DormitoriesList_OnSelectionChanged"/>
             <Label Content="Dormitories" Margin="10,0,0,0" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Grid.Row="1"
                    Grid.Column="0" />
             <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
@@ -99,7 +101,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="AddDormitoryBtn" Content="Add&#xD;&#xA;Dormitory" Grid.Row="3" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2"/>
-                <Button x:Name="RemoveDormitoryBtn" Content="Remove&#xD;&#xA;Dormitory" Grid.Row="3" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Grid.Column="1" HorizontalContentAlignment="Center"/>
+                <Button x:Name="RemoveDormitoryBtn" Content="Remove&#xD;&#xA;Dormitory" Grid.Row="3" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Grid.Column="1" HorizontalContentAlignment="Center" Click="RemoveDormitoryBtn_OnClick" IsEnabled="False"/>
                 <Label x:Name="DormitoryStatsLabel" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Foreground="#FFF8F8F2" Background="#FF44475A" Margin="10,0,0,10"/>
             </Grid>
             <Label Content="Dormitory Statistics" Margin="3,0,0,0" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Grid.Column="2" Grid.Row="1"/>
@@ -117,12 +119,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="34*"/>
                 <RowDefinition Height="26*"/>
-                <RowDefinition Height="362*"/>
-                <RowDefinition Height="109*"/>
+                <RowDefinition Height="303*"/>
+                <RowDefinition Height="168*"/>
             </Grid.RowDefinitions>
             <Label Content="User Management" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="18" Grid.ColumnSpan="3"/>
             <ListBox x:Name="UsersList" Grid.Row="2" Margin="0,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" Grid.RowSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2"
-                     Grid.Column="0" />
+                     Grid.Column="0" SelectionChanged="UsersList_OnSelectionChanged"/>
             <Label Content="Users" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Row="1" Grid.ColumnSpan="2"
                    Grid.Column="0" />
             <Label Content="User Description" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Row="1" Grid.Column="2"/>
@@ -131,9 +133,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Button x:Name="AddUserBtn" Content="Add User" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Margin="0,0,10,10" FontSize="16" FontFamily="Microsoft JhengHei Light"/>
-                <Button x:Name="RemoveUserBtn" Content="Remove User" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Margin="0,0,10,10" FontSize="16" FontFamily="Microsoft JhengHei Light" Grid.Row="1"/>
+                <Button x:Name="RemoveUserBtn" Content="Remove User" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Margin="0,0,10,10" FontSize="16" FontFamily="Microsoft JhengHei Light" Grid.Row="1" IsEnabled="False" Click="RemoveUserBtn_OnClick"/>
+                <Button x:Name="EditUserBtn" Content="Edit User" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Margin="0,0,10,10" FontSize="16" FontFamily="Microsoft JhengHei Light" Grid.Row="2" IsEnabled="False"/>
+                <Button x:Name="MessageUserBtn" Content="Message User" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" Margin="0,0,10,10" FontSize="16" FontFamily="Microsoft JhengHei Light" Grid.Row="3" IsEnabled="False" Click="MessageUserBtn_OnClick"/>
             </Grid>
             <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Height="3" Margin="0,17,0,0" Stroke="#FF44475A" VerticalAlignment="Top" Fill="#FF44475A" Grid.Column="1"/>
         </Grid>
@@ -148,7 +154,7 @@
                 <RowDefinition Height="28*"/>
                 <RowDefinition Height="204*"/>
             </Grid.RowDefinitions>
-            <ListBox x:Name="SubjectsList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,10,0" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" Grid.ColumnSpan="2"/>
+            <ListBox x:Name="SubjectsList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,10,0" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" Grid.ColumnSpan="2" SelectionChanged="SubjectsList_OnSelectionChanged"/>
             <Label Content="Subjects of Study" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei Light" FontSize="18"/>
             <Label Content="List of Subjects" Grid.Row="1" FontFamily="Microsoft JhengHei Light" Background="{x:Null}" Foreground="#FFF8F8F2" Grid.ColumnSpan="2"
                    Grid.Column="0" />
@@ -159,12 +165,12 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="ShowSubjectInfoBtn" Content="Show Subject Info" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16"/>
-                <Button x:Name="AddSubjectBtn" Content="Add Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="1"/>
-                <Button x:Name="RemoveSubjectBtn" Content="Remove Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="2"/>
-                <Button x:Name="EditSubjectBtn" Content="Edit Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="3"/>
+                <Button x:Name="ShowSubjectInfoBtn" Content="Show Subject Info" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="3" IsEnabled="False"/>
+                <Button x:Name="AddSubjectBtn" Content="Add Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="0"/>
+                <Button x:Name="RemoveSubjectBtn" Content="Remove Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="1" IsEnabled="False" Click="RemoveSubjectBtn_OnClick"/>
+                <Button x:Name="EditSubjectBtn" Content="Edit Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="2" IsEnabled="False"/>
             </Grid>
-            <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="3" Margin="0,17,0,0" Stroke="#FF44475A" VerticalAlignment="Top" Width="203"
+            <Rectangle Grid.Column="1" Height="3" Margin="0,17,10,0" Stroke="#FF44475A" VerticalAlignment="Top"
                        Grid.Row="0" Grid.ColumnSpan="2" Fill="#FF44475A"/>
         </Grid>
         <Grid Grid.Column="2" Grid.Row="2">
@@ -181,17 +187,19 @@
             </Grid.RowDefinitions>
             <Label Content="Train Ticket Requests" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="16" Grid.ColumnSpan="3"/>
             <ListBox x:Name="TicketRequestsList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" Grid.ColumnSpan="2"
-                     Grid.Column="0" />
+                     Grid.Column="0" SelectionChanged="TicketRequestsList_OnSelectionChanged"/>
             <Label Content="Requests" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" Grid.ColumnSpan="3"
                    Grid.Column="0" Grid.Row="1"/>
             <Grid Grid.Column="2" Grid.Row="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="67*"/>
+                    <RowDefinition Height="39*"/>
+                    <RowDefinition Height="39*"/>
+                    <RowDefinition Height="39*"/>
+                    <RowDefinition Height="92*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="TicketRequestGrantBtn" Content="Grant" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Margin="0,0,10,10"/>
-                <Button x:Name="TicketRequestDenyBtn" Content="Deny" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Margin="0,0,10,10" Grid.Row="1"/>
+                <Button x:Name="TicketRequestGrantBtn" Content="Grant" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Margin="0,0,10,10" IsEnabled="False" Click="TicketRequestGrantBtn_OnClick"/>
+                <Button x:Name="TicketRequestDenyBtn" Content="Deny" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Margin="0,0,10,10" Grid.Row="1" IsEnabled="False" Click="TicketRequestDenyBtn_OnClick"/>
+                <Button x:Name="TicketRequestCreateBtn" Content="Create" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Margin="0,0,10,10" Grid.Row="2" Click="TicketRequestCreateBtn_Click"/>
             </Grid>
             <Rectangle Grid.Column="1" Height="3" Margin="0,15,10,0" Stroke="#FF44475A" VerticalAlignment="Top"
                        Grid.Row="0" Grid.ColumnSpan="2" Fill="#FF44475A"/>

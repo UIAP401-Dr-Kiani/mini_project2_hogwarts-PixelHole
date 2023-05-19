@@ -23,9 +23,10 @@ namespace hogwartsBingus.UI_Classes
     public partial class ComposeMessageWindow : Window
     {
         private int ReceiverIndex;
-        public ComposeMessageWindow()
+        public ComposeMessageWindow(string receiver)
         {
             InitializeComponent();
+            ReceiverNameField.Text = receiver;
         }
 
         private void ComposeMessageWindow_OnClosed(object sender, EventArgs e)

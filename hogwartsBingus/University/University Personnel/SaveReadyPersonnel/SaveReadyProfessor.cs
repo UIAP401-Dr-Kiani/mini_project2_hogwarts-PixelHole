@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.University.StudySessionRelactedClasses;
+using Newtonsoft.Json;
 
 namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
 {
@@ -8,10 +10,12 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
     {
         public bool CanTeachAtMultipleClasses { get; protected set; }
 
+        [JsonConstructor]
         public SaveReadyProfessor(string firstName,
             string lastName,
-            int birthYear,
+            DateTime birthYear,
             gender gender,
+            string father,
             Race race,
             List<string> subjectNames,
             LoginData login,
@@ -19,11 +23,13 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
             petType pet,
             bool hasBaggage,
             Location currentLocation,
-            AuthorizationType authType,
+            List<Message> messages,
+            List<TrainTicket> tickets,
             bool canTeachAtMultipleClasses) : base(firstName,
             lastName,
             birthYear,
             gender,
+            father,
             race,
             subjectNames,
             login,
@@ -31,7 +37,8 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
             pet,
             hasBaggage,
             currentLocation,
-            authType)
+            messages,
+            tickets)
         {
             CanTeachAtMultipleClasses = canTeachAtMultipleClasses;
         }
@@ -44,8 +51,18 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
                 subjects.Add(SubjectManager.GetSubjectByName(subjectName));
             }
 
-            return new Professor(FirstName, LastName, BirthYear, Gender, Race, Messages, Tickets, Login, ID,
-                new WeeklySchedule(subjects), Pet, HasBaggage, CurrentLocation, AuthType);
+            return new Professor(FirstName,
+                LastName,
+                BirthYear,
+                Gender,
+                Father,
+                Race,
+                Messages,
+                Tickets,
+                CanTeachAtMultipleClasses,
+                Login,
+                ID,
+                new WeeklySchedule(subjects), Pet, HasBaggage, CurrentLocation, AuthorizationType.Professor);
         }
     }
 }

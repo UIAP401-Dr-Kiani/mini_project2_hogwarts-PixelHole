@@ -137,9 +137,9 @@ namespace hogwartsBingus.Session
             
             OpenSingleInstanceWindow(ticketBoxWindow, TicketBoxName, () => FocusWindow(ticketBoxWindow));
         }
-        public static void OpenComposeMessageWindow()
+        public static void OpenComposeMessageWindow(string receiver)
         {
-            ComposeMessageWindow composeMessageWindow = new ComposeMessageWindow();
+            ComposeMessageWindow composeMessageWindow = new ComposeMessageWindow(receiver);
 
             OpenSingleInstanceWindow(composeMessageWindow, ComposeMessageName, () => FocusWindow(composeMessageWindow));
         }

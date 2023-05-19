@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using hogwartsBingus.Base_Classes;
+using hogwartsBingus.Execptions;
 using hogwartsBingus.University.DataStorage;
-using Newtonsoft.Json;
+using hogwartsBingus.University.StudySessionRelactedClasses;
 
 namespace hogwartsBingus.DataStorage
 {
@@ -11,15 +11,14 @@ namespace hogwartsBingus.DataStorage
     {
         public static readonly List<AuthorizedPerson> Users = new List<AuthorizedPerson>();
 
-        
+
         // manipulate Users ...
-        
+
         public static void AddUser(AuthorizedPerson newUser)
         {
             if (Users.Contains(newUser)) return;
             Users.Add(newUser);
         }
-
         public static void AddUsers(params AuthorizedPerson[] users)
         {
             foreach (var user in users)
@@ -32,10 +31,22 @@ namespace hogwartsBingus.DataStorage
             if (!Users.Contains(User)) return;
             Users.Remove(User);
         }
-
+        public static void RemoveSubjectFromUsers(StudySubject subject)
+        {
+            foreach (var user in Users)
+            {
+                try
+                {
+                    user.Schedule.RemoveSubject(subject);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
 
         //Find ...
-
         public static int FindWithLogin(LoginData loginData)
         {
             int result = -1;
@@ -50,11 +61,6 @@ namespace hogwartsBingus.DataStorage
             }
 
             return result;
-        }
-
-        public static int FindDumbledore()
-        {
-            return Users.IndexOf(Dumbledore.Instance);
         }
         public static int FindWithName(string name)
         {
@@ -84,16 +90,67 @@ namespace hogwartsBingus.DataStorage
             return result;
         }
 
+
         // Get ...
-        
         public static AuthorizedPerson GetUserAtIndex(int index)
         {
             if (index > Users.Count || index < 0) return null;
             return Users[index];
         }
-
         public static FactionType? GetFactionAt(int index) => (Users[index] as Student)?.Faction;
+        public static string[] GetGeneralUserInfoAt(int index)
+        {
+            AuthorizedPerson user = GetUserAtIndex(index);
 
+            switch (user.AuthType)
+            {
+                case AuthorizationType.Student :
+                    Student student = user as Student;
+                    
+                    return new[]
+                    {
+                        student.FullName, student.BirthYear.ToString(),
+                        Enum.GetName(typeof(gender), student.Gender),
+                        Enum.GetName(typeof(Race), student.Race),
+                        student.Father,
+                        student.ID.ToString(), Enum.GetName(typeof(petType), student.Pet),
+                        Enum.GetName(typeof(FactionType), student.Faction),
+                        student.DormitoryNumber.ToString(),
+                    };
+                
+                case AuthorizationType.Professor :
+                    return new[]
+                    {
+                        user.FullName, user.BirthYear.ToString(),
+                        Enum.GetName(typeof(gender), user.Gender),
+                        Enum.GetName(typeof(Race), user.Race),
+                        user.Father,
+                        user.ID.ToString(), Enum.GetName(typeof(petType), user.Pet),
+                        (user as Professor)?.CanTeachAtMultipleClasses.ToString()
+                    };
+                
+                case AuthorizationType.Dumbledore :
+                    
+                    return new[]
+                    {
+                        user.FullName, user.BirthYear.ToString(),
+                        Enum.GetName(typeof(gender), user.Gender),
+                        Enum.GetName(typeof(Race), user.Race),
+                        user.Father,
+                        user.ID.ToString(), Enum.GetName(typeof(petType), user.Pet),
+                    };
+                
+                default :
+                    throw new InvalidAuthorizationTypeException("Authorization type not correct");
+            }
+        }
+        public static AuthorizationType GetAuthTypeAt(int index)
+        {
+            if (index < 0 || index > Users.Count) throw new IndexOutOfRangeException();
+            return Users[index].AuthType;
+        }
+
+        // Saving and loading
         public static void RequestSave()
         {
             SaveFileManager.SaveUsers(Users);

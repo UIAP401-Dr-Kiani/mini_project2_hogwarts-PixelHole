@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.Execptions;
+using hogwartsBingus.University.DataStorage;
 
 namespace hogwartsBingus.Factions
 {
@@ -13,7 +14,39 @@ namespace hogwartsBingus.Factions
                         Ravenclaw = new Faction(FactionType.Raveclaw);
 
         private static Random random = new Random();
-        
+
+        public static int GetFactionPoints(FactionType faction)
+        {
+            switch (faction)
+            {
+                case FactionType.Gryffindor :
+                    return Griffindor.Points;
+                case FactionType.Slytherin :
+                    return Slytherin.Points;
+                case FactionType.Raveclaw :
+                    return Ravenclaw.Points;
+                case FactionType.Hufflepuff :
+                    return Hufflepuf.Points;
+                default:
+                    throw new FactionNotFoundException();
+            }
+        }
+        public static int GetFactionMemberCount(FactionType faction)
+        {
+            switch (faction)
+            {
+                case FactionType.Gryffindor :
+                    return Griffindor.MemberCount;
+                case FactionType.Slytherin :
+                    return Slytherin.MemberCount;
+                case FactionType.Raveclaw :
+                    return Ravenclaw.MemberCount;
+                case FactionType.Hufflepuff :
+                    return Hufflepuf.MemberCount;
+                default:
+                    throw new FactionNotFoundException();
+            }
+        }
         public static FactionType GetRandomFaction()
         {
             int factionIndex = random.Next(0, 4);
@@ -31,7 +64,6 @@ namespace hogwartsBingus.Factions
 
             return FactionType.None;
         }
-
         public static void AwardPointsToFaction(FactionType factionType, int points)
         {
             switch (factionType)
@@ -52,6 +84,36 @@ namespace hogwartsBingus.Factions
                     return;
                 default:
                     throw new FactionNotFoundException();
+            }
+        }
+
+        public static void RequestSave()
+        {
+            SaveFileManager.SaveFactions(new List<Faction>() {Slytherin, Griffindor, Hufflepuf, Ravenclaw});
+        }
+        public static void RequestLoad()
+        {
+            List<Faction> factions = SaveFileManager.LoadFactions();
+
+            foreach (var faction in factions)
+            {
+                switch (faction.Type)
+                {
+                    case FactionType.Gryffindor :
+                        Griffindor = faction;
+                        continue;
+                    case FactionType.Slytherin :
+                        Slytherin = faction;
+                        continue;
+                    case FactionType.Hufflepuff :
+                        Hufflepuf = faction;
+                        continue;
+                    case FactionType.Raveclaw :
+                        Ravenclaw = faction;
+                        continue;
+                    default :
+                        throw new FactionNotFoundException();
+                }
             }
         }
     }

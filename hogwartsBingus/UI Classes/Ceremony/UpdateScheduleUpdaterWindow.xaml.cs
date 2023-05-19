@@ -15,18 +15,28 @@ namespace hogwartsBingus.UI_Classes.Ceremony
     /// <summary>
     /// Interaction logic for WeeklyScheduleUpdaterWindow.xaml
     /// </summary>
-    public partial class UpdateScheduleUpdaterWindow : Window
+    public partial class UpdateScheduleUpdaterWindow
     {
         private WeeklySchedule Schedule = new WeeklySchedule();
         private List<StudySubject> Subjects = new List<StudySubject>();
+
+        private bool CheckForIntersection = true;
         public UpdateScheduleUpdaterWindow()
         {
             InitializeComponent();
+            UpdateIntersectionCheckBool();
             GetScheduleFromUser();
             GetStudySubjects();
             UpdateWindowContent();
         }
 
+        private void UpdateIntersectionCheckBool()
+        {
+            bool? intersectionCheck = SessionManager.GetCanTeachAtMultipleLocations();
+            if (intersectionCheck == null) return;
+
+            CheckForIntersection = !intersectionCheck.Value;
+        }
         private void UpdateWindowContent()
         {
             UpdatePickedSubjectsList();
@@ -59,7 +69,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
                     int index = TimeSpanToDisplayTableIndex(session.StartTime);
                     for (int i = 0; i < session.Duration.Hours; i++)
                     {
-                        content[index + i] = subject.Name;
+                        content[index + i] += $"{subject.Name}\n";
                     }
                 }
             }
@@ -69,7 +79,14 @@ namespace hogwartsBingus.UI_Classes.Ceremony
 
         private void GetScheduleFromUser()
         {
-            Schedule = SessionManager.GetWeeklySchedule() == null? new WeeklySchedule() : SessionManager.GetWeeklySchedule();
+            WeeklySchedule userSchedule = SessionManager.GetWeeklySchedule() == null
+                ? new WeeklySchedule()
+                : SessionManager.GetWeeklySchedule();
+
+            foreach (var subject in userSchedule.Subjects)
+            {
+                Schedule.AddSubject(subject, CheckForIntersection);
+            }
         }
 
         private void GetStudySubjects()
@@ -141,7 +158,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
             try
             {
                 Schedule.AddSubject(SubjectManager.GetSubjectByName(GetSubjectTitleFromList(AvailableSubjectsList,
-                    AvailableSubjectsList.SelectedIndex)));
+                    AvailableSubjectsList.SelectedIndex)), CheckForIntersection);
             }
             catch (StudySessionIntersectionException)
             {

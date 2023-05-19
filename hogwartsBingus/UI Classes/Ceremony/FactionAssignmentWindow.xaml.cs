@@ -29,8 +29,8 @@ namespace hogwartsBingus.UI_Classes.Ceremony
             FactionType chosenFaction = (FactionType)random.Next(0, 4);
             try
             {
-                SessionManager.AttemptToSetFaction(chosenFaction);
-                SessionManager.AttemptToSetBedNumber(DormitoryManager.GetBedNumberOfType(SessionManager.GetUserFaction().Value));
+                SessionManager.RequestSetFaction(chosenFaction);
+                SessionManager.RequestSetBedNumber(DormitoryManager.GetBedNumberOfType(SessionManager.GetUserFaction().Value));
             }
             catch (StudentAlreadyHasFactionException e)
             {

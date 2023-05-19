@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -10,18 +11,17 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
 
         public List<string> subjectNames;
         public petType Pet { get; protected set; }
-
         public bool HasBaggage { get; protected set; }
         public Location CurrentLocation { get; protected set; }
-        public AuthorizationType AuthType { get; protected set; }
 
-        public List<Message> Messages = new List<Message>();
-        public List<TrainTicket> Tickets = new List<TrainTicket>();
+        public List<Message> Messages;
+        public List<TrainTicket> Tickets;
 
         public SaveReadyAuthorizedPerson(string firstName,
             string lastName,
-            int birthYear,
+            DateTime birthYear,
             gender gender,
+            string father,
             Race race,
             List<string> subjectNames,
             LoginData login,
@@ -29,12 +29,14 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
             petType pet,
             bool hasBaggage,
             Location currentLocation,
-            AuthorizationType authType)
+            List<Message> messages, 
+            List<TrainTicket> tickets)
             :
             base(firstName,
             lastName,
             birthYear,
             gender,
+            father,
             race)
         {
             this.subjectNames = subjectNames;
@@ -43,7 +45,8 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
             Pet = pet;
             HasBaggage = hasBaggage;
             CurrentLocation = currentLocation;
-            AuthType = authType;
+            Messages = messages;
+            Tickets = tickets;
         }
     }
 }

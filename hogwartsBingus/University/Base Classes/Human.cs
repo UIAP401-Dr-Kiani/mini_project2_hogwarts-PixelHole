@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace hogwartsBingus.Base_Classes
@@ -7,6 +8,7 @@ namespace hogwartsBingus.Base_Classes
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
 
+        [JsonIgnore]
         public string FullName
         {
             get => FirstName + " " + LastName;
@@ -17,31 +19,23 @@ namespace hogwartsBingus.Base_Classes
             }
         }
 
-        public int BirthYear { get; protected set; }
+        public DateTime BirthYear { get; protected set; }
         
         public gender Gender { get; protected set; }
         
-        public Human Father { get; protected set; }
+        public string Father { get; protected set; }
 
         public Race Race { get; protected set; }
 
-        protected Human(string firstName, string lastName, int birthYear, gender gender, Race race)
+        [JsonConstructor]
+        protected Human(string firstName, string lastName, DateTime birthYear, gender gender, string father, Race race)
         {
             FirstName = firstName;
             LastName = lastName;
             BirthYear = birthYear;
             Gender = gender;
+            Father = father;
             Race = race;
-        }
-        
-        [JsonConstructor]
-        protected Human(string firstName, string lastName, int birthYear, int gender, int race)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            BirthYear = birthYear;
-            Gender = (gender)gender;
-            Race = (Race)race;
         }
     }
 }

@@ -1,0 +1,13 @@
+Dumbledore Hogwarts page : 
+    - add / remove dormitory button functionality
+    - add / remove user Button functionality
+    - add Subject Button functionality
+    
+    +name
+    +gender
+    +race
+    +father
+    +date of birth
+    +Auth type
+    Location
+   

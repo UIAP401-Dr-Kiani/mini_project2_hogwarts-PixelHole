@@ -15,7 +15,7 @@ namespace hogwartsBingus.Base_Classes
 
         public bool IntersectsWith(StudySessionTime newSession)
         {
-            newSession.StartTime.Add(new TimeSpan(0, 0, 1, 0));
+            newSession.StartTime = newSession.StartTime.Add(new TimeSpan(0, 0, 1, 0));
             if ((newSession.StartTime > StartTime && 
                  newSession.StartTime < StartTime + Duration)
                 ||

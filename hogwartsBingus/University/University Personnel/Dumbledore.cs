@@ -18,12 +18,13 @@ namespace hogwartsBingus.Base_Classes
         // ReSharper disable once MemberCanBePrivate.Global
         public Dumbledore(string firstName,
             string lastName,
-            int birthYear,
+            DateTime birthYear,
             gender gender,
+            string father,
             Race race,
             LoginData login,
             int id)
-            : base(firstName, lastName, birthYear, gender, race, login, id)
+            : base(firstName, lastName, birthYear, gender, father, race, login, id)
         {
             AuthType = AuthorizationType.Dumbledore;
             FullName = "Albus Dumbledore";
