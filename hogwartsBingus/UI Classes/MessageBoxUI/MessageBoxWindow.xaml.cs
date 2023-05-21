@@ -13,27 +13,28 @@ namespace hogwartsBingus.UI_Classes
     /// </summary>
     public partial class MessageBoxWindow : Window
     {
-        private List<Message> Messages = new List<Message>();
         public MessageBoxWindow()
         {
             InitializeComponent();
             
-            UpdateMessages();
             UpdateMessageList();
 
-            MessagingHandler.MessageSent += UpdateMessages;
             MessagingHandler.MessageSent += UpdateMessageList;
-        }
-        private void UpdateMessages()
-        {
-            Messages = SessionManager.GetMessageList();
         }
 
         private void UpdateMessageList()
         {
             List<string> Titles = new List<string>();
 
-            foreach (var message in Messages)
+            List<Message> messages = SessionManager.GetMessageList();
+
+            if (messages == null)
+            {
+                MessageList.ItemsSource = Titles;
+                return;
+            }
+            
+            foreach (var message in messages)
             {
                 Titles.Add(message.Title);
             }
@@ -43,7 +44,6 @@ namespace hogwartsBingus.UI_Classes
         private void MessageBoxWindow_OnClosed(object sender, EventArgs e)
         {
             WindowManager.UnTrackWindow(this);
-            MessagingHandler.MessageSent -= UpdateMessages;
             MessagingHandler.MessageSent -= UpdateMessageList;
         }
 
@@ -59,7 +59,10 @@ namespace hogwartsBingus.UI_Classes
 
         private void MessageList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageContentBox.Text = GenerateDisplayMessageText(Messages[MessageList.SelectedIndex]);
+            if (MessageList.SelectedItem == null) return;
+            
+            Message message = SessionManager.GetMessageWithTitle(MessageList.SelectedItem.ToString());
+            MessageContentBox.Text = GenerateDisplayMessageText(message);
         }
 
         private string GenerateDisplayMessageText(Message message)
@@ -69,7 +72,15 @@ namespace hogwartsBingus.UI_Classes
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Message message = SessionManager.GetMessageWithTitle(MessageList.SelectedItem.ToString());
+            SessionManager.RequestRemoveMessage(message);
+            
+            UpdateMessageList();
+            ClearMessageContentLabel();
+        }
+        private void ClearMessageContentLabel()
+        {
+            MessageContentBox.Text = "";
         }
     }
 }

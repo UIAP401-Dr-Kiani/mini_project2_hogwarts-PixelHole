@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using hogwartsBingus.Session;
+using hogwartsBingus.University.DormitoryData;
 
 namespace hogwartsBingus.UI_Classes.Ceremony
 {
@@ -21,6 +12,16 @@ namespace hogwartsBingus.UI_Classes.Ceremony
         public BedAssignmentWindow()
         {
             InitializeComponent();
+        }
+        private void BedAssignBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            int bedNumber = DormitoryManager.GetBedNumberOfType(SessionManager.GetUserFaction().Value);
+            
+            SessionManager.RequestSetBedNumber(bedNumber);
+            
+            BedNumLabel.Content = bedNumber.ToString();
+
+            BedAssignBtn.IsEnabled = false;
         }
     }
 }

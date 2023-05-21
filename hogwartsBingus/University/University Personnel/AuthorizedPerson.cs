@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Documents;
 using hogwartsBingus.Factions;
 using Newtonsoft.Json;
@@ -62,6 +63,11 @@ namespace hogwartsBingus.Base_Classes
             if (!Messages.Contains(message)) return;
             Messages.Remove(message);
         }
+        public void UpdateMessages(List<Message> messages)
+        {
+            Messages.Clear();
+            messages.ForEach(message => Messages.Add(message));
+        }
         public void AddTicket(TrainTicket ticket)
         {
             if (Tickets.Contains(ticket)) return;
@@ -72,7 +78,17 @@ namespace hogwartsBingus.Base_Classes
             if (!Tickets.Contains(ticket)) return;
             Tickets.Remove(ticket);
         }
-
+        public Message FindMessageWithTitle(string title)
+        {
+            try
+            {
+                return Messages.Find(message => message.Title == title);
+            }
+            catch (ArgumentNullException)
+            {
+                return null;
+            }
+        }
         public void RemoveTicketForTrain(int trainNumber, DateTime moveTime)
         {
             Tickets.RemoveAt(FindTicketForTrain(trainNumber, moveTime));
@@ -90,16 +106,15 @@ namespace hogwartsBingus.Base_Classes
 
             return -1;
         }
-        public bool HasTicketForTrain(int trainNumber, DateTime moveTime)
-        {
-            return FindTicketForTrain(trainNumber, moveTime) != -1;
-        }
-
         public void MoveToLocation(Location newLocation) => CurrentLocation = newLocation;
 
         public override string ToString()
         {
             return FullName;
+        }
+        public void SetWeeklySchedule(WeeklySchedule newSchedule)
+        {
+            Schedule = newSchedule;
         }
     }
 }

@@ -88,29 +88,29 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
         {
             if (Location == Location.None)
             {
-                LocationField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+                LocationField.Foreground = DraculaThemeColors.RedBrush;
             }
             else
             {
-                LocationField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+                LocationField.Foreground = DraculaThemeColors.GreenBrush;
             }
 
             if (Destination == Location.None)
             {
-                DestinationField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+                DestinationField.Foreground = DraculaThemeColors.RedBrush;
             }
             else
             {
-                DestinationField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+                DestinationField.Foreground = DraculaThemeColors.GreenBrush;
             }
 
             if (SenderIndex == -1)
             {
-                SenderNameField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+                SenderNameField.Foreground = DraculaThemeColors.RedBrush;
             }
             else
             {
-                SenderNameField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+                SenderNameField.Foreground = DraculaThemeColors.GreenBrush;
             }
         }
 
@@ -139,22 +139,22 @@ namespace hogwartsBingus.UI_Classes.TicketBox_UI
         {
             if (!timeFormat.IsMatch(TimeField.Text))
             {
-                TimeField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+                TimeField.Foreground = DraculaThemeColors.RedBrush;
                 return;
             }
             
-            TimeField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+            TimeField.Foreground = DraculaThemeColors.GreenBrush;
             UpdateTime();
         }
         private void DateField_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (!dateFormat.IsMatch(DateField.Text))
             {
-                DateField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+                DateField.Foreground = DraculaThemeColors.RedBrush;
                 return;
             }
             
-            DateField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+            DateField.Foreground = DraculaThemeColors.GreenBrush;
             UpdateTime();
         }
     }

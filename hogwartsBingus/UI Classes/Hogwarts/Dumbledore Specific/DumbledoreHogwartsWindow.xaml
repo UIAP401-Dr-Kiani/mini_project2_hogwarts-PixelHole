@@ -71,9 +71,9 @@
                 <ColumnDefinition Width="107*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="BackBtn" Grid.Column="4" Content="Back" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="87" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" Click="BackBtn_OnClick"/>
-            <Label Grid.Column="0" Content="Wednesday" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24"/>
-            <Label Content="1984/10/12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Column="1"/>
-            <Label Content="10:00" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Column="2"/>
+            <Label x:Name="DayNameLabel" Grid.Column="0" Content="Wednesday" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="24"/>
+            <Label x:Name="FullDateLabel" Content="1984/10/12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Column="1"/>
+            <Label x:Name="HourLabel" Content="10:00" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Column="2"/>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="0">
             <Grid.RowDefinitions>
@@ -100,7 +100,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="AddDormitoryBtn" Content="Add&#xD;&#xA;Dormitory" Grid.Row="3" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2"/>
+                <Button x:Name="AddDormitoryBtn" Content="Add&#xD;&#xA;Dormitory" Grid.Row="3" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Click="AddDormitoryBtn_OnClick"/>
                 <Button x:Name="RemoveDormitoryBtn" Content="Remove&#xD;&#xA;Dormitory" Grid.Row="3" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" Grid.Column="1" HorizontalContentAlignment="Center" Click="RemoveDormitoryBtn_OnClick" IsEnabled="False"/>
                 <Label x:Name="DormitoryStatsLabel" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Foreground="#FFF8F8F2" Background="#FF44475A" Margin="10,0,0,10"/>
             </Grid>
@@ -128,7 +128,7 @@
             <Label Content="Users" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Row="1" Grid.ColumnSpan="2"
                    Grid.Column="0" />
             <Label Content="User Description" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="14" Grid.Row="1" Grid.Column="2"/>
-            <Label x:Name="UserDescriptionLabel" Grid.Row="2" Margin="0,0,10,12" Grid.Column="2" Foreground="#FFF8F8F2" Background="#FF44475A" BorderBrush="#FF44475A"/>
+            <Label x:Name="UserDescriptionLabel" Grid.Row="2" Margin="0,0,10,12" Grid.Column="2" Foreground="#FFF8F8F2" Background="#FF44475A" BorderBrush="#FF44475A" FontSize="10"/>
             <Grid Grid.Column="2" Grid.Row="3">
                 <Grid.RowDefinitions>
                     <RowDefinition/>

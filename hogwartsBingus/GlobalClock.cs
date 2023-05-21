@@ -29,6 +29,8 @@ namespace hogwartsBingus
             TimeChanged?.Invoke();
         }
 
+        public static int[] GetFullDate() => new[] { CurrentTime.Year, CurrentTime.Month, CurrentTime.Day };
+
         public static string GetCurrentTimeString()
         {
             return CurrentTime.ToString();

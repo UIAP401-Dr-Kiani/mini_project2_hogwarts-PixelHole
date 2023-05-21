@@ -30,6 +30,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
             UpdateWindowContent();
         }
 
+        
         private void UpdateIntersectionCheckBool()
         {
             bool? intersectionCheck = SessionManager.GetCanTeachAtMultipleLocations();
@@ -152,7 +153,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
         // button click event handlers
         private void PickBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!AvailableSubjectsList.HasItems) return;
+            if (!AvailableSubjectsList.HasItems || AvailableSubjectsList.SelectedItem == null) return;
             
             ClearLogContent();
             try
@@ -174,7 +175,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
         private void RemoveBtn_OnClick(object sender, RoutedEventArgs e)
         {
             ClearLogContent();
-            if (!PickedSubjectsList.HasItems) return;
+            if (!PickedSubjectsList.HasItems || PickedSubjectsList.SelectedItem == null) return;
             try
             {
                 Schedule.RemoveSubject(SubjectManager.GetSubjectByName(GetSubjectTitleFromList(PickedSubjectsList,
@@ -196,6 +197,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
         {
             WindowManager.CloseTrackedWindow(this);
         }
+        
         
         //utility
         private void ClearLogContent()

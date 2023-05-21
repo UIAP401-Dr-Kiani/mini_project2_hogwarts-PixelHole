@@ -12,7 +12,7 @@
             <RowDefinition Height="111*"/>
             <RowDefinition Height="48*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="BedAssignBtn" Content="Assign" Grid.Row="2" Margin="10,0,10,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" FontSize="16"/>
+        <Button x:Name="BedAssignBtn" Content="Assign" Grid.Row="2" Margin="10,0,10,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Click="BedAssignBtn_OnClick"/>
         <Label x:Name="BedNumLabel" Content="" Grid.Row="1" Margin="10,0,10,0" Foreground="#FFF8F8F2" FontFamily="Perpetua Titling MT" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48"/>
         <Label Content="Your Bed Number Is . . ." Margin="10,0,10,0" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light"/>
 

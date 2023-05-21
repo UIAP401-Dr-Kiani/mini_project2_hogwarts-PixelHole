@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific"
         mc:Ignorable="d"
-        Title="DormitoryConfigWindow" Height="300" Width="400" Background="#FF282A36">
+        Title="DormitoryConfigWindow" Height="300" Width="400" Background="#FF282A36"
+        Closed="DormitoryConfigWindow_OnClosed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="14*"/>
@@ -18,18 +19,18 @@
 
         </Grid.RowDefinitions>
         <Label Content="Name :" Margin="10,0,0,0" Foreground="#FFF8F8F2"/>
-        <TextBox x:Name="NameField" Grid.Row="1" TextWrapping="Wrap" Margin="10,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" FontSize="20" VerticalContentAlignment="Center" MaxLines="1"/>
+        <TextBox x:Name="NameField" Grid.Row="1" TextWrapping="Wrap" Margin="10,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" FontSize="20" VerticalContentAlignment="Center" MaxLines="1" TextChanged="NameField_OnTextChanged"/>
         <Label Content="Floor Count :" Margin="10,0,0,0" Foreground="#FFF8F8F2" Grid.Row="2"/>
-        <TextBox x:Name="FloorCountField" Grid.Row="3" TextWrapping="Wrap" Margin="10,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" FontSize="20" VerticalContentAlignment="Center" MaxLines="1"/>
+        <TextBox x:Name="FloorCountField" Grid.Row="3" TextWrapping="Wrap" Margin="10,0,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" FontSize="20" VerticalContentAlignment="Center" MaxLines="1" TextChanged="FloorCountField_OnTextChanged"/>
         <Label Content="Faction :" Margin="10,0,0,0" Foreground="#FFF8F8F2" Grid.Row="4"/>
-        <ComboBox x:Name="FactionComboBox" Grid.Row="5" Margin="10,0,10,10" BorderBrush="#FF44475A" Background="#FF44475A" Foreground="#FFF8F8F2"/>
+        <ComboBox x:Name="FactionComboBox" Grid.Row="5" Margin="10,0,10,10" BorderBrush="#FF44475A" Background="#FF44475A" Foreground="#FF282A36"/>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="CancelBtn" Content="Cancel" Margin="10,0,5,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei Light" FontSize="16"/>
-            <Button x:Name="ConfirmBtn" Content="Confirm" Margin="5,0,10,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei Light" FontSize="16" Grid.Column="1"/>
+            <Button x:Name="CancelBtn" Content="Cancel" Margin="10,0,5,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei Light" FontSize="16" Click="CancelBtn_OnClick"/>
+            <Button x:Name="ConfirmBtn" Content="Confirm" Margin="5,0,10,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei Light" FontSize="16" Grid.Column="1" Click="ConfirmBtn_OnClick"/>
         </Grid>
 
     </Grid>

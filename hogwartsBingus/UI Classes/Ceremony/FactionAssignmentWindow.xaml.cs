@@ -2,6 +2,7 @@
 using System.Windows;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.Execptions;
+using hogwartsBingus.Factions;
 using hogwartsBingus.Session;
 using hogwartsBingus.University.DormitoryData;
 
@@ -26,11 +27,10 @@ namespace hogwartsBingus.UI_Classes.Ceremony
 
         private void AssignFaction()
         {
-            FactionType chosenFaction = (FactionType)random.Next(0, 4);
+            FactionType chosenFaction = FactionManager.GetRandomFaction();
             try
             {
                 SessionManager.RequestSetFaction(chosenFaction);
-                SessionManager.RequestSetBedNumber(DormitoryManager.GetBedNumberOfType(SessionManager.GetUserFaction().Value));
             }
             catch (StudentAlreadyHasFactionException e)
             {
@@ -39,7 +39,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
             }
 
             AssignBtn.IsEnabled = false;
-            UpdateAssignedFactionLabelText(Enum.GetName(typeof(FactionType), chosenFaction));
+            UpdateAssignedFactionLabelText(chosenFaction.ToString());
         }
 
         private void UpdateAssignedFactionLabelText(string factionName)

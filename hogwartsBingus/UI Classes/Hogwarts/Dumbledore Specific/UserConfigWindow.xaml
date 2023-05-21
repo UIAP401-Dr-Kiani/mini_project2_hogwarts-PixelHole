@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific"
         mc:Ignorable="d"
-        Title="UserConfigWindow" Height="550" Width="550" Background="#FF282A36">
+        Title="UserConfigWindow" Height="650" Width="550" Background="#FF282A36">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="68*"/>
-            <RowDefinition Height="88*"/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="78*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="41*"/>
             <RowDefinition Height="25*"/>
+            <RowDefinition Height="41*"/>
             <RowDefinition Height="34*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="34*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="47*"/>
-            <RowDefinition Height="36*"/>
-            <RowDefinition Height="52*"/>
-            <RowDefinition Height="100*"/>
+            <RowDefinition Height="192*"/>
+            <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
         <Grid Grid.RowSpan="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="13*"/>
-                <RowDefinition Height="21*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -36,9 +36,9 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="22*"/>
-                <RowDefinition Height="23*"/>
-                <RowDefinition Height="43*"/>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="17*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -68,15 +68,31 @@
             <RadioButton Content="Student" Margin="10,10,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light"/>
             <RadioButton Content="Professor" Margin="10,10,10,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Grid.Column="1"/>
         </Grid>
-        <Grid x:Name="ProfessorOptionsGrid" Grid.Row="10" Visibility="Hidden" Grid.RowSpan="2">
+        <Grid x:Name="ProfessorOptionsGrid" Grid.Row="9" Visibility="Hidden" Grid.RowSpan="2">
             <RadioButton Content="Can Teach At multiple classes" VerticalAlignment="Top" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei UI Light" Margin="10,0,10,0"/>
         </Grid>
-        <Grid x:Name="StudentOptionsGrid" Grid.Row="10" Grid.RowSpan="2">
+        <Grid x:Name="StudentOptionsGrid" Grid.Row="9" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="13*"/>
-                <RowDefinition Height="37*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
-            <Label Content="Label" Margin="5,0,10,0" FontFamily="Microsoft JhengHei UI Light" FontSize="14" Foreground="#FFF8F8F2"/>
+            <Label Content="Semester" Margin="5,0,10,0" FontFamily="Microsoft JhengHei UI Light" FontSize="14" Foreground="#FFF8F8F2"/>
+            <TextBox Grid.Row="1" TextWrapping="Wrap" Text="TextBox" Margin="10,0,5,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2"/>
+            <Label Content="Faction" Margin="5,0,10,0" FontFamily="Microsoft JhengHei UI Light" FontSize="14" Foreground="#FFF8F8F2" Grid.Column="1"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" Margin="5,0,10,10"/>
+        </Grid>
+        <Grid Grid.Row="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Cancel" Margin="10,0,5,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="18"/>
+            <Button Content="Submit" Margin="5,0,10,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft JhengHei Light" FontSize="18" Grid.Column="1"/>
         </Grid>
 
     </Grid>

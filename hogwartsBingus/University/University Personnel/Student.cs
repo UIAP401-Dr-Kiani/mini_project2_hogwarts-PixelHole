@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using hogwartsBingus.Base_Classes.SaveReadyPersonnel;
+using hogwartsBingus.Factions;
 using Newtonsoft.Json;
 
 namespace hogwartsBingus.Base_Classes
@@ -43,17 +44,13 @@ namespace hogwartsBingus.Base_Classes
         {
             if (Faction != FactionType.None) return;
             Faction = faction;
+            FactionManager.AddMemberToFaction(faction);
         }
         
         public void SetBedNumber(int bedNumber)
         {
             if (DormitoryNumber != 0) return;
             DormitoryNumber = bedNumber;
-        }
-
-        public void SetWeeklySchedule(WeeklySchedule newSchedule)
-        {
-            Schedule = newSchedule;
         }
 
         public SaveReadyStudent ToSaveFormat()

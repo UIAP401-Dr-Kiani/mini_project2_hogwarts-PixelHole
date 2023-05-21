@@ -36,7 +36,9 @@ namespace hogwartsBingus.Session
             WeeklyScheduleName = "WeeklySchedule",
             SaveDialogName = "SaveDialog",
             LoadDialogName = "LoadDialog",
-            ExerciseConfigName = "ExerciseConfig";
+            ExerciseConfigName = "ExerciseConfig",
+            BedNumberAssignmentName = "BedNumberAssignment",
+            DormitoryConfigName = "DormitoryConfig";
             
         
         delegate void IfWindowOpen();
@@ -92,6 +94,16 @@ namespace hogwartsBingus.Session
 
         
         // single instance window handling
+        public static void OpenAddDormitoryWindow()
+        {
+            DormitoryConfigWindow dormitoryConfigWindow = new DormitoryConfigWindow();
+            OpenSingleInstanceWindow(dormitoryConfigWindow, DormitoryConfigName, () => FocusWindow(dormitoryConfigWindow));
+        }
+        public static void OpenBedNumberAssignmentWindow()
+        {
+            BedAssignmentWindow bedAssignmentWindow = new BedAssignmentWindow();
+            OpenSingleInstanceWindow(bedAssignmentWindow, BedNumberAssignmentName, () => FocusWindow(bedAssignmentWindow));
+        }
         public static void OpenWeeklyScheduleWindow()
         {
             UserWeeklyScheduleWindow weeklyScheduleWindow = new UserWeeklyScheduleWindow();

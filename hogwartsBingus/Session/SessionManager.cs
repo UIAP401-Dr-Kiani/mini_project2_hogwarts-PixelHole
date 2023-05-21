@@ -26,6 +26,7 @@ namespace hogwartsBingus.Session
         public static void Logout()
         {
             CurrentUser = null;
+            WindowManager.LaunchLoginPage();
         }
 
         
@@ -36,11 +37,13 @@ namespace hogwartsBingus.Session
         }
         public static FactionType? GetUserFaction() => (CurrentUser as Student)?.Faction;
         public static List<Message> GetMessageList() => CurrentUser.Messages;
+        public static Message GetMessageWithTitle(string title) => CurrentUser.FindMessageWithTitle(title);
         public static List<TrainTicket> GetTickets() => CurrentUser.Tickets;
         public static AuthorizationType GetUserType() => CurrentUser.AuthType;
         public static Location GetUserLocation() => CurrentUser.CurrentLocation;
         public static WeeklySchedule GetWeeklySchedule() => CurrentUser.Schedule;
         public static int GetUserID() => CurrentUser.ID;
+        public static int? GetBedNumber() => (CurrentUser as Student)?.DormitoryNumber;
         public static bool? GetCanTeachAtMultipleLocations() => (CurrentUser as Professor)?.CanTeachAtMultipleClasses;
         
         // Set User Data
@@ -58,9 +61,13 @@ namespace hogwartsBingus.Session
             if (!(CurrentUser is Student student)) throw new InvalidAuthorizationTypeException();
             student.SetBedNumber(bedNumber);
         }
+        public static void RequestRemoveMessage(Message message)
+        {
+            CurrentUser.RemoveMessage(message);
+        }
         public static void UpdateWeeklySchedule(WeeklySchedule schedule)
         {
-            (CurrentUser as Student)?.SetWeeklySchedule(schedule);
+            CurrentUser.SetWeeklySchedule(schedule);
         }
     }
 }

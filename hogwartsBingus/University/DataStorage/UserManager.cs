@@ -115,18 +115,15 @@ namespace hogwartsBingus.DataStorage
                         student.Father,
                         student.ID.ToString(), Enum.GetName(typeof(petType), student.Pet),
                         Enum.GetName(typeof(FactionType), student.Faction),
-                        student.DormitoryNumber.ToString(),
+                        student.DormitoryNumber.ToString(), student.CurrentLocation.ToString()
                     };
                 
                 case AuthorizationType.Professor :
                     return new[]
                     {
-                        user.FullName, user.BirthYear.ToString(),
-                        Enum.GetName(typeof(gender), user.Gender),
-                        Enum.GetName(typeof(Race), user.Race),
-                        user.Father,
-                        user.ID.ToString(), Enum.GetName(typeof(petType), user.Pet),
-                        (user as Professor)?.CanTeachAtMultipleClasses.ToString()
+                        user.FullName, user.BirthYear.ToString(), user.Gender.ToString(), user.Race.ToString(),
+                        user.Father, user.ID.ToString(), user.Pet.ToString(),
+                        (user as Professor)?.CanTeachAtMultipleClasses.ToString(), user.CurrentLocation.ToString()
                     };
                 
                 case AuthorizationType.Dumbledore :

@@ -15,17 +15,15 @@ namespace hogwartsBingus.Base_Classes
 
         public bool IntersectsWith(StudySessionTime newSession)
         {
-            newSession.StartTime = newSession.StartTime.Add(new TimeSpan(0, 0, 1, 0));
-            if ((newSession.StartTime > StartTime && 
-                 newSession.StartTime < StartTime + Duration)
-                ||
-                (newSession.StartTime + newSession.Duration > StartTime &&
-                 newSession.StartTime + newSession.Duration < StartTime + Duration))
+            if (newSession.StartTime == StartTime || newSession.StartTime + newSession.Duration == StartTime + Duration)
             {
                 return true;
             }
-
-            return false;
+            return (newSession.StartTime > StartTime && 
+                    newSession.StartTime < StartTime + Duration)
+                   ||
+                   (newSession.StartTime + newSession.Duration > StartTime &&
+                    newSession.StartTime + newSession.Duration < StartTime + Duration);
         }
 
         protected bool Equals(StudySessionTime other)

@@ -52,6 +52,7 @@
     <Compile Include="Execptions\AllDormitoriesAreFullException.cs" />
     <Compile Include="Execptions\FactionNotFoundException.cs" />
     <Compile Include="Execptions\InvalidAuthorizationTypeException.cs" />
+    <Compile Include="Execptions\InvalidDormitoryNameException.cs" />
     <Compile Include="Execptions\LoginNotFoundExecption.cs" />
     <Compile Include="Execptions\MultipleAdminsLoadedException.cs" />
     <Compile Include="Execptions\NoAdminsLoadedException.cs" />
@@ -65,6 +66,9 @@
     <Compile Include="UI Classes\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI Classes\Ceremony\BedAssignmentWindow.xaml.cs">
+      <DependentUpon>BedAssignmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI Classes\Ceremony\FactionAssignmentWindow.xaml.cs">
       <DependentUpon>FactionAssignmentWindow.xaml</DependentUpon>
@@ -92,6 +96,9 @@
     </Compile>
     <Compile Include="UI Classes\Hogwarts\Professor Specific\ProfessorHogwartsWindow.xaml.cs">
       <DependentUpon>ProfessorHogwartsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Classes\Hogwarts\Professor Specific\Subject Config\SubjectConfigWindow.xaml.cs">
+      <DependentUpon>SubjectConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI Classes\Hogwarts\Student Specific\StudentHogwartsWindow.xaml.cs">
       <DependentUpon>StudentHogwartsWindow.xaml</DependentUpon>
@@ -137,7 +144,6 @@
     <Compile Include="University\Base Classes\Plant.cs" />
     <Compile Include="University\Base Classes\TicketRequest.cs" />
     <Compile Include="University\Base Classes\TrainTicket.cs" />
-    <Compile Include="University\Ceremony\InitiationCeremony.cs" />
     <Compile Include="University\DataStorage\DraculaThemeColors.cs" />
     <Compile Include="University\DataStorage\PlantManager.cs" />
     <Compile Include="University\DataStorage\SaveFileManager.cs" />
@@ -201,6 +207,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="UI Classes\Ceremony\BedAssignmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI Classes\Ceremony\FactionAssignmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI Classes\Hogwarts\Professor Specific\ProfessorHogwartsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Hogwarts\Professor Specific\Subject Config\SubjectConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -286,5 +300,6 @@
   <ItemGroup>
     <Content Include="TODO List.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

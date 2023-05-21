@@ -29,5 +29,7 @@ namespace hogwartsBingus.Factions
         {
             Points += amount;
         }
+        public void AddMember() => MemberCount++;
+
     }
 }

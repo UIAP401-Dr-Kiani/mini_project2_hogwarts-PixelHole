@@ -31,6 +31,12 @@ namespace hogwartsBingus.UI_Classes.LandingPages
 
         private void GoToHogwartsBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (SessionManager.GetUserType() == AuthorizationType.Dumbledore)
+            {
+                WindowManager.LaunchHogwartsPageOfType(SessionManager.GetUserType());
+                return;
+            }
+            
             if (SessionManager.GetUserFaction() != null)
             {
                 if (SessionManager.GetUserFaction().Value == FactionType.None)
@@ -39,9 +45,16 @@ namespace hogwartsBingus.UI_Classes.LandingPages
                     return;
                 }
             }
-            if (SessionManager.GetWeeklySchedule().Subjects.Count == 0 
-                &&
-                SessionManager.GetUserType() != AuthorizationType.Dumbledore)
+
+            if (SessionManager.GetUserType() == AuthorizationType.Student)
+            {
+                if (SessionManager.GetBedNumber().Value == 0)
+                {
+                    WindowManager.OpenBedNumberAssignmentWindow();
+                    return;
+                }
+            }
+            if (SessionManager.GetWeeklySchedule().Subjects.Count == 0)
             {
                 WindowManager.OpenUpdateScheduleWindow();
                 return;
@@ -82,7 +95,7 @@ namespace hogwartsBingus.UI_Classes.LandingPages
 
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
         {
-            WindowManager.LaunchLoginPage();
+            SessionManager.Logout();
         }
 
         private void CheckLocation()

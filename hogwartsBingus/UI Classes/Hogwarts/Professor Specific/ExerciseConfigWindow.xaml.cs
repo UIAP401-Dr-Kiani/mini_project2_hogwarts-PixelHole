@@ -85,30 +85,30 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         {
             if (YearFormat.IsMatch(YearField.Text))
             {
-                YearField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+                YearField.Foreground = DraculaThemeColors.GreenBrush;
                 return;
             }
-            YearField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+            YearField.Foreground = DraculaThemeColors.RedBrush;
         }
 
         private void MonthField_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (MonthFormat.IsMatch(MonthField.Text))
             {
-                MonthField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+                MonthField.Foreground = DraculaThemeColors.GreenBrush;
                 return;
             }
-            MonthField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+            MonthField.Foreground = DraculaThemeColors.RedBrush;
         }
 
         private void DayField_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (DayFormat.IsMatch(DayField.Text))
             {
-                DayField.Foreground = new SolidColorBrush(DraculaThemeColors.Green);
+                DayField.Foreground = DraculaThemeColors.GreenBrush;
                 return;
             }
-            DayField.Foreground = new SolidColorBrush(DraculaThemeColors.Red);
+            DayField.Foreground = DraculaThemeColors.RedBrush;
         }
 
         private void ExerciseConfigWindow_OnClosed(object sender, EventArgs e)

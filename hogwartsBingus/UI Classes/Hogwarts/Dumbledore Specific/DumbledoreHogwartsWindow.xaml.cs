@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Factions;
@@ -15,7 +16,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
     /// <summary>
     /// Interaction logic for DumbledoreHogwartsWindow.xaml
     /// </summary>
-    public partial class DumbledoreHogwartsWindow : Window
+    public partial class DumbledoreHogwartsWindow
     {
         public DumbledoreHogwartsWindow()
         {
@@ -27,14 +28,25 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
         // page content update
         private void UpdatePageContent()
         {
+            UpdateClockRibbonLabels();
             UpdateDormitoryList();
             UpdateSubjectsList();
             UpdateUsersList();
             UpdateTicketRequestsList();
-
             UpdateFactionStatsLabels();
         }
 
+        // Update Clock Ribbon
+        private void UpdateClockRibbonLabels()
+        {
+            DayNameLabel.Content = GlobalClock.CurrentTime.DayOfWeek.ToString();
+            HourLabel.Content = GlobalClock.CurrentTime.TimeOfDay;
+
+            int[] date = GlobalClock.GetFullDate();
+
+            FullDateLabel.Content = $"{date[0]}/{date[1]}/{date[2]}";
+        }
+        
         // Update List items
         private void UpdateDormitoryList()
         {
@@ -153,7 +165,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
             switch (UserManager.GetAuthTypeAt(userIndex))
             {
                 case AuthorizationType.Student :
-                    finalText.Append($"\n\nHouse : {userInfo[7]}\n\nDormitory Number : ");
+                    finalText.Append($"{userInfo[9]}\n\nHouse : {userInfo[7]}\n\nDormitory Number : ");
                     
                     if (userInfo[8] != "0")
                     {
@@ -164,10 +176,10 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
                     finalText.Append("Not Assigned");
                     break;
                 case AuthorizationType.Professor :
-                    finalText.Append($"Can Teach At multiple locations : {userInfo[7]}\n");
+                    finalText.Append($"{userInfo[8]}\n\nCan Teach At multiple locations : {userInfo[7]}\n");
                     break;
                 case AuthorizationType.Dumbledore :
-                    finalText.Append("\n\nSystem Admin");
+                    finalText.Append("System Admin");
                     break;
             }
 
@@ -181,10 +193,11 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
         }
         private void DumbledoreHogwartsWindow_OnActivated(object sender, EventArgs e)
         {
+            UpdatePageContent();
             CheckListsForItemSelection();
         }
-        
-        
+
+
         // Button Click Handling
         private void BackBtn_OnClick(object sender, RoutedEventArgs e)
         {
@@ -192,7 +205,10 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
         }
         private void RemoveDormitoryBtn_OnClick(object sender, RoutedEventArgs e)
         {
+            Dormitory dormitory = DormitoryManager.GetDormitoryByName(DormitoriesList.SelectedItem.ToString());
+            if (dormitory.ResidentsCount > 0) return;
             
+            DormitoryManager.RemoveDormitory(dormitory);
         }
         private void TicketRequestGrantBtn_OnClick(object sender, RoutedEventArgs e)
         {
@@ -211,6 +227,28 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
             UserManager.RemoveUser(
                 UserManager.GetUserAtIndex(UserManager.FindWithName(UsersList.SelectedItem.ToString())));
             UpdateUsersList();
+        }
+        private void RemoveSubjectBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            StudySubject subject = SubjectManager.GetSubjectByName(SubjectsList.SelectedItem.ToString());
+            
+            UserManager.RemoveSubjectFromUsers(subject);
+            
+            SubjectManager.RemoveStudySubject(subject);
+            
+            UpdateSubjectsList();
+        }
+        private void TicketRequestCreateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowManager.OpenRequestTicketWindow();
+        }
+        private void MessageUserBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.OpenComposeMessageWindow(UsersList.SelectedItem.ToString());
+        }
+        private void AddDormitoryBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.OpenAddDormitoryWindow();
         }
         
 
@@ -236,7 +274,6 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
             TicketRequestGrantBtn.IsEnabled = state;
             TicketRequestDenyBtn.IsEnabled = state;
         }
-        
 
 
         // List Selected Item Changed Handling
@@ -264,24 +301,6 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
         private void TicketRequestsList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SwitchTicketRequestListButtons(TicketRequestsList.SelectedItem != null);
-        }
-        private void RemoveSubjectBtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            StudySubject subject = SubjectManager.GetSubjectByName(SubjectsList.SelectedItem.ToString());
-            
-            UserManager.RemoveSubjectFromUsers(subject);
-            
-            SubjectManager.RemoveStudySubject(subject);
-            
-            UpdateSubjectsList();
-        }
-        private void TicketRequestCreateBtn_Click(object sender, RoutedEventArgs e)
-        {
-            WindowManager.OpenRequestTicketWindow();
-        }
-        private void MessageUserBtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            WindowManager.OpenComposeMessageWindow(UsersList.SelectedItem.ToString());
         }
     }
 }

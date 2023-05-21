@@ -14,7 +14,16 @@ namespace hogwartsBingus.University.DormitoryData
         {
             
         }
-
+        public static void AddDormitory(Dormitory dormitory)
+        {
+            if (GetDormitoryByName(dormitory.Name) != null) throw new InvalidDormitoryNameException();
+            Dormitories.Add(dormitory);
+        }
+        public static void RemoveDormitory(Dormitory dormitory)
+        {
+            if (GetDormitoryByName(dormitory.Name) == null) throw new InstanceNotFoundException();
+            Dormitories.Remove(dormitory);
+        }
         public static int GetBedNumberOfType(FactionType faction)
         {
             foreach (var dormitory in Dormitories)
