@@ -16,6 +16,7 @@ namespace hogwartsBingus.University.StudySessionRelactedClasses
         
         public string ProfessorName { get; protected set; }
         
+        public StudySubject(){}
         public StudySubject(string name,
             string professorName,
             List<StudySessionTime> sessions,
