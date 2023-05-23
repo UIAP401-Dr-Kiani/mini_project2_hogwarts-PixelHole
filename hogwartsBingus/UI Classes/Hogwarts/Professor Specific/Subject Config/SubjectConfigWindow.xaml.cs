@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Management.Instrumentation;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,10 +19,12 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
         private WindowEditMode EditMode = WindowEditMode.AddMode;
 
         private Regex TimeFormat = new Regex(@"([01][01]?[0-9]|2[0-3]):[0-5][0-9]"),
-            SemesterFormat = new Regex(@"\d[1-8]"),
-            DurationFormat = new Regex(@"2|1");
+            SemesterFormat = new Regex(@"^[1-8]$"),
+            DurationFormat = new Regex(@"^[1-2]$");
 
         private StudySubject Subject = new StudySubject();
+
+        private bool ProfessorIsFound, SubjectNameIsTaken;
         
         public SubjectConfigWindow()
         {
@@ -123,7 +126,8 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
         private bool SubjectDescriptionFieldsHaveCorrectValue()
         {
             return TitleField.Text != "" && SemesterFormat.IsMatch(SemesterField.Text) &&
-                   int.TryParse(CapacityField.Text, out _) && CapacityField.Text != "";
+                   int.TryParse(CapacityField.Text, out _) && CapacityField.Text != "" &&
+                   AssignedProfessorField.Text != "" && ProfessorIsFound && !SubjectNameIsTaken;
         }
 
 
@@ -153,6 +157,18 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
             Subject.RemoveSession(Subject.FindSessionWithString(SessionList.SelectedItem.ToString()));
             UpdateSessionList();
         }
+        private void CancelBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.CloseTrackedWindow(this);
+        }
+        private void ConfirmBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (SubjectDescriptionFieldsHaveCorrectValue() && SessionList.HasItems)
+            {
+                SubjectManager.AddStudySubject(Subject);
+                WindowManager.CloseTrackedWindow(this);
+            }
+        }
         
         
         // window close state
@@ -170,7 +186,6 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
                 HourOfDayField.Foreground = DraculaThemeColors.GreenBrush;
                 return;
             }
-
             HourOfDayField.Foreground = DraculaThemeColors.RedBrush;
         }
         private void DurationField_OnTextChanged(object sender, TextChangedEventArgs e)
@@ -180,8 +195,60 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
                 DurationField.Foreground = DraculaThemeColors.GreenBrush;
                 return;
             }
-
             DurationField.Foreground = DraculaThemeColors.RedBrush;
+        }
+        private void SemesterField_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SemesterFormat.IsMatch(SemesterField.Text))
+            {
+                SemesterField.Foreground = DraculaThemeColors.GreenBrush;
+                Subject.SemesterIndex = int.Parse(SemesterField.Text);
+                return;
+            }
+            SemesterField.Foreground = DraculaThemeColors.RedBrush;
+        }
+        private void CapacityField_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(CapacityField.Text, out int capacity))
+            {
+                CapacityField.Foreground = DraculaThemeColors.GreenBrush;
+
+                Subject.Capacity = capacity;
+                return;
+            }
+            CapacityField.Foreground = DraculaThemeColors.RedBrush;
+        }
+        private void AssignedProfessorField_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ProfessorIsFound = UserManager.FindWithName(AssignedProfessorField.Text) != -1;
+            if (ProfessorIsFound)
+            {
+                AssignedProfessorField.Foreground = DraculaThemeColors.GreenBrush;
+                Subject.ProfessorName = AssignedProfessorField.Text;
+                return;
+            }
+            AssignedProfessorField.Foreground = DraculaThemeColors.RedBrush;
+        }
+        private void TitleField_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            SubjectNameIsTaken = true;
+            try
+            {
+                SubjectManager.GetSubjectByName(TitleField.Text);
+            }
+            catch (InstanceNotFoundException)
+            {
+                SubjectNameIsTaken = false;
+            }
+
+            if (SubjectNameIsTaken)
+            {
+                TitleField.Foreground = DraculaThemeColors.RedBrush;
+                return;
+            }
+
+            Subject.Name = TitleField.Text;
+            TitleField.Foreground = DraculaThemeColors.WhiteBrush;
         }
     }
 }

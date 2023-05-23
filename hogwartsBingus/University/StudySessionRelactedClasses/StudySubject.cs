@@ -9,14 +9,13 @@ namespace hogwartsBingus.University.StudySessionRelactedClasses
 {
     public class StudySubject
     {
-        public string Name { get; }
+        public string Name { get; set; }
         public readonly List<StudySessionTime> Sessions = new List<StudySessionTime>();
         public readonly List<Exercise> Exercises = new List<Exercise>();
-        public int Capacity { get; }
-        public int StudentCount { get; }
-        public int SemesterIndex { get; }
-        
-        public string ProfessorName { get; protected set; }
+        public int Capacity { get; set; }
+        public int StudentCount { get; set; }
+        public int SemesterIndex { get; set; }
+        public string ProfessorName { get;  set; }
         
         public StudySubject(){}
         public StudySubject(string name,
