@@ -250,6 +250,10 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
         {
             WindowManager.OpenAddDormitoryWindow();
         }
+        private void AddSubjectBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            WindowManager.OpenAddSubjectWindow();
+        }
         
 
         // Button Activation Handling

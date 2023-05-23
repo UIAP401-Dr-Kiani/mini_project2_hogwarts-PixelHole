@@ -12,6 +12,7 @@ using hogwartsBingus.UI_Classes.Dialogs;
 using hogwartsBingus.UI_Classes.Hogwarts;
 using hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific;
 using hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific;
+using hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config;
 using hogwartsBingus.UI_Classes.Hogwarts.Student_Specific;
 using hogwartsBingus.UI_Classes.LandingPages;
 using hogwartsBingus.University.Excercies;
@@ -38,7 +39,8 @@ namespace hogwartsBingus.Session
             LoadDialogName = "LoadDialog",
             ExerciseConfigName = "ExerciseConfig",
             BedNumberAssignmentName = "BedNumberAssignment",
-            DormitoryConfigName = "DormitoryConfig";
+            DormitoryConfigName = "DormitoryConfig",
+            SubjectConfigName = "SubjectConfig";
             
         
         delegate void IfWindowOpen();
@@ -170,6 +172,11 @@ namespace hogwartsBingus.Session
         {
             ExerciseConfigWindow exerciseConfigWindow = new ExerciseConfigWindow(subjectName);
             OpenSingleInstanceWindow(exerciseConfigWindow, ExerciseConfigName, () => FocusWindow(exerciseConfigWindow));
+        }
+        public static void OpenAddSubjectWindow()
+        {
+            SubjectConfigWindow subjectConfigWindow = new SubjectConfigWindow();
+            OpenSingleInstanceWindow(subjectConfigWindow, DormitoryConfigName, () => FocusWindow(subjectConfigWindow));
         }
 
         private static void OpenSingleInstanceWindow(Window window, string name, IfWindowOpen ifWindowOpen)

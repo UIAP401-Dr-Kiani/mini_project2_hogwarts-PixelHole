@@ -46,5 +46,12 @@ namespace hogwartsBingus.Base_Classes
                 return (StartTime.GetHashCode() * 397) ^ Duration.GetHashCode();
             }
         }
+
+        public override string ToString()
+        {
+            return $"{Enum.GetName(typeof(DayOfWeek), StartTime.Days)} | {StartTime.Hours:D2}:{StartTime.Minutes:D2} → "
+                   +
+                   $"{(StartTime.Hours + Duration.Hours):D2}:{(StartTime.Minutes + Duration.Minutes):D2}";
+        }
     }
 }

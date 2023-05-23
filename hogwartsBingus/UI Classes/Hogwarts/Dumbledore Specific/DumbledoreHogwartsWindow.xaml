@@ -166,7 +166,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="ShowSubjectInfoBtn" Content="Show Subject Info" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="3" IsEnabled="False"/>
-                <Button x:Name="AddSubjectBtn" Content="Add Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="0"/>
+                <Button x:Name="AddSubjectBtn" Content="Add Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="0" Click="AddSubjectBtn_OnClick"/>
                 <Button x:Name="RemoveSubjectBtn" Content="Remove Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="1" IsEnabled="False" Click="RemoveSubjectBtn_OnClick"/>
                 <Button x:Name="EditSubjectBtn" Content="Edit Subject" Margin="0,0,10,10" Foreground="#FFF8F8F2" BorderBrush="#FFBD93F9" Background="#FFBD93F9" FontFamily="Microsoft JhengHei UI Light" FontSize="16" Grid.Row="2" IsEnabled="False"/>
             </Grid>
