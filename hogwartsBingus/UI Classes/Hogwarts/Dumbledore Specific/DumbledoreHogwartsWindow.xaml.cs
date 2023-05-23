@@ -230,7 +230,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Dumbledore_Specific
         }
         private void RemoveSubjectBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            StudySubject subject = SubjectManager.GetSubjectByName(SubjectsList.SelectedItem.ToString());
+            StudySubject subject = SubjectManager.FindSubjectByName(SubjectsList.SelectedItem.ToString());
             
             UserManager.RemoveSubjectFromUsers(subject);
             

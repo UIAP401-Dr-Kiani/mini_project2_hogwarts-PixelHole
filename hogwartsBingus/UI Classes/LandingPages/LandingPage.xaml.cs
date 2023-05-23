@@ -56,7 +56,15 @@ namespace hogwartsBingus.UI_Classes.LandingPages
             }
             if (SessionManager.GetWeeklySchedule().Subjects.Count == 0)
             {
-                WindowManager.OpenUpdateScheduleWindow();
+                switch (SessionManager.GetUserType())
+                {
+                    case AuthorizationType.Student :
+                        WindowManager.OpenUpdateStudentScheduleWindow();
+                        break;
+                    case AuthorizationType.Professor :
+                        WindowManager.OpenUpdateProfessorScheduleWindow();
+                        break;
+                }
                 return;
             }
             WindowManager.LaunchHogwartsPageOfType(SessionManager.GetUserType());

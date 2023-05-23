@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Instrumentation;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.University.DataStorage;
@@ -66,7 +67,7 @@ namespace hogwartsBingus.DataStorage
 
             return StudySubjects[index];
         }
-        public static StudySubject GetSubjectByName(string name)
+        public static StudySubject FindSubjectByName(string name)
         {
             foreach (var subject in StudySubjects)
             {
@@ -74,6 +75,19 @@ namespace hogwartsBingus.DataStorage
             }
 
             throw new InstanceNotFoundException();
+        }
+        public static List<StudySubject> FindSubjectsWithProfessor(string professorName)
+        {
+            List<StudySubject> subjects = new List<StudySubject>();
+            
+            if (StudySubjects == null) return subjects;
+
+            foreach (var subject in StudySubjects.Where(subject => subject.ProfessorName == professorName))
+            {
+                subjects.Add(subject);
+            }
+
+            return subjects;
         }
         
         // subject list manipulation

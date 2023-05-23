@@ -97,6 +97,9 @@
     <Compile Include="UI Classes\Hogwarts\Professor Specific\ProfessorHogwartsWindow.xaml.cs">
       <DependentUpon>ProfessorHogwartsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI Classes\Hogwarts\Professor Specific\ProfessorSubjectManagerWindow.xaml.cs">
+      <DependentUpon>ProfessorSubjectManagerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI Classes\Hogwarts\Professor Specific\Subject Config\SubjectConfigWindow.xaml.cs">
       <DependentUpon>SubjectConfigWindow.xaml</DependentUpon>
     </Compile>
@@ -244,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI Classes\Hogwarts\Professor Specific\ProfessorHogwartsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Classes\Hogwarts\Professor Specific\ProfessorSubjectManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

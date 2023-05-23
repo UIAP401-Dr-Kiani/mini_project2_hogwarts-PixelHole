@@ -35,7 +35,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         // label content updates
         private void UpdateExerciseDescription()
         {
-            string[] description = SubjectManager.GetSubjectByName(SubjectsList.SelectedItem.ToString())
+            string[] description = SubjectManager.FindSubjectByName(SubjectsList.SelectedItem.ToString())
                 .GetExerciseWithName(ExercisesList.SelectedItem.ToString()).GetExerciseOverview();
 
             ExerciseDescriptionLabel.Content = $"{description[0]}\n\n{description[1]}";
@@ -74,7 +74,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         }
         private string[] GenerateExerciseTitles()
         {
-            List<Exercise> exercises = SubjectManager.GetSubjectByName(SubjectsList.SelectedItem.ToString()).Exercises;
+            List<Exercise> exercises = SubjectManager.FindSubjectByName(SubjectsList.SelectedItem.ToString()).Exercises;
 
             if (exercises?.Count == 0) return null;
 
@@ -139,7 +139,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
 
         private void RemoveExerciseBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            SubjectManager.GetSubjectByName(SubjectsList.SelectedItem.ToString())
+            SubjectManager.FindSubjectByName(SubjectsList.SelectedItem.ToString())
                 .RemoveExerciseByName(ExercisesList.SelectedItem.ToString());
             UpdateExerciseList();
             ExerciseDescriptionLabel.Content = "";

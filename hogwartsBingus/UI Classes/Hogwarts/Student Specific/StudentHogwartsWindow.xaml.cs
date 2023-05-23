@@ -28,7 +28,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Student_Specific
         private void UpdateSelectedSubject()
         {
             if (SubjectsList.SelectedIndex == -1) return;
-            subject = SubjectManager.GetSubjectByName(SubjectsList.SelectedItem.ToString());
+            subject = SubjectManager.FindSubjectByName(SubjectsList.SelectedItem.ToString());
         }
         private void UpdateSelectedExercise()
         {

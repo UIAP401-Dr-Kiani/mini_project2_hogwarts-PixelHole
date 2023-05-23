@@ -32,7 +32,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         public ExerciseConfigWindow(string subjectName, string exerciseName)
         {
             InitializeComponent();
-            Exercise = SubjectManager.GetSubjectByName(subjectName).GetExerciseWithName(exerciseName);
+            Exercise = SubjectManager.FindSubjectByName(subjectName).GetExerciseWithName(exerciseName);
             SubjectName = subjectName;
             EditMode = WindowEditMode.EditMode;
             SetFieldValues();
@@ -72,10 +72,10 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
             switch (EditMode)
             {
                 case WindowEditMode.EditMode :
-                    SubjectManager.GetSubjectByName(SubjectName).EditExercise(Exercise, newExercise);
+                    SubjectManager.FindSubjectByName(SubjectName).EditExercise(Exercise, newExercise);
                     break;
                 case WindowEditMode.AddMode :
-                    SubjectManager.GetSubjectByName(SubjectName).AddExercise(newExercise);
+                    SubjectManager.FindSubjectByName(SubjectName).AddExercise(newExercise);
                     break;
             }
             WindowManager.CloseTrackedWindow(this);

@@ -234,7 +234,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
             SubjectNameIsTaken = true;
             try
             {
-                SubjectManager.GetSubjectByName(TitleField.Text);
+                SubjectManager.FindSubjectByName(TitleField.Text);
             }
             catch (InstanceNotFoundException)
             {

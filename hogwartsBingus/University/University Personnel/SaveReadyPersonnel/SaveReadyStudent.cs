@@ -55,7 +55,7 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
 
             foreach (var subjectName in subjectNames)
             {
-                subjects.Add(SubjectManager.GetSubjectByName(subjectName));
+                subjects.Add(SubjectManager.FindSubjectByName(subjectName));
             }
             
             return new Student(FirstName, LastName, BirthYear, Gender, Father, Race, Messages, Tickets, Semester,

@@ -158,7 +158,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
             ClearLogContent();
             try
             {
-                Schedule.AddSubject(SubjectManager.GetSubjectByName(GetSubjectTitleFromList(AvailableSubjectsList,
+                Schedule.AddSubject(SubjectManager.FindSubjectByName(GetSubjectTitleFromList(AvailableSubjectsList,
                     AvailableSubjectsList.SelectedIndex)), CheckForIntersection);
             }
             catch (StudySessionIntersectionException)
@@ -178,7 +178,7 @@ namespace hogwartsBingus.UI_Classes.Ceremony
             if (!PickedSubjectsList.HasItems || PickedSubjectsList.SelectedItem == null) return;
             try
             {
-                Schedule.RemoveSubject(SubjectManager.GetSubjectByName(GetSubjectTitleFromList(PickedSubjectsList,
+                Schedule.RemoveSubject(SubjectManager.FindSubjectByName(GetSubjectTitleFromList(PickedSubjectsList,
                     PickedSubjectsList.SelectedIndex)));
             }
             catch (InstanceNotFoundException exception)

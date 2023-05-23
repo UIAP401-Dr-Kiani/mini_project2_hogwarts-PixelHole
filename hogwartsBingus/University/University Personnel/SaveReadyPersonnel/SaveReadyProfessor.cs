@@ -48,7 +48,7 @@ namespace hogwartsBingus.Base_Classes.SaveReadyPersonnel
             List<StudySubject> subjects = new List<StudySubject>();
             foreach (var subjectName in subjectNames)
             {
-                subjects.Add(SubjectManager.GetSubjectByName(subjectName));
+                subjects.Add(SubjectManager.FindSubjectByName(subjectName));
             }
 
             return new Professor(FirstName,

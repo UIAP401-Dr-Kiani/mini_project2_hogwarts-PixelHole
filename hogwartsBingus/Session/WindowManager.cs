@@ -32,7 +32,8 @@ namespace hogwartsBingus.Session
             ComposeMessageName = "ComposeMessage",
             RequestTicketName = "RequestTicket",
             TrainStationName = "TrainStation",
-            UpdateScheduleName = "Updateschedule",
+            UpdateStudentScheduleName = "UpdateStudentSchedule",
+            UpdateProfessorScheduleName = "UpdateProfessorSchedule",
             FactionAssignmentName = "FactionAssignment",
             WeeklyScheduleName = "WeeklySchedule",
             SaveDialogName = "SaveDialog",
@@ -116,10 +117,15 @@ namespace hogwartsBingus.Session
             FactionAssignmentWindow factionAssignmentWindow = new FactionAssignmentWindow();
             OpenSingleInstanceWindow(factionAssignmentWindow, FactionAssignmentName, () => FocusWindow(factionAssignmentWindow));
         }
-        public static void OpenUpdateScheduleWindow()
+        public static void OpenUpdateStudentScheduleWindow()
         {
             UpdateScheduleUpdaterWindow updateScheduleUpdaterWindow = new UpdateScheduleUpdaterWindow();
-            OpenSingleInstanceWindow(updateScheduleUpdaterWindow, UpdateScheduleName, () => FocusWindow(updateScheduleUpdaterWindow));
+            OpenSingleInstanceWindow(updateScheduleUpdaterWindow, UpdateStudentScheduleName, () => FocusWindow(updateScheduleUpdaterWindow));
+        }
+        public static void OpenUpdateProfessorScheduleWindow()
+        {
+            ProfessorSubjectManagerWindow professorSubjectManagerWindow = new ProfessorSubjectManagerWindow();
+            OpenSingleInstanceWindow(professorSubjectManagerWindow, UpdateProfessorScheduleName, () => FocusWindow(professorSubjectManagerWindow));
         }
         public static void OpenTrainStationWindow()
         {
@@ -176,7 +182,7 @@ namespace hogwartsBingus.Session
         public static void OpenAddSubjectWindow()
         {
             SubjectConfigWindow subjectConfigWindow = new SubjectConfigWindow();
-            OpenSingleInstanceWindow(subjectConfigWindow, DormitoryConfigName, () => FocusWindow(subjectConfigWindow));
+            OpenSingleInstanceWindow(subjectConfigWindow, SubjectConfigName, () => FocusWindow(subjectConfigWindow));
         }
 
         private static void OpenSingleInstanceWindow(Window window, string name, IfWindowOpen ifWindowOpen)

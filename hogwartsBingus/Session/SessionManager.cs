@@ -35,6 +35,7 @@ namespace hogwartsBingus.Session
         {
             return UserManager.GetGeneralUserInfoAt(UserManager.FindWithName(CurrentUser.FullName));
         }
+        public static string GetUserFullName() => CurrentUser.FullName;
         public static FactionType? GetUserFaction() => (CurrentUser as Student)?.Faction;
         public static List<Message> GetMessageList() => CurrentUser.Messages;
         public static Message GetMessageWithTitle(string title) => CurrentUser.FindMessageWithTitle(title);
