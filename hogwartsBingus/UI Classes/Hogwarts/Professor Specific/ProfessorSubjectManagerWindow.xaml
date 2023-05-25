@@ -26,10 +26,10 @@
                 <Grid.ColumnDefinitions>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="AddSubjectBtn" Content="Add" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei UI Light" FontSize="16" Click="AddSubjectBtn_OnClick"/>
-                <Button x:Name="RemoveSubjectBtn" Content="Remove" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei UI Light" FontSize="16" Grid.Row="1" Click="RemoveSubjectBtn_OnClick"/>
-                <Button x:Name="EditSubjectBtn" Content="Edit" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei UI Light" FontSize="16" Grid.Row="2" Click="EditSubjectBtn_OnClick"/>
+                <Button x:Name="RemoveSubjectBtn" IsEnabled="False" Content="Remove" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei UI Light" FontSize="16" Grid.Row="1" Click="RemoveSubjectBtn_OnClick"/>
+                <Button x:Name="EditSubjectBtn" IsEnabled="False" Content="Edit" Margin="10,0,0,10" Background="#FFBD93F9" BorderBrush="#FFBD93F9" Foreground="#FFF8F8F2" FontFamily="Microsoft YaHei UI Light" FontSize="16" Grid.Row="2" Click="EditSubjectBtn_OnClick"/>
             </Grid>
-            <ListBox x:Name="SubjectsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,0,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2"/>
+            <ListBox x:Name="SubjectsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,0,10" Background="#FF44475A" BorderBrush="#FF44475A" Foreground="#FFF8F8F2" SelectionChanged="SubjectsList_OnSelectionChanged"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

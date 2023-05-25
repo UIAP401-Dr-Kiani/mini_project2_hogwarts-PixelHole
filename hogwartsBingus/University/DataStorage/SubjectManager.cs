@@ -11,7 +11,12 @@ namespace hogwartsBingus.DataStorage
 {
     public static class SubjectManager
     {
-        private static List<StudySubject> StudySubjects = new List<StudySubject>();
+        private static List<StudySubject> StudySubjects;
+
+        public delegate void OnSubjectsChanged();
+        
+        public static event OnSubjectsChanged SubjectsChanged;
+        
         public static void AddTestSubjects()
         {
             AddStudySubject(new StudySubject("Test1", UserManager.GetUserAtIndex(1).FullName, 
@@ -95,15 +100,18 @@ namespace hogwartsBingus.DataStorage
         {
             if (StudySubjects.Contains(subject)) return;
             StudySubjects.Add(subject);
+            SubjectsChanged?.Invoke();
         }
         public static void RemoveStudySubject(StudySubject subject)
         {
             if (!StudySubjects.Contains(subject)) return;
             StudySubjects.Remove(subject);
+            SubjectsChanged?.Invoke();
         }
         public static void RemoveStudySubjectAt(int index)
         {
             StudySubjects.RemoveAt(index);
+            SubjectsChanged?.Invoke();
         }
         
         

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
 using hogwartsBingus.Session;
@@ -17,17 +20,37 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         {
             InitializeComponent();
             UpdateSchedule();
+            UpdateSubjectsList();
             UpdateWeeklyScheduleDisplay();
+            SubjectManager.SubjectsChanged += UpdateSchedule;
         }
         
         private void UpdateSchedule()
         {
-            Schedule.Subjects.Clear();
+            Schedule = SessionManager.GetWeeklySchedule();
+            
+            UpdateSubjectsList();
+            UpdateWeeklyScheduleDisplay();
+        }
+        
+        
+        // Update Subjects List
+        private void UpdateSubjectsList()
+        {
+            SubjectsList.ItemsSource = GenerateSubjectListContent();
+        }
+        private string[] GenerateSubjectListContent()
+        {
+            List<string> titles = new List<string>();
 
-            foreach (var subject in SubjectManager.FindSubjectsWithProfessor(SessionManager.GetUserFullName()))
+            if (Schedule.Subjects.Count == 0) return titles.ToArray();
+
+            foreach (var subject in Schedule.Subjects)
             {
-                Schedule.Subjects.Add(subject);
+                titles.Add(subject.ToString());
             }
+
+            return titles.ToArray();
         }
         
         
@@ -67,7 +90,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         private int TimeSpanToDisplayTableIndex(TimeSpan time)
         {
             int x = time.Hours - 7;
-            int y = time.Days - 2;
+            int y = time.Days;
             return x + y * 11;
         }
         
@@ -75,15 +98,19 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         // Button Click Handling
         private void AddSubjectBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            WindowManager.OpenAddSubjectWindow();
+            WindowManager.OpenProfessorAddSubjectWindow(SessionManager.GetUserFullName());
         }
         private void RemoveSubjectBtn_OnClick(object sender, RoutedEventArgs e)
         {
+            Schedule.RemoveSubject(SubjectManager.FindSubjectByName(SubjectsList.SelectedItem.ToString()));
+            SubjectManager.RemoveStudySubject(SubjectManager.FindSubjectByName(SubjectsList.SelectedItem.ToString()));
             
+            UpdateSubjectsList();
         }
         private void EditSubjectBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            WindowManager.OpenProfessorEditSubjectWindow(
+                SubjectManager.FindSubjectByName(SubjectsList.SelectedItem.ToString()));
         }
         private void ConfirmBtn_OnClick(object sender, RoutedEventArgs e)
         {
@@ -99,6 +126,21 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific
         private void ProfessorSubjectManagerWindow_OnClosed(object sender, EventArgs e)
         {
             WindowManager.UnTrackWindow(this);
+        }
+        
+        
+        // list selection changed
+        private void SubjectsList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SubjectsList.SelectedItem == null)
+            {
+                EditSubjectBtn.IsEnabled = false;
+                RemoveSubjectBtn.IsEnabled = false;
+                return;
+            }
+            
+            EditSubjectBtn.IsEnabled = true;
+            RemoveSubjectBtn.IsEnabled = true;
         }
     }
 }

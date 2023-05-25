@@ -16,6 +16,7 @@ using hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config;
 using hogwartsBingus.UI_Classes.Hogwarts.Student_Specific;
 using hogwartsBingus.UI_Classes.LandingPages;
 using hogwartsBingus.University.Excercies;
+using hogwartsBingus.University.StudySessionRelactedClasses;
 using Microsoft.Win32;
 
 namespace hogwartsBingus.Session
@@ -182,6 +183,21 @@ namespace hogwartsBingus.Session
         public static void OpenAddSubjectWindow()
         {
             SubjectConfigWindow subjectConfigWindow = new SubjectConfigWindow();
+            OpenSingleInstanceWindow(subjectConfigWindow, SubjectConfigName, () => FocusWindow(subjectConfigWindow));
+        }
+        public static void OpenEditSubjectWindow(StudySubject subject)
+        {
+            SubjectConfigWindow subjectConfigWindow = new SubjectConfigWindow(subject, false);
+            OpenSingleInstanceWindow(subjectConfigWindow, SubjectConfigName, () => FocusWindow(subjectConfigWindow));
+        }
+        public static void OpenProfessorAddSubjectWindow(string professorName)
+        {
+            SubjectConfigWindow subjectConfigWindow = new SubjectConfigWindow(professorName);
+            OpenSingleInstanceWindow(subjectConfigWindow, SubjectConfigName, () => FocusWindow(subjectConfigWindow));
+        }
+        public static void OpenProfessorEditSubjectWindow(StudySubject subject)
+        {
+            SubjectConfigWindow subjectConfigWindow = new SubjectConfigWindow(subject, true);
             OpenSingleInstanceWindow(subjectConfigWindow, SubjectConfigName, () => FocusWindow(subjectConfigWindow));
         }
 

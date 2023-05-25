@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using hogwartsBingus.Base_Classes;
 using hogwartsBingus.DataStorage;
+using hogwartsBingus.Execptions;
 using hogwartsBingus.Session;
 using hogwartsBingus.University.StudySessionRelactedClasses;
 
@@ -32,11 +33,28 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
             FillDayOfWeekComboBox();
             UpdateSessionList();
         }
+        public SubjectConfigWindow(string professorName) : this()
+        {
+            AssignedProfessorField.Text = professorName;
+            AssignedProfessorField.IsEnabled = false;
+        }
 
-        public SubjectConfigWindow(StudySubject subject) : this()
+        public SubjectConfigWindow(StudySubject subject, bool lockProfessor) : this()
         {
             EditMode = WindowEditMode.EditMode;
             Subject = subject;
+            SetFieldsFromSubject(lockProfessor);
+        }
+        
+        
+        // Load Data from Subject
+        private void SetFieldsFromSubject(bool lockProfessor)
+        {
+            TitleField.Text = Subject.Name;
+            SemesterField.Text = Subject.SemesterIndex.ToString();
+            CapacityField.Text = Subject.Capacity.ToString();
+            AssignedProfessorField.Text = Subject.ProfessorName;
+            if (lockProfessor) AssignedProfessorField.IsEnabled = true;
         }
         
         
@@ -165,6 +183,18 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
         {
             if (SubjectDescriptionFieldsHaveCorrectValue() && SessionList.HasItems)
             {
+                Professor professor =
+                    UserManager.GetUserAtIndex(UserManager.FindWithName(AssignedProfessorField.Text)) as Professor;
+
+                try
+                {
+                    professor.Schedule.AddSubject(Subject, professor.CanTeachAtMultipleClasses);
+                }
+                catch (StudySessionIntersectionException)
+                {
+                    return;
+                }
+                
                 SubjectManager.AddStudySubject(Subject);
                 WindowManager.CloseTrackedWindow(this);
             }
@@ -220,6 +250,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
         }
         private void AssignedProfessorField_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            
             ProfessorIsFound = UserManager.FindWithName(AssignedProfessorField.Text) != -1;
             if (ProfessorIsFound)
             {
