@@ -21,23 +21,41 @@ namespace hogwartsBingus.Base_Classes
                 AddSubject(subject, false);
             }
         }
-        public void AddSubject(StudySubject newSubject, bool CheckForIntersection)
+        public void AddSubject(StudySubject newSubject, bool checkForIntersection)
         {
             if (Subjects.Contains(newSubject)) return;
-            if (CheckForIntersection)
+            if (checkForIntersection)
             {
                 if (SubjectIntersects(newSubject)) throw new StudySessionIntersectionException();
             }
             
             Subjects.Add(newSubject);
         }
-
         public void RemoveSubject(StudySubject subject)
         {
             if (!Subjects.Contains(subject)) throw new InstanceNotFoundException();
             Subjects.Remove(subject);
         }
+        public void EditSubject(StudySubject oldSubject, StudySubject newSubject, bool checkForIntersection)
+        {
+            if (Subjects.IndexOf(oldSubject) == -1) return;
 
+            Subjects.Remove(oldSubject);
+
+            if (checkForIntersection)
+            {
+                if (SubjectIntersects(newSubject))
+                {
+                    Subjects.Add(oldSubject);
+                    throw new StudySessionIntersectionException();
+                }
+            }
+
+            Subjects.Add(oldSubject);
+            Subjects[Subjects.IndexOf(oldSubject)] = newSubject;
+        }
+
+        // intersection checks
         private bool SubjectIntersects(StudySubject newSubject)
         {
             foreach (var session in newSubject.Sessions)
@@ -50,7 +68,6 @@ namespace hogwartsBingus.Base_Classes
 
             return false;
         }
-
         private bool SessionIntersects(StudySessionTime newSession)
         {
             foreach (var subject in Subjects)

@@ -113,6 +113,13 @@ namespace hogwartsBingus.DataStorage
             StudySubjects.RemoveAt(index);
             SubjectsChanged?.Invoke();
         }
+        public static void EditStudySubject(StudySubject oldSubject, StudySubject newSubject)
+        {
+            if (StudySubjects.IndexOf(oldSubject) == -1) return;
+
+            StudySubjects[StudySubjects.IndexOf(oldSubject)] = newSubject;
+            SubjectsChanged?.Invoke();
+        }
         
         
         // check for Exercise Expiration

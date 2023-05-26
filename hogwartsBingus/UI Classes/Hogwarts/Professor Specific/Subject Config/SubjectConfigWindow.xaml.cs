@@ -24,6 +24,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
             DurationFormat = new Regex(@"^[1-2]$");
 
         private StudySubject Subject = new StudySubject();
+        private StudySubject OldSubject = new StudySubject();
 
         private bool ProfessorIsFound, SubjectNameIsTaken;
         
@@ -42,6 +43,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
         public SubjectConfigWindow(StudySubject subject, bool lockProfessor) : this()
         {
             EditMode = WindowEditMode.EditMode;
+            OldSubject = subject;
             Subject = subject;
             SetFieldsFromSubject(lockProfessor);
         }
@@ -55,6 +57,7 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
             CapacityField.Text = Subject.Capacity.ToString();
             AssignedProfessorField.Text = Subject.ProfessorName;
             if (lockProfessor) AssignedProfessorField.IsEnabled = true;
+            UpdateSessionList();
         }
         
         
@@ -188,14 +191,30 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
 
                 try
                 {
-                    professor.Schedule.AddSubject(Subject, professor.CanTeachAtMultipleClasses);
+                    switch (EditMode)
+                    {
+                        case WindowEditMode.AddMode :
+                            professor.Schedule.AddSubject(Subject, professor.CanTeachAtMultipleClasses);
+                            break;
+                        case WindowEditMode.EditMode :
+                            professor.Schedule.EditSubject(OldSubject, Subject, professor.CanTeachAtMultipleClasses);
+                            break;
+                    }
                 }
                 catch (StudySessionIntersectionException)
                 {
                     return;
                 }
-                
-                SubjectManager.AddStudySubject(Subject);
+
+                switch (EditMode)
+                {
+                    case WindowEditMode.AddMode :
+                        SubjectManager.AddStudySubject(Subject);
+                        break;
+                    case WindowEditMode.EditMode :
+                        SubjectManager.EditStudySubject(OldSubject, Subject);
+                        break;
+                }
                 WindowManager.CloseTrackedWindow(this);
             }
         }
@@ -268,6 +287,11 @@ namespace hogwartsBingus.UI_Classes.Hogwarts.Professor_Specific.Subject_Config
                 SubjectManager.FindSubjectByName(TitleField.Text);
             }
             catch (InstanceNotFoundException)
+            {
+                SubjectNameIsTaken = false;
+            }
+
+            if (TitleField.Text == OldSubject.Name)
             {
                 SubjectNameIsTaken = false;
             }
